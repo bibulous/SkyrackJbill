@@ -1,0 +1,27 @@
+import com.sapienter.jbilling.server.item.PricingField
+import com.sapienter.jbilling.server.mediation.task.MediationResult
+import com.sapienter.jbilling.server.user.UserBL
+import com.sapienter.jbilling.server.order.OrderLineBL
+import com.sapienter.jbilling.server.order.OrderBL
+import com.sapienter.jbilling.server.order.db.OrderDTO;
+import com.sapienter.jbilling.server.user.db.CompanyDTO
+import com.sapienter.jbilling.server.order.db.OrderLineDTO
+import com.sapienter.jbilling.server.item.tasks.PricingResult
+import com.sapienter.jbilling.server.item.tasks.SubscriptionResult
+import com.sapienter.jbilling.server.order.db.OrderDAS
+import org.apache.log4j.Logger;
+import java.util.List;
+import java.math.BigDecimal;
+global org.apache.log4j.Logger LOG;
+# updates the current order
+# this might or might not run... depending if there are pricing with rules
+# if not, then the default price will be used
+# This only helps if the item management rules do not swap the initial item
+# or change things that need other pricing done
+# If that is the case, the price assignment has to be done from the item
+# management rules
+# this rule will set the diff lines . This provides data for the mediation_record_line table
+# step management
+# this ensures that there is only one record being processed for a given user at the same time
+# otherwise, item management and diffs fail
+# not needed in this example. There is only one insert of a price request, where the step is set to pricing

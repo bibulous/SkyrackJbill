@@ -1,0 +1,54 @@
+package trend_pricing
+#imports
+import com.sapienter.jbilling.server.user.ContactDTOEx
+import com.sapienter.jbilling.server.item.PricingField
+import com.sapienter.jbilling.server.user.UserDTOEx
+import com.sapienter.jbilling.server.item.tasks.PricingResult
+import com.sapienter.jbilling.server.item.tasks.SubscriptionResult
+import java.math.BigDecimal;
+import org.apache.log4j.Logger;
+
+#globals
+global org.apache.log4j.Logger LOG;
+
+
+
+
+
+#from row number: 1
+rule "Row 1 customer pricing"
+	salience 50
+	dialect "mvel"
+	when
+		user : UserDTOEx( userName == "pbright" )
+		result : PricingResult( itemId == "14" , price == ( null ) )
+	then
+		LOG.info("SiBury pushed .drl");
+		result.setPrice( "0.11" );
+		update( result );
+end
+
+#from row number: 2
+rule "Row 2 customer pricing"
+	salience 50
+	dialect "mvel"
+	when
+		user : UserDTOEx( userName == "twilson" )
+		result : PricingResult( itemId == "14" , price == ( null ) )
+	then
+		result.setPrice( "0.09" );
+		update( result );
+end
+
+#from row number: 3
+rule "Row 3 customer pricing"
+	salience 50
+	dialect "mvel"
+	when
+		user : UserDTOEx( userName == "pbright" )
+		result : PricingResult( itemId == "2" , price == ( null ) )
+	then
+		result.setPrice( "5" );
+		update( result );
+end
+

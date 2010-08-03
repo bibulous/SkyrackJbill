@@ -1,0 +1,11 @@
+function boolean getUKLLUnknown(String numberDialled) {	
+			boolean isUKLLUnknown = false;
+
+			if (numberDialled.length() <= 12
+		    		&& numberDialled.substring(0,3).equals("123")
+		    		|| numberDialled.substring(0,4).matches("05[5-6]\\d")) {
+
+		    	isUKLLUnknown = true;
+    	}
+    return isUKLLUnknown;
+}

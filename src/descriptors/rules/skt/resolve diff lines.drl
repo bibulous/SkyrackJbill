@@ -1,0 +1,15 @@
+when
+    $result : MediationResult( step == MediationResult.STEP_7_DIFF)
+    $company : CompanyDTO()
+then
+    //if ($result.getPersist()) { // validatePruchase does not want things persisted in the DB
+        new OrderDAS().save($result.getCurrentOrder());
+    //}
+    $result.setDiffLines(OrderLineBL.diffOrderLines($result.getOldLines(), $result.getCurrentOrder().getLines()));
+    $result.setDone(true);
+    retract($result);
+    retract($result.getCurrentOrder()); #doable because we can count with one record being process for a give user at a time
+    //if ($result.getPersist()) {
+        new OrderBL().checkOrderLineQuantities($result.getOldLines(), $result.getCurrentOrder().getLines(), $company.getId(), $result.getCurrentOrder().getId());
+    //}
+    LOG.debug("diff done for record " + $result.getRecordKey() + " diff is " + $result.getDiffLines() + " record " + $result.getRecordKey());

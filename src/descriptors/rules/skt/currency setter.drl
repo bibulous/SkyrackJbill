@@ -1,0 +1,7 @@
+when
+    $result : MediationResult(step == MediationResult.STEP_2_AFTER_USER, currencyId == null)
+then
+    modify( $result ) {
+        setCurrencyId( getDefaultCurrency($result.getUserId()) );
+    }
+    LOG.debug("The currency was set to " + $result.getCurrencyId() + " record " + $result.getRecordKey());

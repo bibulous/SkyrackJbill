@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN" "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+
+<taglib>
+
+   <tlib-version>1.0</tlib-version>
+   <jsp-version>1.2</jsp-version>
+   <short-name>bettyTags</short-name>
+
+   <tag>
+
+      <name>getPreference</name>
+      <tag-class>com.sapienter.jbilling.client.util.GetPreferenceTag</tag-class>
+      <body-content>empty</body-content>
+
+      <attribute>
+         <name>preferenceId</name>
+         <required>true</required>
+         <rtexprvalue>true</rtexprvalue>
+
+           <type>java.lang.Integer</type>
+
+      </attribute>
+      <attribute>
+         <name>beanName</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+
+           <type>java.lang.String</type>
+
+      </attribute>
+   </tag>
+   <tag>
+
+      <name>permission</name>
+      <tag-class>com.sapienter.jbilling.client.user.PermissionTag</tag-class>
+      <body-content>JSP</body-content>
+
+      <attribute>
+         <name>permission</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+
+           <type>java.lang.Integer</type>
+
+      </attribute>
+      <attribute>
+         <name>negative</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+
+           <type>java.lang.Boolean</type>
+
+      </attribute>
+      <attribute>
+         <name>foreignId</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+
+           <type>java.lang.Integer</type>
+
+      </attribute>
+      <attribute>
+         <name>typeId</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+
+           <type>java.lang.Integer</type>
+
+      </attribute>
+   </tag>
+   <tag>
+
+      <name>getUser</name>
+      <tag-class>com.sapienter.jbilling.client.user.GetUserTag</tag-class>
+      <body-content>empty</body-content>
+
+      <attribute>
+         <name>userId</name>
+         <required>true</required>
+         <rtexprvalue>true</rtexprvalue>
+
+           <type>java.lang.Integer</type>
+
+      </attribute>
+      <attribute>
+         <name>createForm</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+
+           <type>java.lang.Boolean</type>
+
+      </attribute>
+   </tag>
+   <tag>
+
+      <name>reportDelete</name>
+      <tag-class>com.sapienter.jbilling.client.report.DeleteTag</tag-class>
+      <body-content>empty</body-content>
+
+      <attribute>
+         <name>reportId</name>
+         <required>true</required>
+         <rtexprvalue>true</rtexprvalue>
+
+           <type>java.lang.Integer</type>
+
+      </attribute>
+   </tag>
+   <tag>
+
+      <name>genericList</name>
+      <tag-class>com.sapienter.jbilling.client.list.GenericListTag</tag-class>
+      <body-content>JSP</body-content>
+
+      <attribute>
+         <name>setup</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+
+           <type>java.lang.Boolean</type>
+
+      </attribute>
+      <attribute>
+         <name>type</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+
+           <type>java.lang.String</type>
+
+      </attribute>
+      <attribute>
+         <name>method</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+
+           <type>java.lang.String</type>
+
+      </attribute>
+   </tag>
+   <tag>
+
+      <name>populateCurrencies</name>
+      <tag-class>com.sapienter.jbilling.client.item.PopulateCurrenciesTag</tag-class>
+      <body-content>empty</body-content>
+
+   </tag>
+   <tag>
+
+      <name>reportDownload</name>
+      <tag-class>com.sapienter.jbilling.client.report.DownloadTag</tag-class>
+      <body-content>empty</body-content>
+
+   </tag>
+   <tag>
+
+      <name>getOptions</name>
+      <tag-class>com.sapienter.jbilling.client.util.GetOptionsTag</tag-class>
+      <body-content>empty</body-content>
+
+      <attribute>
+         <name>countries</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+
+           <type>java.lang.Boolean</type>
+
+      </attribute>
+      <attribute>
+         <name>userType</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+
+           <type>java.lang.Boolean</type>
+
+      </attribute>
+      <attribute>
+         <name>language</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+
+           <type>java.lang.Boolean</type>
+
+      </attribute>
+      <attribute>
+         <name>userStatus</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+
+           <type>java.lang.Boolean</type>
+
+      </attribute>
+      <attribute>
+         <name>itemType</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+
+           <type>java.lang.Boolean</type>
+
+      </attribute>
+      <attribute>
+         <name>orderPeriod</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+
+           <type>java.lang.Boolean</type>
+
+      </attribute>
+      <attribute>
+         <name>billingType</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+
+           <type>java.lang.Boolean</type>
+
+      </attribute>
+      <attribute>
+         <name>inSession</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+
+           <type>java.lang.Boolean</type>
+
+      </attribute>
+      <attribute>
+         <name>generalPeriod</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+
+           <type>java.lang.Boolean</type>
+
+      </attribute>
+      <attribute>
+         <name>currencies</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+
+           <type>java.lang.Boolean</type>
+
+      </attribute>
+      <attribute>
+         <name>map</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+
+           <type>java.lang.Integer</type>
+
+      </attribute>
+      <attribute>
+         <name>contactType</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+
+           <type>java.lang.Boolean</type>
+
+      </attribute>
+      <attribute>
+         <name>deliveryMethod</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+
+           <type>java.lang.Boolean</type>
+
+      </attribute>
+      <attribute>
+         <name>orderLineType</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+
+           <type>java.lang.Boolean</type>
+
+      </attribute>
+      <attribute>
+         <name>taskClasses</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+
+           <type>java.lang.Boolean</type>
+
+      </attribute>
+   </tag>
+   <tag>
+
+      <name>invoiceDownload</name>
+      <tag-class>com.sapienter.jbilling.client.invoice.DownloadTag</tag-class>
+      <body-content>empty</body-content>
+
+   </tag>
+   <tag>
+
+      <name>reportList</name>
+      <tag-class>com.sapienter.jbilling.client.report.ListTag</tag-class>
+      <body-content>JSP</body-content>
+
+      <attribute>
+         <name>mode</name>
+         <required>true</required>
+         <rtexprvalue>true</rtexprvalue>
+
+           <type>java.lang.String</type>
+
+      </attribute>
+   </tag>
+   <tag>
+
+      <name>dateFormat</name>
+      <tag-class>com.sapienter.jbilling.client.util.DateFormatTag</tag-class>
+      <body-content>JSP</body-content>
+
+      <attribute>
+         <name>format</name>
+         <required>true</required>
+         <rtexprvalue>true</rtexprvalue>
+
+           <type>java.lang.String</type>
+
+      </attribute>
+   </tag>
+   <tag>
+
+      <name>reportExecute</name>
+      <tag-class>com.sapienter.jbilling.client.report.ExecuteTag</tag-class>
+      <body-content>JSP</body-content>
+
+   </tag>
+   <tag>
+
+      <name>insertDataRow</name>
+      <tag-class>com.sapienter.jbilling.client.list.InsertDataRowTag</tag-class>
+      <body-content>empty</body-content>
+
+   </tag>
+   <tag>
+
+      <name>help</name>
+      <tag-class>com.sapienter.jbilling.client.util.HelpTag</tag-class>
+      <body-content>JSP</body-content>
+
+      <attribute>
+         <name>anchor</name>
+         <required>false</required>
+         <rtexprvalue>true</rtexprvalue>
+
+           <type>java.lang.String</type>
+
+      </attribute>
+      <attribute>
+         <name>isMenu</name>
+         <required>false</required>
+         <rtexprvalue>false</rtexprvalue>
+
+           <type>java.lang.Boolean</type>
+
+      </attribute>
+      <attribute>
+         <name>page</name>
+         <required>true</required>
+         <rtexprvalue>true</rtexprvalue>
+
+           <type>java.lang.String</type>
+
+      </attribute>
+   </tag>
+   <tag>
+
+      <name>reportSetUp</name>
+      <tag-class>com.sapienter.jbilling.client.report.ReportSetUpTag</tag-class>
+      <body-content>empty</body-content>
+
+   </tag>
+   <tag>
+
+      <name>welcome</name>
+      <tag-class>com.sapienter.jbilling.client.user.WelcomeTag</tag-class>
+      <body-content>JSP</body-content>
+
+   </tag>
+
+</taglib>

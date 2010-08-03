@@ -1,0 +1,6 @@
+when
+    $result : MediationResult(step == MediationResult.STEP_3_CURRENT_ORDER,  currentOrder != null, done == false )
+then
+    modify( $result ) {
+        setStep(MediationResult.STEP_4_RESOLVE_ITEM);
+    }

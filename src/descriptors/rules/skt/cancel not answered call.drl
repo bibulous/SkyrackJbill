@@ -1,0 +1,7 @@
+when
+    $result : MediationResult(step == MediationResult.STEP_1_START, done == false )
+    $field : PricingField( name == "disposition", resultId == $result.id, value != "ANSWERED" )
+then
+    $result.setDone(true);
+    retract($result);
+    LOG.debug("not billable record " + $result.getRecordKey() + " record " + $result.getRecordKey());

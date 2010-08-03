@@ -1,0 +1,10 @@
+function boolean getUKMob(String numberDialled) {	
+    boolean isUKMob = false;
+	    if (numberDialled.length() <= 12 && numberDialled.length() > 5
+		    		&& ( numberDialled.substring(0,4).matches("07[5,7-9]\\d")
+		    				||numberDialled.substring(0, 5).equals("07624"))) {
+
+	    	isUKMob = true;
+    	}
+    return isUKMob;
+}

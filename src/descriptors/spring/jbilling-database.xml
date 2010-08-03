@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : jbilling-db.xml.xml
+    Created on : January 21, 2009, 3:16 PM
+    Author     : emilc
+    Description:
+        Database related configuration
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+       http://www.springframework.org/schema/tx 
+       http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+    <!--
+      To use JTA transactions and a data source from an application server:
+        - replace the local data source (comment) with the jndi data source (uncomment)
+        - Add the two lines for JTA transactions in the hibernate properties
+    -->
+    <!-- Datasource from an Application Server (JTA only)
+    <jee:jndi-lookup id="dataSource" jndi-name="java:/ApplicationDS"/>
+    -->
+ 
+     <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+			<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <!-- Datasource from a local resource -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="org.postgresql.Driver"/>
+        <property name="jdbcUrl" value="jdbc:postgresql://localhost:5432/jbilling_test" />
+        <property name="user" value="jbilling" />
+        <property name="password" value="" />
+        <property name="acquireIncrement" value="2"/>
+        <property name="initialPoolSize" value="5"/>
+        <property name="maxPoolSize" value="20" />
+        <property name="maxIdleTime" value="300" />
+        <property name="minPoolSize" value="2" />
+        <property name="checkoutTimeout" value="10000" />
+        <!-- The next three properties deal with potential time outs by the DB server of idle connections. If this
+             happens regardless you can either reduce the seconds of testing (30 is the default)
+             or activate the property testConnectionOnCheckout -->
+        <property name="preferredTestQuery" value="select id from jbilling_table where id = 1" />
+        <property name="testConnectionOnCheckin" value="true" />
+        <property name="idleConnectionTestPeriod" value="30" />
+        <!-- for debug of leaks only: after ten seconds, throw an exception that tells who is holding
+            a connection
+        <property name="unreturnedConnectionTimeout" value="10"/>
+        <property name="debugUnreturnedConnectionStackTraces" value="true"/>
+        -->
+
+    </bean>
+       
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <bean id="sessionFactory"
+        class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <!-- Scan for annotated classes -->
+        <property name="packagesToScan" value="com.sapienter.jbilling.server.**.*"/>
+        <property name="hibernateProperties">
+            <props>
+                <!--
+                    Choose your dialect:
+                      org.hibernate.dialect.HSQLDialect
+                      org.hibernate.dialect.MySQLDialect
+                      org.hibernate.dialect.Oracle9Dialect
+                -->
+                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+
+                <!--  Cache settings -->
+                <prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
+                <prop key="SecondLevelCacheEnabled">true</prop>
+                <prop key="hibernate.cache.use_query_cache">true</prop>
+
+                <!-- Data source and transaction settings (JTA only)
+                <prop key="hibernate.transaction.factory_class">org.hibernate.transaction.JTATransactionFactory</prop>
+                <prop key="hibernate.transaction.manager_lookup_class">org.hibernate.transaction.JBossTransactionManagerLookup</prop>
+                -->
+
+                 <!-- This should be equal to Constants.HIBERNATE_BATCH_SIZE -->
+                <prop key="hibernate.jdbc.batch_size">100</prop>
+
+                <!--  Debugger helpers -->
+                <prop key="hibernate.show_sql">false</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.use_sql_comments">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="jdbcTemplate"
+        class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+</beans>

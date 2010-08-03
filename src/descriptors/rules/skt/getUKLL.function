@@ -1,0 +1,8 @@
+function boolean getUKLL(String numberDialled) {	
+    boolean isUKLL = false;
+		    if (numberDialled.length() <= 12 && numberDialled.length() > 5
+		    		&& numberDialled.substring(0,4).matches("0[1-3]\\d\\d"))  {
+		    	isUKLL = true;
+    	}
+    return isUKLL;
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Configuration of ContextSingletonBeanFactoryLocator. Allows the 
+    application context to be shared between the jBilling Context class
+    and the Spring MVC DispatcherServlet. 
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+  <bean id="com.sapienter.jbilling" class="org.springframework.context.support.ClassPathXmlApplicationContext">
+     <constructor-arg>
+       <list>
+         <value>/jbilling-beans.xml</value>
+         <value>/jbilling-database.xml</value>
+         <value>/jbilling-remoting.xml</value>
+         <value>/jbilling-provisioning.xml</value>
+         <value>/jbilling-jms.xml</value>
+         <value>/jbilling-internal-events-rules-tasks.xml</value>
+       </list>
+     </constructor-arg>
+   </bean>
+
+
+</beans>

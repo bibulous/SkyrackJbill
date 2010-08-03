@@ -1,0 +1,13 @@
+function boolean getUKFree(String numberDialled) {	
+    boolean isUKFree = false;
+			if (numberDialled.length() <= 12 && numberDialled.length() > 5
+		    		&& ( numberDialled.substring(0,3).equals("080")
+		    				||numberDialled.substring(0,4).equals("0500")
+		    				||numberDialled.substring(0,6).equals("116000")
+		    				||numberDialled.substring(0,6).equals("116111")
+		    				||numberDialled.substring(0,6).equals("116123"))) {
+
+		    	isUKFree = true;
+    	}
+    return isUKFree;
+}

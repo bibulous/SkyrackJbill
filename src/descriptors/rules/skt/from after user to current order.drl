@@ -1,0 +1,6 @@
+when
+    $result : MediationResult(step == MediationResult.STEP_2_AFTER_USER, currencyId != null, currentOrder == null)
+then
+    modify( $result ) {
+        setStep(MediationResult.STEP_3_CURRENT_ORDER);
+    }

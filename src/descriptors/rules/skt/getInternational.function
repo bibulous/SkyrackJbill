@@ -1,0 +1,11 @@
+function boolean getInternational(String numberDialled) {	
+    boolean isInternational = false;
+    if (numberDialled.length() >= 12 
+        && !numberDialled.substring(0,2).equals("44") 
+        && !numberDialled.substring(0,3).equals("+44") 
+        && !numberDialled.substring(0,4).equals("0044") ) {
+
+        isInternational = true;
+    }
+    return isInternational;
+}

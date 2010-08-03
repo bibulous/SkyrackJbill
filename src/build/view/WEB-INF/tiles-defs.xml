@@ -1,0 +1,373 @@
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+<!--
+    jBilling - The Enterprise Open Source Billing System
+    Copyright (C) 2003-2009 Enterprise jBilling Software Ltd. and Emiliano Conde
+
+    This file is part of jbilling.
+
+    jbilling is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    jbilling is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with jbilling.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<tiles-definitions>
+    
+    <!-- =======================================================  -->
+    <!-- User Login                                               -->
+    <!-- =======================================================  -->
+
+    <definition name="userLogin" path="/layouts/centerLayout.jsp">
+        <put name="title" value="Billing User Login" />
+        
+        <put name="footer" value="/common/footer.jsp" />
+        <put name="body" value="/user/loginBody.jsp" />
+    </definition>
+    <definition name="changePassword" path="/layouts/centerLayout.jsp">
+        <put name="title" value="Password Expired" />
+        <put name="footer" value="/common/footer.jsp" />
+        <put name="body" value="/user/changePasswordBody.jsp" />
+    </definition>
+    
+    <!-- =======================================================  -->
+    <!-- Forget Password                                               -->
+    <!-- =======================================================  -->
+  
+    <definition name="forgetPassword" path="/layouts/centerLayout.jsp">
+        <put name="title" value="Billing User Forget Password" />
+        <put name="footer" value="/common/footer.jsp" />
+        <put name="body" value="/user/forgetPasswordBody.jsp" />
+    </definition>
+    
+    <!-- =======================================================  -->
+    <!-- Main screen                                              
+  	   These are the defaults from where all the normal screens
+  	   then extend -->
+    <!-- =======================================================  -->
+
+    <definition name="main" path="/layouts/mainLayout.jsp">
+        <put name="logo" value="graphics/logo.JPG" />
+        <put name="mainMenuBar" value="/common/dynamicMainMenu.jsp" />
+        <put name="secondMenuBar" value="/common/dynamicSecondMenu.jsp" />
+        <put name="leftMenuBar" value="/common/dynamicLeftMenu.jsp" />
+        <put name="footer" value="/common/footer.jsp" /><put name="featureTitle" value="bar.default" />
+    </definition>
+    
+    <!-- =======================================================  -->
+    <!-- Splash page: where the user lands after login in         -->
+    <!-- =======================================================  -->
+    <definition name="initial" extends="main">
+        <put name="body" value="/user/initialBody.jsp" />
+        <put name="featureTitle" value="bar.welcome" /><put name="leftMenuBar" value="/user/initialLeftMenu.jsp" />
+    </definition>
+    
+    <!-- =======================================================  -->
+    <!-- New Order page: create a new order -->
+    <!-- =======================================================  -->
+  
+  
+    <!--Sub screen for the order creation body-->
+    <definition name="order.create" path="/layouts/bodyRightBar.jsp">
+        <put name="rightBar" value="/order/orderRightBar.jsp" />
+        <put name="body" value="order.create.body" />
+    </definition>
+    <!--Sub screen for the item list of the order creation body-->
+    <definition name="order.create.body" path="/layouts/bodySplitFour.jsp">
+        <put name="one" value="/order/itemListHeader.jsp" /><put name="two" value="/user/displaySelected.jsp" /><put name="three" value="/order/view.jsp" />
+        
+        <put name="four" value="/order/itemListBody.jsp" />
+    </definition>
+    
+    
+    <definition name="orderReview" extends="main"><put name="body" value="orderReview.body" /><put name="featureTitle" value="bar.order.review" /><put name="leftMenuBar" value="/order/orderReviewLeftMenuBar.jsp" />
+    </definition>
+    <definition name="orderReview.body" path="/layouts/bodySplitFour.jsp"><put name="one" value="/order/orderReviewHeader.jsp" /><put name="two" value="/user/displaySelected.jsp" /><put name="three" value="/order/view.jsp" /><put name="four" value="/order/orderReviewBody.jsp" />
+    </definition>
+    <definition name="newOrderItems" extends="main"><put name="body" value="order.create" /><put name="featureTitle" value="bar.order.new" /><put name="leftMenuBar" value="/order/newOrderLeftMenu.jsp" />
+    </definition>
+    <definition name="order.create.customer_sel" extends="main"><put name="body" value="order.create.customer_sel.body" /><put name="featureTitle" value="bar.order.create" />
+    </definition>
+    <definition name="order.create.customer_sel.body" path="/layouts/bodySplitTwo.jsp"><put name="top" value="/order/createCustomer_selBodyTop.jsp" /><put name="bottom" value="/other/genericList.jsp" />
+    </definition>
+    <definition name="order.list" extends="main"><put name="featureTitle" value="bar.order.list" /><put name="body" value="order.list.body" />
+    </definition>
+    <definition name="order.list.body" path="/layouts/bodySplitTwo.jsp"><put name="top" value="/order/listTop.jsp" /><put name="bottom" value="/other/genericList.jsp" />
+    </definition>
+    <definition name="order.edit" extends="main"><put name="featureTitle" value="bar.order.edit" /><put name="body" value="order.edit.body" />
+    </definition>
+    <definition name="order.edit.body" path="/layouts/bodySplitThree.jsp"><put name="one" value="/order/editBodyHeader.jsp" /><put name="two" value="/user/displaySelected.jsp" /><put name="three" value="/order/editBody.jsp" />
+    </definition>
+    <definition name="order.view" extends="main"><put name="featureTitle" value="bar.order.view" /><put name="body" value="/order/showBody.jsp" /><put name="leftMenuBar" value="/order/showLeftMenuBar.jsp" />
+    </definition>
+    <definition name="order.confirmStatus" extends="main"><put name="featureTitle" value="bar.order.status" /><put name="body" value="/order/confirmStatusBody.jsp" />
+    </definition>
+    <definition name="order.periods" extends="main"><put name="featureTitle" value="bar.order.periods" /><put name="body" value="/order/periodsEdit.jsp" />
+    </definition>
+    <definition name="payment.enter.customerSelection.body" path="/layouts/bodySplitTwo.jsp"><put name="top" value="/payment/enterCustomerSelectionTop.jsp" /><put name="bottom" value="/other/genericList.jsp" />
+    </definition>
+    <definition name="payment.enter.customerSelection" extends="main"><put name="body" value="payment.enter.customerSelection.body" /><put name="featureTitle" value="bar.payment.new" />
+    </definition>
+    <definition name="payment.enter.info.cheque" extends="main"><put name="body" value="payment.enter.info.cheque.body" /><put name="featureTitle" value="bar.payment.create" />
+    </definition>
+    <definition name="payment.enter.info.cheque.body" path="/layouts/bodySplitFive.jsp"><put name="one" value="/payment/createBodyTop.jsp" /><put name="two" value="/other/genericList.jsp" /><put name="three" value="/user/displaySelected.jsp" /><put name="four" value="/invoice/displaySelected.jsp" /><put name="five" value="/payment/editBody.jsp" />
+    </definition>
+    <definition name="payment.apply" extends="main"><put name="body" value="payment.apply.body" /><put name="featureTitle" value="bar.payment.apply" />
+    </definition>
+    <definition name="payment.apply.body" path="/layouts/bodySplitFour.jsp"><put name="one" value="/payment/applyTop.jsp" /><put name="two" value="/other/genericList.jsp" /><put name="three" value="/invoice/displaySelected.jsp" /><put name="four" value="/payment/applyBody.jsp" />
+    </definition>
+    <definition name="payment.enter.view" extends="main"><put name="body" value="payment.enter.view.body" /><put name="featureTitle" value="bar.payment.view" /><put name="leftMenuBar" value="/payment/viewLeftBar.jsp" />
+    </definition>
+    <definition name="payment.enter.view.body" path="/layouts/bodySplitFive.jsp"><put name="one" value="/payment/viewHeader.jsp" /><put name="two" value="/user/displaySelected.jsp" /><put name="three" value="/payment/listMap.jsp"/><put name="four" value="/payment/viewBody.jsp" /><put name="five" value="/payment/viewAuthorization.jsp" />
+    </definition>
+    <definition name="payment.review" extends="main"><put name="body" value="payment.review.body" /><put name="featureTitle" value="bar.payment.review" />
+    </definition>
+    <definition name="payment.review.body" path="/layouts/bodySplitFour.jsp"><put name="one" value="/payment/viewHeader.jsp" /><put name="two" value="/user/displaySelected.jsp" /><put name="three" value="/invoice/displaySelected.jsp"/><put name="four" value="/payment/viewBody.jsp" />
+    </definition>
+    <definition name="payment.enter.fromOrder" extends="main"><put name="featureTitle" value="bar.payment.order" /><put name="body" value="payment.enter.fromOrder.body" />
+    </definition>
+    <definition name="payment.enter.fromOrder.body" path="/layouts/bodySplitFour.jsp"><put name="one" value="/payment/createFromOrderTop.jsp" /><put name="two" value="/user/displaySelected.jsp" /><put name="three" value="/invoice/displaySelected.jsp" /><put name="four" value="/payment/editBody.jsp?direct=yes" />
+    </definition>
+    <definition name="payment.update" extends="main"><put name="body" value="payment.update.body" /><put name="featureTitle" value="bar.payment.update" /></definition><definition name="payment.update.body" path="/layouts/bodySplitThree.jsp"><put name="one" value="/payment/updateHeader.jsp" /><put name="two" value="/user/displaySelected.jsp" /><put name="three" value="/payment/editBody.jsp" /></definition><definition name="payment.list" extends="main"><put name="featureTitle" value="bar.payment.list" /><put name="body" value="payment.list.body" />
+    </definition>
+    <definition name="payment.list.body" path="/layouts/bodySplitTwo.jsp"><put name="top" value="/payment/listTop.jsp" /><put name="bottom" value="/other/genericList.jsp" />
+    </definition>
+    <definition name="report.form" extends="main"><put name="body" value="/report/formBody.jsp" /><put name="featureTitle" value="bar.reports.form" /><put name="leftMenuBar" value="/report/userList.jsp" />
+    </definition>
+    <definition name="report.result" extends="main"><put name="featureTitle" value="bar.reports.result" /><put name="body" value="/report/resultBody.jsp" />
+    </definition>
+    <definition name="report.list" extends="main"><put name="featureTitle" value="bar.reports.list" /><put name="body" value="/report/listBody.jsp" />
+    </definition>
+    <definition name="report.save" extends="main"><put name="featureTitle" value="bar.reports.save" /><put name="body" value="/report/saveBody.jsp" />
+    </definition>
+    <definition name="report.delete" extends="main"><put name="featureTitle" value="bar.reports.delete" /><put name="body" value="/report/deleteBody.jsp" />
+    </definition>
+    <definition name="user.create" extends="main"><put name="featureTitle" value="bar.user.create" /><put name="body" value="/user/createBody.jsp" /><put name="leftMenuBar" value="/user/leftBar.jsp" />
+    </definition>
+    <definition name="user.contact.edit" extends="main"><put name="featureTitle" value="bar.user.contact.edit" /><put name="body" value="/user/editContactBody.jsp" />
+    </definition>
+    <definition name="user.maintain" extends="main"><put name="featureTitle" value="bar.user.maintain" /><put name="body" value="user.maintain.body" />
+    </definition>
+    <definition name="user.maintain.body" path="/layouts/bodySplitTwo.jsp"><put name="top" value="/user/maintainBodyTop.jsp" /><put name="bottom" value="/other/genericList.jsp" />
+    </definition>
+    <definition name="user.edit" extends="main"><put name="featureTitle" value="bar.user.edit" /><put name="body" value="user.edit.body" /><put name="leftMenuBar" value="/user/leftBar.jsp" />
+    </definition>
+    <definition name="user.edit.body" path="/layouts/bodySplitTwo.jsp"><put name="top" value="/user/editBodyTop.jsp" /><put name="bottom" value="/user/editBody.jsp" />
+    </definition>
+    <definition name="user.list" extends="main"><put name="featureTitle" value="bar.user.customers.list" /><put name="body" value="user.list.body" />
+    </definition>
+    <definition name="user.list.body" path="/layouts/bodySplitTwo.jsp"><put name="top" value="/user/listBodyTop.jsp" /><put name="bottom" value="/other/genericList.jsp" />
+    </definition>
+    <definition name="user.sub_account.list" extends="main"><put name="featureTitle" value="bar.user.sub_accounts.list" /><put name="body" value="user.sub_account.list.body" />
+    </definition>
+    <definition name="user.sub_account.list.body" path="/layouts/bodySplitTwo.jsp"><put name="top" value="/user/listSubAccountsTop.jsp" /><put name="bottom" value="/other/genericList.jsp" />
+    </definition>
+    <definition name="user.view" extends="main"><put name="featureTitle" value="bar.user.view" /><put name="body" value="user.view.body" /><put name="leftMenuBar" value="/user/viewReportsBar.jsp" />
+    </definition>
+    <definition name="user.view.body" path="/layouts/bodySplitSeven.jsp"><put name="one" value="/user/viewHeader.jsp" /><put name="two" value="/user/viewBody.jsp" /><put name="three" value="/user/viewNotesBody.jsp" /><put name="four" value="/user/viewContactBody.jsp" /><put name="five" value="/user/viewCreditCardBody.jsp" /><put name="six" value="/invoice/viewBody.jsp?noTitle=yes" /><put name="seven" value="/user/viewBlacklistBody.jsp" />
+    </definition>
+    <definition name="user.notes.edit" extends="main"><put name="featureTitle" value="bar.user.notes.edit" /><put name="body" value="/user/notesEditBody.jsp" />
+    </definition>
+    <definition name="item.type.create" extends="main"><put name="featureTitle" value="bar.item.types.create" /><put name="body" value="item.type.create.body" />
+    </definition>
+    <definition name="item.type.create.body" path="/layouts/bodySplitTwo.jsp"><put name="top" value="/item/maintainTypeTop.jsp" /><put name="bottom" value="/item/editTypeBody.jsp" />
+    </definition>
+    <definition name="item.type.maintain" extends="main"><put name="featureTitle" value="bar.item.types.maintain" /><put name="body" value="item.type.maintain.body" />
+    </definition>
+    <definition name="item.type.maintain.body" path="/layouts/bodySplitTwo.jsp"><put name="top" value="/item/maintainTypeTop.jsp" /><put name="bottom" value="/item/editTypeBody.jsp" />
+    </definition>
+    <definition name="item.type.list" extends="main"><put name="featureTitle" value="bar.item.types.list" /><put name="body" value="item.type.list.body" />
+    </definition>
+    <definition name="item.type.list.body" path="/layouts/bodySplitTwo.jsp"><put name="top" value="/item/listTypeTop.jsp" /><put name="bottom" value="/other/genericList.jsp" />
+    </definition>
+    <definition name="item.create" extends="main"><put name="featureTitle" value="bar.item.create" /><put name="body" value="item.create.body" />
+    </definition>
+    <definition name="item.create.body" path="/layouts/bodySplitTwo.jsp"><put name="top" value="/item/maintainTop.jsp" /><put name="bottom" value="/item/editBody.jsp" />
+    </definition>
+    <definition name="item.maintain" extends="main"><put name="featureTitle" value="bar.item.maintain" /><put name="body" value="item.maintain.body" />
+    </definition>
+    <definition name="item.maintain.body" path="/layouts/bodySplitTwo.jsp"><put name="top" value="/item/maintainTop.jsp" /><put name="bottom" value="/item/editBody.jsp" />
+    </definition>
+    <definition name="item.list" extends="main"><put name="featureTitle" value="bar.item.list" /><put name="body" value="item.list.body" />
+    </definition>
+    <definition name="item.list.body" path="/layouts/bodySplitTwo.jsp"><put name="top" value="/item/listTop.jsp" /><put name="bottom" value="/other/genericList.jsp" />
+    </definition>
+    <definition name="promotion.create" extends="main"><put name="featureTitle" value="bar.promotion.create" /><put name="body" value="promotion.create.body" />
+    </definition>
+    <definition name="promotion.create.body" path="/layouts/bodySplitTwo.jsp"><put name="top" value="/item/promotionCreateTop.jsp" /><put name="bottom" value="/item/editBody.jsp?create=yes&amp;promotion=yes" />
+    </definition>
+    <definition name="promotion.create2" extends="main"><put name="featureTitle" value="bar.promotion.create" /><put name="body" value="promotion.create2.body" />
+    </definition>
+    <definition name="promotion.create2.body" path="/layouts/bodySplitTwo.jsp"><put name="top" value="/item/promotionMaintainTop.jsp" /><put name="bottom" value="/item/promotionEditBody.jsp" />
+    </definition>
+    <definition name="promotion.list" extends="main"><put name="featureTitle" value="bar.promotion.list" /><put name="body" value="promotion.list.body" />
+    </definition>
+    <definition name="promotion.list.body" path="/layouts/bodySplitTwo.jsp"><put name="top" value="/item/promotionListTop.jsp" /><put name="bottom" value="/other/genericList.jsp" />
+    </definition>
+    <definition name="promotion.maintain" extends="main"><put name="featureTitle" value="bar.promotion.maintain" /><put name="body" value="promotion.maintain.body" />
+    </definition>
+    <definition name="promotion.maintain.body" path="/layouts/bodySplitTwo.jsp"><put name="top" value="/item/promotionMaintainTop.jsp" /><put name="bottom" value="/item/promotionEditBody.jsp" />
+    </definition>
+    <definition name="creditCard.edit" extends="main"><put name="featureTitle" value="bar.creditcard.edit" /><put name="body" value="/user/creditCardEditBody.jsp" />
+    </definition>
+    <definition name="refund.list" extends="main"><put name="featureTitle" value="bar.refund.list" /><put name="body" value="refund.list.body" />
+    </definition>
+    <definition name="refund.list.body" path="/layouts/bodySplitTwo.jsp"><put name="top" value="/payment/listRefundTop.jsp" /><put name="bottom" value="/other/genericList.jsp" />
+    </definition>
+    <definition name="refund.enter" extends="main"><put name="featureTitle" value="bar.refund.enter" /><put name="body" value="refund.enter.body" />
+    </definition>
+    <definition name="refund.enter.body" path="/layouts/bodySplitFive.jsp"><put name="one" value="/payment/createRefundTop.jsp" /><put name="two" value="/other/genericList.jsp" /><put name="three" value="/user/displaySelected.jsp" /><put name="four" value="/payment/displaySelected.jsp" /><put name="five" value="/payment/editBody.jsp" />
+    </definition>
+    <definition name="refund.review" extends="main"><put name="featureTitle" value="bar.refund.review" /><put name="body" value="refund.review.body" />
+    </definition>
+    <definition name="refund.review.body" path="/layouts/bodySplitFour.jsp"><put name="one" value="/payment/reviewRefundHeader.jsp" /><put name="two" value="/user/displaySelected.jsp" /><put name="three" value="/payment/displaySelected.jsp" /><put name="four" value="/payment/viewBody.jsp?refund=yes" />
+    </definition>
+    <definition name="invoice.list" extends="main"><put name="featureTitle" value="bar.invoice.list" /><put name="body" value="invoice.list.body" />
+    </definition>
+    <definition name="invoice.list.body" path="/layouts/bodySplitTwo.jsp"><put name="top" value="/invoice/listTop.jsp" /><put name="bottom" value="/other/genericList.jsp" />
+    </definition>
+    <definition name="invoice.view" extends="main"><put name="featureTitle" value="bar.invoice.view" /><put name="body" value="/invoice/viewBody.jsp" /><put name="leftMenuBar" value="/invoice/viewLeftBar.jsp" />
+    </definition>
+    
+    
+    <definition name="invoice.download" extends="main">
+        <put name="featureTitle" value="bar.invoice.download" />
+        <put name="body" value="/invoice/downloadForm.jsp" />
+        <put name="leftMenuBar" value="/invoice/viewLeftBar.jsp" />
+    </definition>
+    <definition name="invoice.download.file" extends="main">
+        <put name="featureTitle" value="bar.invoice.download" />
+        <put name="body" value="/invoice/downloadFile.jsp" />
+        <put name="leftMenuBar" value="/invoice/viewLeftBar.jsp" />
+    </definition>
+    
+    
+    <definition name="invoice.logo" extends="main"><put name="featureTitle" value="bar.invoice.logo" /><put name="body" value="/invoice/logoUpload.jsp" />
+    </definition>
+    <definition name="process.list" extends="main"><put name="featureTitle" value="bar.process.list" /><put name="body" value="process.list.body" />
+    </definition>
+    <definition name="process.list.body" path="/layouts/bodySplitTwo.jsp"><put name="top" value="/process/listTop.jsp" /><put name="bottom" value="/other/genericList.jsp" />
+    </definition>
+    <definition name="process.view" extends="main"><put name="featureTitle" value="bar.process.view" /><put name="body" value="/process/viewBody.jsp" />
+    </definition>
+    <definition name="invoice.list.process" extends="main"><put name="featureTitle" value="bar.process.invoices" /><put name="body" value="invoice.list.process.body" />
+    </definition>
+    <definition name="invoice.numbering.edit" extends="main"><put name="featureTitle" value="bar.invoice.numbering" /><put name="body" value="/invoice/numberingEdit.jsp" />
+    </definition>
+    <definition name="invoice.list.process.body" path="/layouts/bodySplitTwo.jsp"><put name="top" value="/invoice/listProcessTop.jsp" /><put name="bottom" value="/other/genericList.jsp" />
+    </definition>
+    <definition name="process.configuration.view" extends="main"><put name="featureTitle" value="bar.process.configuration.view" /><put name="body" value="/process/viewConfigurationBody.jsp" />
+    </definition>
+    <definition name="process.review.view" extends="main"><put name="featureTitle" value="bar.process.review.view" /><put name="body" value="process.review.view.body" />
+    </definition>
+    <definition name="process.review.view.body" path="/layouts/bodySplitTwo.jsp"><put name="top" value="/process/viewReviewTop.jsp" /><put name="bottom" value="/process/viewBody.jsp?review=yes" />
+    </definition>
+    <definition name="order.list.process" extends="main"><put name="featureTitle" value="bar.process.orders" /><put name="body" value="order.list.process.body" />
+    </definition>
+    <definition name="order.list.events" extends="main">
+        <put name="featureTitle" value="bar.order.events" />
+        <put name="body" value="/order/listEventsBody.jsp" />
+    </definition>
+    <definition name="order.list.process.body" path="/layouts/bodySplitTwo.jsp"><put name="top" value="/order/listProcessTop.jsp" /><put name="bottom" value="/other/genericList.jsp" />
+    </definition>
+    <definition name="notification.list.types" extends="main"><put name="body" value="notification.list.types.body" /><put name="featureTitle" value="bar.notification.list" />
+    </definition>
+    <definition name="notification.list.types.body" path="/layouts/bodySplitTwo.jsp"><put name="top" value="/notification/listTypesTop.jsp" /><put name="bottom" value="/other/genericList.jsp" />
+    </definition>
+    <definition name="notification.message.edit" extends="main"><put name="featureTitle" value="bar.notification.edit" /><put name="body" value="/notification/editTextBody.jsp" />
+    </definition>
+    <definition name="task.parameter.edit" extends="main"><put name="featureTitle" value="bar.parameter.edit" /><put name="body" value="/task/editParameterBody.jsp" />
+    </definition>
+    <definition name="notification.emails" extends="main"><put name="featureTitle" value="bar.notification.emails" /><put name="body" value="/notification/emailsBody.jsp" />
+    </definition>
+    <definition name="notification.preference" extends="main"><put name="featureTitle" value="bar.notification.preferences" /><put name="body" value="/notification/preferenceBody.jsp" />
+    </definition>
+    <definition name="system.branding.edit" extends="main"><put name="featureTitle" value="bar.system.branding" /><put name="body" value="/system/brandingEdit.jsp" />
+    </definition>
+    <definition name="system.currency.edit" extends="main"><put name="featureTitle" value="bar.system.currencies" /><put name="body" value="/system/currencyEdit.jsp" />
+    </definition>
+    <definition name="system.ageing.edit" extends="main"><put name="featureTitle" value="bar.system.ageing" /><put name="body" value="/system/ageingEdit.jsp" />
+    </definition>
+    <definition name="partner.edit" extends="main"><put name="featureTitle" value="bar.partner.edit" /><put name="body" value="/user/partnerEditBody.jsp" />
+    </definition>
+    <definition name="partner.list" extends="main"><put name="featureTitle" value="bar.partner.list" /><put name="body" value="partner.list.body" />
+    </definition>
+    <definition name="partner.list.body" path="/layouts/bodySplitTwo.jsp"><put name="top" value="/user/listPartnerTop.jsp" /><put name="bottom" value="/other/genericList.jsp" />
+    </definition>
+    <definition name="partner.view" extends="main"><put name="featureTitle" value="bar.partner.view" /><put name="body" value="partner.view.body" /><put name="leftMenuBar" value="/user/partnerViewLeftBar.jsp" />
+    </definition>
+    <definition name="partner.view.body" path="/layouts/bodySplitFive.jsp"><put name="one" value="/user/partnerViewHeader.jsp" /><put name="two" value="/user/viewBody.jsp" /><put name="three" value="/user/viewContactBody.jsp" /><put name="four" value="/user/partnerViewBody.jsp" /><put name="five" value="/user/payoutViewBody.jsp" />
+    </definition>
+    <definition name="partner.statement" extends="main"><put name="featureTitle" value="bar.partner.statement" /><put name="body" value="partner.statement.body" />
+    </definition>
+    <definition name="partner.ranges.edit" extends="main"><put name="featureTitle" value="bar.partner.ranges" /><put name="body" value="/user/partnerRangesEditBody.jsp" />
+    </definition>
+    <definition name="partner.statement.body" path="/layouts/bodySplitThree.jsp"><put name="one" value="/user/partnerStatementHeader.jsp" /><put name="two" value="/user/partnerViewBody.jsp" /><put name="three" value="/user/payoutViewBody.jsp" />
+    </definition>
+    <definition name="payout.list" extends="main"><put name="featureTitle" value="bar.partner.payout.list" /><put name="body" value="payout.list.body" />
+    </definition>
+    <definition name="payout.list.body" path="/layouts/bodySplitTwo.jsp"><put name="top" value="/user/payoutListTop.jsp" /><put name="bottom" value="/other/genericList.jsp" />
+    </definition>
+    <definition name="payout.view" extends="main"><put name="featureTitle" value="bar.partner.payout.view" /><put name="body" value="/user/payoutViewBody.jsp" />
+    </definition>
+    <definition name="partner.defaults" extends="main"><put name="featureTitle" value="bar.partner.defaults" /><put name="body" value="/user/partnerDefaultBody.jsp" />
+    </definition>
+    <definition name="payout.edit" extends="main"><put name="featureTitle" value="bar.partner.payout.edit" /><put name="body" value="/user/payoutEditBody.jsp" />
+    </definition>
+    <definition name="payout.enter" extends="main"><put name="featureTitle" value="bar.partner.payout.enter" /><put name="body" value="payout.enter.body" />
+    </definition>
+    <definition name="payout.enter.body" path="/layouts/bodySplitThree.jsp"><put name="one" value="/payment/payoutHeader.jsp" /><put name="two" value="/user/partnerViewBody.jsp" /><put name="three" value="/payment/editBody.jsp?payout=yes" />
+    </definition>
+    <definition name="payout.review" extends="main"><put name="featureTitle" value="bar.partner.payout.review" /><put name="body" value="payout.review.body" />
+    </definition>
+    <definition name="payout.review.body" path="/layouts/bodySplitThree.jsp"><put name="one" value="/payment/reviewPayoutHeader.jsp" /><put name="two" value="/user/partnerViewBody.jsp" /><put name="three" value="/payment/viewBody.jsp?review=yes&amp;payout=yes" />
+    </definition>
+    <definition name="ach.edit" extends="main"><put name="featureTitle" value="bar.ach.edit" /><put name="body" value="/user/achEditBody.jsp" />
+    </definition>
+    <definition name="order.applyInvoice.list" extends="main"><put name="body" value="order.applyInvoice.list.body" /><put name="featureTitle" value="bar.order.apply" />
+    </definition>
+    <definition name="order.applyInvoice.list.body" path="/layouts/bodySplitTwo.jsp"><put name="top" value="/order/applyInvoiceList.jsp" /><put name="bottom" value="/other/genericList.jsp" />
+    </definition>
+    <definition name="order.applyInvoice.confirm" extends="main"><put name="featureTitle" value="bar.order.apply" /><put name="body" value="order.applyInvoice.confirm.body" />
+    </definition>
+    <definition name="order.applyInvoice.confirm.body" path="/layouts/bodySplitThree.jsp"><put name="one" value="/order/applyConfirmTop.jsp" /><put name="two" value="/invoice/displaySelected.jsp" /><put name="three" value="/order/showBody.jsp" />
+    </definition>
+    <definition name="order.sub_account.list" extends="main"><put name="featureTitle" value="bar.user.sub_accounts.list" /><put name="body" value="order.sub_account.list.body" />
+    </definition>
+    <definition name="order.sub_account.list.body" path="/layouts/bodySplitTwo.jsp"><put name="top" value="/order/listSubAccountsTop.jsp" /><put name="bottom" value="/other/genericList.jsp" />
+    </definition>
+    <definition name="list" extends="main"><put name="featureTitle" value="bar.list" /><put name="body" value="list.body" />
+    </definition>
+    <definition name="list.body" path="/layouts/bodySplitTwo.jsp"><put name="top" value="/other/blank.jsp" /><put name="bottom" value="/other/genericList.jsp" />
+    </definition>
+    <definition name="system.task.edit" extends="main"><put name="featureTitle" value="bar.system.task" /><put name="body" value="/system/taskEdit.jsp" />
+    </definition>
+    <definition name="system.blacklist" extends="main"><put name="featureTitle" value="bar.system.blacklist" /><put name="body" value="/system/blacklistUpload.jsp" />
+    </definition>
+    <definition name="user.eventLog.list" extends="main"><put name="featureTitle" value="bar.user.eventLog" /><put name="body" value="/user/listEventLogBody.jsp" />
+    </definition>
+    <!-- 
+           Mediation screens
+     -->
+    <definition name="mediation.process.list" extends="main">
+        <put name="featureTitle" value="mediation.process.list.bar" />
+        <put name="body" value="/mediation/processList.jsp" />
+    </definition>
+    <definition name="mediation.configuration" extends="main">
+        <put name="featureTitle" value="mediation.configuration.bar" />
+        <put name="body" value="/mediation/configurationEdit.jsp" />
+    </definition>
+    
+    <definition name="user.confirm.delete" extends="main">
+        <put name="body" value="/user/confirmDeleteBody.jsp" />
+        <put name="featureTitle" value="bar.user.confirm.delete" />
+        <put name="leftMenuBar" value="/other/blank.jsp" />
+    </definition>
+    
+</tiles-definitions>

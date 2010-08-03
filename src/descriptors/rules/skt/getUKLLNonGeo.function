@@ -1,0 +1,11 @@
+function boolean getUKLLNonGeo(String numberDialled) {	
+			boolean isUKLLNonGeo = false;
+
+			if (numberDialled.length() <= 12 && numberDialled.length() > 5
+		    		&& ( numberDialled.substring(0,4).matches("084[3-4]")
+		    				||numberDialled.substring(0,4).matches("087[0-3]"))) {
+
+	    	isUKLLNonGeo = true;
+    	}
+    return isUKLLNonGeo;
+}

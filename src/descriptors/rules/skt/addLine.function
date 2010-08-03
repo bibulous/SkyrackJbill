@@ -1,0 +1,6 @@
+function void addLine(MediationResult result) {
+    result.setOldLines(OrderLineBL.copy(result.getCurrentOrder().getLines()));
+   
+    if (!result.getLines().isEmpty())
+        OrderLineBL.addLine(result.getCurrentOrder(), result.getLines().get(0), false);
+}

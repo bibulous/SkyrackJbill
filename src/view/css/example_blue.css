@@ -1,0 +1,306 @@
+/* 
+    Defualts 
+    dark   #13544E
+    medium #89A9A6
+    light: #D0DDDC
+    white: #E6EFED
+ */
+ 
+p {  font-family: Verdana, Verdana, Arial, Helvetica, sans-serif; font-size: 10 pt; 	color: #000000;}
+
+table {   border-collapse:collapse;   margin: 0 0 0 0;}
+
+a {text-decoration: none; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #000000;}
+
+a:hover {text-decoration:underline; color: #26237c; }
+
+option {
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 8pt; 
+}
+
+input {
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 8pt; 
+}
+
+body {
+    margin: 0 0 0 0;
+}
+
+
+/* 
+    Top bar: menu and title
+ */
+ 
+ 
+tr.topBar {  height: 80px;  background-color: #cdcbf7;}
+tr.bar {   height: 24px;  background-color: #cdcbf7;}
+table.threeBars {  border-collapse:collapse; background-color: #cdcbf7; width: 640;}
+
+td.logo {  margin:0; width: 120px;  vertical-align: bottom; horizontal-align: center; text-align:center; }
+td.threeBars {}
+
+
+/* top menu options */
+
+
+table.menu {  height: 24px;}
+table.submenu { height: 24px;}
+td.menu { background-color:#cdcbf7; text-align:center; padding-left:3px; padding-right:3px; padding-top:1px; padding-bottom:1px; height:24px;}
+td.menu A { font-family: Arial, Helvetica, sans-serif;  font-size: 8pt;  color: #000000; text-decoration: none; }
+td.menu A:hover {  color: #26237c;}
+td.menuSelected { background-color: #cdcbf7; text-align: center; padding-left: 3px; padding-right: 3px; padding-top: 1px; padding-bottom:1px;}
+td.menuSelected A { font-family: Arial, Helvetica, sans-serif; font-size: 8pt; color: #26237c; background-color: #cdcbf7; font-weight: bold; text-decoration: underline;}
+
+/* title */
+table.title { height: 24px;}
+
+td.title {
+    background-color: #cdcbf7;
+    font-family: Verdana, Arial, Helvetica, sans-serif; 
+    font-size: 12px; 
+    font-weight: bold;
+    color: #000000;
+    text-align: left;
+    padding-left: 15px;
+    height: 24px;
+}
+
+/* logout */
+td.logout {
+    background-color: #cdcbf7;
+    border: 0px; 
+    text-align: center;
+    padding-left: 3px;
+    padding-right: 3px
+    }
+td.logout A {  
+    font-family: Verdana, Arial, Helvetica, sans-serif; 
+    font-size: 8pt; 
+    color: #000000;
+    text-decoration: none; 
+}
+td.logout A:hover {  
+    color: #000000;
+}
+
+
+/* left menu */
+
+td.leftMenu {
+    width: 120px;
+    height: 30px;
+    background-color: #cdcbf7;
+    text-align: center;
+    vertical-align: top;
+}
+td.leftMenuOption {
+    background-color: #cdcbf7;
+    border-bottom: 1px solid #26237C;
+    text-align: center;
+    width: 100%;
+}
+table.leftMenu {
+   text-align: left;
+}
+a.leftMenu {
+    font-family: Verdana, Arial, Helvetica, sans-serif; 
+    font-size: 8pt; 
+    color: #000000;
+    text-decoration: none; 
+    width: 110px;
+}
+a:hover.leftMenu {
+    color: #26237c;
+}
+
+
+/*
+    Body
+ */
+
+/* body area */
+td.body {
+   border-left:1px solid #26237C; border-top:1px solid #26237C; text-align: center
+}
+
+table.body {
+   margin: 0 0 0 0;
+   text-align: center;
+}
+
+/* the instructions paragraph */
+p.instr {
+	
+	font-family: Verdana, Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 11px; 
+	color: black;
+    padding-bottom: 10px;
+}
+
+/* order summary (right bar) */
+table.order_summary {
+    border-color: #26237C;
+    border-style: solid;
+    border-width: 1px;
+    padding-top: 15px;
+}
+tr.order_summary_title {
+    font-family: Verdana, Arial, Helvetica, sans-serif; 
+    font-size: 10pt; 
+    color: #000000;
+    background-color: #26237C;
+    height: 20px;
+}
+tr.order_summary_lines {
+    font-family: Verdana, Arial, Helvetica, sans-serif; 
+    font-size: 10pt; 
+    color: #000000;
+    background-color: #ffffff;
+}
+
+/* info box */
+table.info {
+   border-color: #26237C;
+   border-style: solid;
+   border-width: 1px;
+   width: 95%;
+   margin-bottom: 10;
+   margin-top: 10;
+   margin-right: 10;
+   margin-left: 10;
+}
+th.info {
+   font-family: Verdana, Arial, Helvetica, sans-serif; 
+   font-size: 10pt; 
+   color: #ffffff;
+   background-color: #26237C;
+   text-align: left;
+   padding-left: 30;
+   font-weight: bold;
+}
+tr.infoA {
+   background-color: #ffffff;
+}
+tr.infoB {
+   background-color: #cdcbf7;
+}
+
+td.infoprompt{
+   font-family: Verdana, Arial, Helvetica, sans-serif; 
+   font-size: 12px; 
+   color: rgb(0,0,0);
+   padding-left: 15;
+   width: 40%;
+   border-right-color: white;
+   border-right-style: solid;
+   border-right-width: 1px;
+}
+td.infodata {
+   font-family: Verdana, Arial, Helvetica, sans-serif; 
+   font-size: 12px; 
+   padding-left: 15;
+}
+td.infocommands {
+   font-family: Verdana, Arial, Helvetica, sans-serif; 
+   font-size: 12px; 
+   text-align: center;
+}
+
+/* generic list */
+table.list {
+   margin-bottom: 10;
+}
+
+tr.listH {
+    font-family: Verdana, Arial, Helvetica, sans-serif; 
+    font-size: 10pt; 
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #26237c;
+    text-align: center;
+    height: 22px;
+}
+
+tr.listA {
+    font-family: Verdana, Arial, Helvetica, sans-serif; 
+    font-size: 10pt; 
+    color: #000000;
+    background-color: #ffffff;
+}
+
+tr.listB {
+    font-family: Verdana, Arial, Helvetica, sans-serif; 
+    font-size: 10pt; 
+    color: #000000;
+    background-color: #cdcbf7;
+}
+
+td.list {
+   border-color: #26237C;  
+   text-align: center;
+}
+
+/* title, instructions */
+p.title {
+    text-align: center;
+    font-weight: bold;
+    color: #26237C;
+    font-size: 10pt; 
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+/* forms */
+table.form {}
+tr.form {
+    font-family: Verdana, Arial, Helvetica, sans-serif; 
+    font-size: 8pt; 
+    font-weight: bold;
+    color: rgb(0,0,0);
+}
+td.form_prompt {
+    padding-right: 20px;
+    background-color: #ffffff;
+    
+   
+}
+td.form_button {
+    text-align: center;
+}
+input.form_button { font-family: Verdana; font-size: 8pt; text-decoration: none; color: #000000; border: 1px outset #26237C; padding-left: 2px; padding-right: 2px; background-color:#cdcbf7}
+
+
+/* errors */
+p.error {
+	background-color: white;
+	color: red;
+    font-family: Verdana, Arial, Helvetica, sans-serif; 
+    font-size: 12px; 
+    border-color: red;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/* footer */
+p.footer {
+    text-align: center;
+    color: #000000;
+    font-size: 8pt; 
+    padding-top: 15px; 
+    
+   
+}
+
+/* welcome */
+
+p.wel_text {
+    text-align: justify;
+    color: black;
+    font-size: 10pt; 
+    font-family: Verdana, Arial, Helvetica, sans-serif; 
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+}

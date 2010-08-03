@@ -1,0 +1,10 @@
+function boolean getUKLLLocal(String numberDialled) {	
+			boolean isUKLLLocal = false;
+
+			if (numberDialled.length() <= 12 && numberDialled.length() > 5
+		    		&& numberDialled.substring(0,4).equals("0845")) {
+
+	    	isUKLLLocal = true;
+    	}
+    return isUKLLLocal;
+}

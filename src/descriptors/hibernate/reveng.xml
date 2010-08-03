@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering
+        SYSTEM "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+
+<hibernate-reverse-engineering>
+
+    
+    <table-filter match-name="mediation.*" exclude="true"/>
+    <table-filter match-name="pluggable.*" exclude="true"/>
+    <table-filter match-name="jms.*" exclude="true"/>
+
+<!--  Example
+    <table-filter match-name=".*" package="hello"/>
+
+    <table name="MESSAGES" schema="PUBLIC" class="Message">
+
+        <primary-key>
+            <generator class="increment"/>
+            <key-column name="MESSAGE_ID" property="id" type="long"/>
+        </primary-key>
+
+        <column name="MESSAGE_TEXT" property="text"/>
+
+        This _requires_ the foreign key constraint name in the database 
+        <foreign-key constraint-name="FK_NEXT_MESSAGE">
+            <many-to-one property="nextMessage"/>
+            <set exclude="true"/>
+        </foreign-key>
+
+    </table>
+ -->
+</hibernate-reverse-engineering>

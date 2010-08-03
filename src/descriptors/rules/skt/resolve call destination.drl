@@ -1,0 +1,8 @@
+when
+    $result : MediationResult(step == MediationResult.STEP_4_RESOLVE_ITEM, description == null )
+    $phoneCalled : PricingField( name == "dst", resultId == $result.id)
+then
+    # set mediation event description to the call destination
+    modify( $result ) {
+        setDescription("Phone call to " + $phoneCalled.getStrValue());
+    }

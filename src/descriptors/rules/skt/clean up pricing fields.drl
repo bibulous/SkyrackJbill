@@ -1,0 +1,6 @@
+when
+    $field : PricingField()
+    not ( exists( MediationResult(id == $field.resultId) ) )
+then
+    retract($field);
+    LOG.debug("Removed field " + $field);

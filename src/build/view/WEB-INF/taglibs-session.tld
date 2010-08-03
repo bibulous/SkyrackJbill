@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+
+
+
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN" "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+<taglib>
+  <tlibversion>1.0.1</tlibversion>
+  <jspversion>1.1</jspversion>
+  <shortname>session</shortname>
+  <uri>http://jakarta.apache.org/taglibs/session-1.0</uri>
+  <info>The SESSION JSP tag library provides tags for reading or modifying client
+HttpSession information.
+A servlet container uses an HttpSession to store information about a
+clients session on the server. By default a JSP page will create a session for
+a user. The user is tied to the session using either a Cookie or by using URL
+rewriting. This is how you can tie information to a user between multiple HTTP
+requests to your server.
+Session Attributes are what makes it possible to store information about a
+clients session between multiple HTTP requests. A session attribute consists of
+a name and value. To save information about a users session on your server use
+the setAttribute tag.
+The session attributes you save only exist while the sessions exists.
+Servlet containers will expire a users session and remove it after the user has
+been inactive for a period of time. Many servlet containers default to 30
+minutes. You can change this by using the maxInactiveInterval tag.
+A typical example of this is a shopping cart application where you use the
+session to track what items the user wants to purchase. Each time a user
+selects an item to purchase you set a session attribute which contains
+information about the item. Then when the user later checks out, you can
+determine what items they want to purchase by looking at the session
+attributes.
+</info>
+  <tag>
+    <name>session</name>
+    <tagclass>org.apache.taglibs.session.SessionTag</tagclass>
+    <teiclass>org.apache.taglibs.session.SessionTEI</teiclass>
+    <bodycontent>empty</bodycontent>
+    <attribute>
+      <name>id</name>
+      <required>yes</required>
+      <rtexprvalue>no</rtexprvalue>
+    </attribute>
+  </tag>
+  <tag>
+    <name>isNew</name>
+    <tagclass>org.apache.taglibs.session.IsNewTag</tagclass>
+    <bodycontent>JSP</bodycontent>
+    <attribute>
+      <name>value</name>
+      <required>no</required>
+      <rtexprvalue>no</rtexprvalue>
+    </attribute>
+  </tag>
+  <tag>
+    <name>invalidate</name>
+    <tagclass>org.apache.taglibs.session.InvalidateTag</tagclass>
+    <bodycontent>empty</bodycontent>
+  </tag>
+  <tag>
+    <name>maxInactiveInterval</name>
+    <tagclass>org.apache.taglibs.session.MaxInactiveIntervalTag</tagclass>
+    <bodycontent>JSP</bodycontent>
+  </tag>
+  <tag>
+    <name>attribute</name>
+    <tagclass>org.apache.taglibs.session.AttributeTag</tagclass>
+    <bodycontent>empty</bodycontent>
+    <attribute>
+      <name>name</name>
+      <required>yes</required>
+      <rtexprvalue>no</rtexprvalue>
+    </attribute>
+  </tag>
+  <tag>
+    <name>attributes</name>
+    <tagclass>org.apache.taglibs.session.AttributesTag</tagclass>
+    <teiclass>org.apache.taglibs.session.AttributesTEI</teiclass>
+    <bodycontent>JSP</bodycontent>
+    <attribute>
+      <name>id</name>
+      <required>yes</required>
+      <rtexprvalue>no</rtexprvalue>
+    </attribute>
+  </tag>
+  <tag>
+    <name>equalsAttribute</name>
+    <tagclass>org.apache.taglibs.session.EqualsAttributeTag</tagclass>
+    <bodycontent>JSP</bodycontent>
+    <attribute>
+      <name>name</name>
+      <required>yes</required>
+      <rtexprvalue>no</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>value</name>
+      <required>no</required>
+      <rtexprvalue>no</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>match</name>
+      <required>yes</required>
+      <rtexprvalue>no</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>ignoreCase</name>
+      <required>no</required>
+      <rtexprvalue>no</rtexprvalue>
+    </attribute>
+  </tag>
+  <tag>
+    <name>existsAttribute</name>
+    <tagclass>org.apache.taglibs.session.ExistsAttributeTag</tagclass>
+    <bodycontent>JSP</bodycontent>
+    <attribute>
+      <name>name</name>
+      <required>yes</required>
+      <rtexprvalue>no</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>value</name>
+      <required>no</required>
+      <rtexprvalue>no</rtexprvalue>
+    </attribute>
+  </tag>
+  <tag>
+    <name>removeAttribute</name>
+    <tagclass>org.apache.taglibs.session.RemoveAttributeTag</tagclass>
+    <bodycontent>empty</bodycontent>
+    <attribute>
+      <name>name</name>
+      <required>yes</required>
+      <rtexprvalue>no</rtexprvalue>
+    </attribute>
+  </tag>
+  <tag>
+    <name>setAttribute</name>
+    <tagclass>org.apache.taglibs.session.SetAttributeTag</tagclass>
+    <bodycontent>JSP</bodycontent>
+    <attribute>
+      <name>name</name>
+      <required>yes</required>
+      <rtexprvalue>no</rtexprvalue>
+    </attribute>
+  </tag>
+</taglib>
+
+
+
+
+
+
+
+
+       
+
+

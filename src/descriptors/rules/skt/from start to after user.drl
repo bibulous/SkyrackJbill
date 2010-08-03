@@ -1,0 +1,8 @@
+when
+    $result : MediationResult(step == MediationResult.STEP_1_START, userId != null, eventDate != null, currencyId == null)
+    # only one record for a given user at a time
+    not( exists( MediationResult( $result.userId == userId, step > MediationResult.STEP_1_START) ) )
+then
+    modify( $result ) {
+        setStep(MediationResult.STEP_2_AFTER_USER);
+    }

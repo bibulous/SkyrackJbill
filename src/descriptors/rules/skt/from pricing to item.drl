@@ -1,0 +1,8 @@
+salience -10  # has to run after the pricing rules had a chance of setting the price
+when
+    $result : MediationResult(step == MediationResult.STEP_5_PRICING)
+    PricingResult(pricingFieldsResultId == $result.id ) # probably not needed
+then
+    modify( $result ) {
+        setStep(MediationResult.STEP_6_ITEM_MANAGEMENT);
+    }

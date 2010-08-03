@@ -1,0 +1,9 @@
+function boolean getUKDQ(String numberDialled) {	
+    boolean isUKDQ = false;
+			if (numberDialled.length() <= 12 && numberDialled.length() > 5
+		    		&& numberDialled.substring(0,4).matches("118\\d")) {
+
+		    	isUKDQ = true;
+    	}
+    return isUKDQ;
+}

@@ -1,0 +1,17 @@
+no-loop  #because the user might be wrong and the set gets a null
+when
+    $result : MediationResult(step == MediationResult.STEP_1_START, userId == null)
+    //$field : PricingField( name == "userfield", resultId == $result.id)
+
+// VF test
+$field : PricingField( name == "customer", resultId == $result.id)
+
+
+
+    $company : CompanyDTO( ) # needed to determine a user by its user name
+then
+    modify( $result ) {
+        setUserId( getUserIdFromUsername($field.getStrValue(), $company.getId()) );
+    }
+        
+    LOG.debug("The user " + $field.getStrValue() + " was set to " + $result.getUserId() + " record " + $result.getRecordKey());

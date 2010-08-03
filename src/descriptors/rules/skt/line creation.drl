@@ -1,0 +1,8 @@
+when
+    $result : MediationResult(step == MediationResult.STEP_6_ITEM_MANAGEMENT, oldLines == null )
+then
+    addLine($result); # will add the first line to the current order and set oldLines
+    update($result); 
+    # to allow item management rules
+    insert($result.getCurrentOrder());
+    LOG.debug("current order updated id " + $result.getCurrentOrder().getId()  + " record " + $result.getRecordKey());

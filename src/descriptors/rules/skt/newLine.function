@@ -1,0 +1,7 @@
+function OrderLineDTO newLine(Integer itemId, BigDecimal quantity) {
+    OrderLineDTO line =  new OrderLineDTO();
+    line.setItemId(itemId);
+    line.setQuantity(quantity);
+    line.setDefaults();
+    return line;
+}

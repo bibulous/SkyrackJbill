@@ -1,0 +1,1394 @@
+<!DOCTYPE form-validation PUBLIC "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.0//EN" "http://jakarta.apache.org/commons/dtds/validator_1_0.dtd">
+<!--
+    jBilling - The Enterprise Open Source Billing System
+    Copyright (C) 2003-2009 Enterprise jBilling Software Ltd. and Emiliano Conde
+
+    This file is part of jbilling.
+
+    jbilling is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    jbilling is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with jbilling.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<form-validation>
+    <global />
+    <formset>
+        <form name="UserLoginForm">
+            <field property="userName" depends="required,minlength">
+                <msg name="mask" key="arch_test.validation.letters_only" />
+                <arg0 key="prompt.username" />
+                <arg1 name="minlength" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^[a-zA-Z0-9_\-\.\@\+]*$</var-value>
+                </var>
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>4</var-value>
+                </var>
+            </field>
+            <field property="password" depends="required,minlength">
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>6</var-value>
+                </var>
+                <arg0 key="prompt.password" />
+                <arg1 name="minlength" key="${var:minlength}" resource="false" />
+            </field>
+            <field property="entityId" depends="required,integer">
+                <arg0 key="prompt.entityId" />
+            </field>
+        </form>
+        <form name="OrderAddItemForm">
+            <field property="quantity" depends="required,mask">
+                <arg0 key="item.list.quantity" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^[0-9\.\,\-eE]*$</var-value>
+                </var>
+            </field>
+        </form>
+        <form name="orderReviewForm">
+            <field property="description" depends="required">
+                <arg0 key="item.list.description" />
+            </field>
+            <field property="quantity" depends="required,mask">
+                <arg0 key="item.list.quantity" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^[0-9\.\,\-Ee]*$</var-value>
+                </var>
+            </field>
+            <field property="priceStr" depends="mask">
+                <arg0 key="item.list.price" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^[0-9\.\,\-]*$</var-value>
+                </var>
+            </field>
+        </form>
+        <form name="payment">
+            <field property="amount" depends="required,mask">
+                <arg0 key="payment.amount" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^[0-9\.\,\-]*$</var-value>
+                </var>
+            </field>
+            <field property="chequeDate_year" depends="integer,range">
+                <arg0 key="all.prompt.year" />
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1900</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>2100</var-value>
+                </var>
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="chequeDate_month" depends="integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>12</var-value>
+                </var>
+                <arg0 key="all.prompt.month" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="chequeDate_day" depends="integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <arg0 key="all.prompt.day" />
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>31</var-value>
+                </var>
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="date_year" depends="integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1900</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>2100</var-value>
+                </var>
+                <arg0 key="all.prompt.year" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="date_month" depends="integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>12</var-value>
+                </var>
+                <arg0 key="all.prompt.month" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="date_day" depends="integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>31</var-value>
+                </var>
+                <arg0 key="all.prompt.day" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="ccExpiry_year" depends="integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1900</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>2100</var-value>
+                </var>
+                <arg0 key="all.prompt.year" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="ccExpiry_month" depends="integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>12</var-value>
+                </var>
+                <arg0 key="all.prompt.month" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="aba_code" depends="long,maxlength">
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>9</var-value>
+                </var>
+                <arg0 key="ach.aba.prompt" />
+                <arg1 name="maxlength" key="${var:maxlength}" resource="false" />
+            </field>
+            <field property="account_number" depends="mask,maxlength">
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>20</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^[0-9]*$</var-value>
+                </var>
+                <arg0 key="ach.account_number.prompt" />
+                <arg1 name="maxlength" key="${var:maxlength}" />
+            </field>
+        </form>
+        
+        <form name="changePassword">
+            <field property="password" depends="required,minlength,maxlength,alphanum,noUserInfo,notRepeated">
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>6</var-value>
+                </var>
+                <arg0 key="user.prompt.password" />
+                <arg1 name="minlength" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>20</var-value>
+                </var>
+                <arg1 name="maxlength" key="${var:maxlength}" resource="false" />
+            </field>
+            <field property="verifyPassword" depends="required,minlength,maxlength,alphanum">
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>6</var-value>
+                </var>
+                <arg0 key="user.prompt.verifyPassword"/>
+                <arg1 name="minlength" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>20</var-value>
+                </var>
+                <arg1 name="maxlength" key="${var:maxlength}" resource="false" />
+            </field>
+        </form>
+        
+        <form name="userCreate">
+            <field property="username" depends="required,minlength,mask,maxlength">
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>4</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^[a-zA-Z0-9_\-\.\@\+]*$</var-value>
+                </var>
+                <arg0 key="user.prompt.username" />
+                <arg1 name="minlength" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>50</var-value>
+                </var>
+                <arg1 name="maxlength" key="${var:maxlength}" resource="false" />
+            </field>
+            <field property="password" depends="required,minlength,maxlength,alphanum">
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>6</var-value>
+                </var>
+                <arg0 key="user.prompt.password" />
+                <arg1 name="minlength" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>20</var-value>
+                </var>
+                <arg1 name="maxlength" key="${var:maxlength}" resource="false" />
+            </field>
+            <field property="verifyPassword" depends="required,minlength">
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>6</var-value>
+                </var>
+                <arg0 key="user.prompt.verifyPassword" />
+                <arg1 name="minlength" key="${var:minlength}" resource="false" />
+            </field>
+            <field property="email" depends="required,email">
+                <arg0 key="user.prompt.email" />
+            </field>
+            <field property="partnerId" depends="integer">
+                <arg0 key="user.prompt.partner" />
+            </field>
+            <field property="parentId" depends="integer">
+                <arg0 key="user.prompt.parent" />
+            </field>
+        </form>
+        <form name="contact">
+            <field property="email" depends="email">
+                <arg0 key="user.prompt.email" />
+            </field>
+            <field property="phoneAreaCode" depends="integer">
+                <arg0 key="contact.prompt.phoneAreaCode" />
+            </field>
+        </form>
+        <form name="promotion">
+            <field property="code" depends="required, minlength,mask">
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>4</var-value>
+                </var>
+                <arg0 key="promotion.prompt.code" />
+                <arg1 name="minlength" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^[a-zA-Z0-9]*$</var-value>
+                </var>
+            </field>
+            <field property="since_year" depends="integer,range">
+                <arg0 key="all.prompt.year" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1900</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>2100</var-value>
+                </var>
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="since_month" depends="integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <arg0 key="all.prompt.month" />
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>12</var-value>
+                </var>
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="since_day" depends="integer,range">
+                <arg0 key="all.prompt.day" />
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>31</var-value>
+                </var>
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="until_year" depends="integer,range">
+                <arg0 key="all.prompt.year" />
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1900</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>2100</var-value>
+                </var>
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="until_month" depends="integer,range">
+                <arg0 key="all.prompt.month" />
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>12</var-value>
+                </var>
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="until_day" depends="integer,range">
+                <arg0 key="all.prompt.day" />
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>31</var-value>
+                </var>
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+        </form>
+        
+        <form name="order">
+            <field property="cycle_year" depends="integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1900</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>2100</var-value>
+                </var>
+                <arg0 key="all.prompt.year" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="cycle_month" depends="integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>12</var-value>
+                </var>
+                <arg0 key="all.prompt.month" />
+                <arg1 key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="cycle_day" depends="integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>31</var-value>
+                </var>
+                <arg0 key="all.prompt.day" />
+                <arg1 key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            
+            <field property="since_year" depends="integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1900</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>2100</var-value>
+                </var>
+                <arg0 key="all.prompt.year" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="since_month" depends="integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>12</var-value>
+                </var>
+                <arg0 key="all.prompt.month" />
+                <arg1 key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="since_day" depends="integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>31</var-value>
+                </var>
+                <arg0 key="all.prompt.day" />
+                <arg1 key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="until_year" depends="integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1900</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>2100</var-value>
+                </var>
+                <arg0 key="all.prompt.year" />
+                <arg1 key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="until_month" depends="integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>12</var-value>
+                </var>
+                <arg0 key="all.prompt.month" />
+                <arg1 key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="until_day" depends="integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>31</var-value>
+                </var>
+                <arg0 key="all.prompt.day" />
+                <arg1 key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="next_billable_year" depends="integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1900</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>2100</var-value>
+                </var>
+                <arg0 key="all.prompt.year" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="next_billable_month" depends="integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>12</var-value>
+                </var>
+                <arg0 key="all.prompt.month" />
+                <arg1 key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="next_billable_day" depends="integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>31</var-value>
+                </var>
+                <arg0 key="all.prompt.day" />
+                <arg1 key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="due_date_value" depends="integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>0</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>365</var-value>
+                </var>
+                <arg0 key="user.prompt.dueDate" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="anticipate_periods" depends="integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>0</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>99</var-value>
+                </var>
+                <arg0 key="order.prompt.anticipate" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="notes" depends="maxlength">
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>200</var-value>
+                </var>
+                <arg1 name="maxlength" key="${var:maxlength}" resource="false" />
+                <arg0 key="order.prompt.notes" />
+            </field>
+        </form>
+        <form name="creditCard">
+            <field property="number" depends="creditCard">
+                <arg0 key="all.prompt.creditCard" />
+            </field>
+            <field property="expiry_month" depends="required,integer,range">
+                <arg0 key="all.prompt.month" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>12</var-value>
+                </var>
+            </field>
+            <field property="expiry_year" depends="required,integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1900</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>2100</var-value>
+                </var>
+                <arg0 key="all.prompt.year" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="name" depends="required,maxlength">
+                <arg0 key="creditcard.name.prompt" />
+                <arg1 name="maxlength" key="${var:maxlength}" resource="false" />
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>50</var-value>
+                </var>
+            </field>
+        </form>
+        <form name="configuration">
+            <field property="run_year" depends="required,integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1900</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>2100</var-value>
+                </var>
+                <arg0 key="all.prompt.year" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="run_month" depends="required,integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>12</var-value>
+                </var>
+                <arg0 key="all.prompt.month" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="run_day" depends="required,integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>31</var-value>
+                </var>
+                <arg0 key="all.prompt.day" />
+                <arg1 key="${var:min}" resource="false" name="range" />
+                <arg2 key="${var:max}" resource="false" name="range" />
+            </field>
+            <field property="retries" depends="required,integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>0</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>30</var-value>
+                </var>
+                <arg0 key="process.configuration.prompt.retries" />
+                <arg1 key="${var:min}" resource="false" name="range" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="retries_days" depends="required,integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>30</var-value>
+                </var>
+                <arg0 key="process.configuration.prompt.daysForRetry" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="report_days" depends="required,integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>30</var-value>
+                </var>
+                <arg0 key="process.configuration.prompt.daysForReport" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="period_unit_value" depends="required,integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>31</var-value>
+                </var>
+                <arg0 key="process.configuration.prompt.period" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="due_date_value" depends="required,integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>0</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>365</var-value>
+                </var>
+                <arg0 key="process.configuration.prompt.daysDueDate" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="maximum_periods" depends="required,integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>100</var-value>
+                </var>
+                <arg0 key="process.configuration.prompt.maxPeriods" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+        </form>
+        <form name="item">
+            <field property="description" depends="required,maxlength">
+                <arg0 key="item.prompt.description" />
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>1000</var-value>
+                </var>
+                <arg1 name="maxlength" key="${var:maxlength}" resource="false" />
+            </field>
+            <field property="percentage" depends="mask">
+                <arg0 key="item.prompt.percentage" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^[0-9\.\,\-]*$</var-value>
+                </var>
+            </field>
+        </form>
+        <form name="itemType">
+            <field property="name" depends="required">
+                <arg0 key="item.type.prompt.description" />
+            </field>
+        </form>
+        <form name="userPrice">
+            <field property="price" depends="required,mask">
+                <arg0 key="item.prompt.price" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^[0-9\.\,\-]*$</var-value>
+                </var>
+            </field>
+        </form>
+        <form name="partner">
+            <field property="balance" depends="required,mask">
+                <arg0 key="partner.prompt.balance" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^[0-9\.\,\-]*$</var-value>
+                </var>
+            </field>
+            <field property="rate" depends="mask">
+                <arg0 key="partner.prompt.rate" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^[0-9\.\,]*$</var-value>
+                </var>
+            </field>
+            <field property="fee" depends="mask">
+                <arg0 key="partner.prompt.fee" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^[0-9\.\,]*$</var-value>
+                </var>
+            </field>
+            <field property="period_value" depends="required,integer">
+                <arg0 key="partner.prompt.period" />
+            </field>
+            <field property="payout_year" depends="required,integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1900</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>2100</var-value>
+                </var>
+                <arg0 key="all.prompt.year" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="payout_month" depends="required,integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>12</var-value>
+                </var>
+                <arg0 key="all.prompt.month" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="payout_day" depends="required,integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>31</var-value>
+                </var>
+                <arg0 key="all.prompt.day" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="clerk" depends="required,integer">
+                <arg0 key="partner.prompt.clerk" />
+            </field>
+        </form>
+        <form name="partnerDefault">
+            <field property="rate" depends="mask">
+                <arg0 key="partner.prompt.rate" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^[0-9\.\,]*$</var-value>
+                </var>
+            </field>
+            <field property="fee" depends="mask">
+                <arg0 key="partner.prompt.fee" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^[0-9\.\,]*$</var-value>
+                </var>
+            </field>
+            <field property="period_value" depends="required,integer">
+                <arg0 key="partner.prompt.period" />
+            </field>
+            <field property="clerk" depends="required,integer">
+                <arg0 key="partner.prompt.clerk" />
+            </field>
+        </form>
+        <form name="payout">
+            <field property="start_day" depends="required,integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>31</var-value>
+                </var>
+                <arg0 key="all.prompt.day" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="start_month" depends="required,integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>12</var-value>
+                </var>
+                <arg0 key="all.prompt.month" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="start_year" depends="required,integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1900</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>2100</var-value>
+                </var>
+                <arg0 key="all.prompt.year" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="end_day" depends="required,integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>31</var-value>
+                </var>
+                <arg0 key="all.prompt.day" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="end_month" depends="required,integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>12</var-value>
+                </var>
+                <arg0 key="all.prompt.month" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="end_year" depends="required,integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1900</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>2100</var-value>
+                </var>
+                <arg0 key="all.prompt.year" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="method" depends="required">
+                <arg0 key="payout.prompt.method" />
+            </field>
+        </form>
+        <form name="notificationPreferences">
+            <field property="order_days1" depends="integer,range">
+                <arg0 key="notification.preference.orderDays1.prompt" />
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>0</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>1000</var-value>
+                </var>
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="order_days2" depends="integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>0</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>1000</var-value>
+                </var>
+                <arg0 key="notification.preference.orderDays2.prompt" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="order_days3" depends="integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>0</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>1000</var-value>
+                </var>
+                <arg0 key="notification.preference.orderDays3.prompt" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="first_reminder" depends="integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>1000</var-value>
+                </var>
+                <arg0 key="notification.preference.reminders.first" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="next_reminder" depends="integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>1000</var-value>
+                </var>
+                <arg0 key="notification.preference.reminders.next" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+        </form>
+        <form name="ach">
+            <field property="aba_code" depends="required,long,maxlength">
+                <arg0 key="ach.aba.prompt" />
+                <arg1 name="maxlength" key="${var:maxlength}" resource="false" />
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>9</var-value>
+                </var>
+            </field>
+            <field property="account_number" depends="required,mask,maxlength">
+                <arg0 key="ach.account_number.prompt" />
+                <arg1 name="maxlength" key="${var:maxlength}" resource="false" />
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>20</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^[0-9]*$</var-value>
+                </var>
+            </field>
+            <field property="bank_name" depends="required">
+                <arg0 key="ach.bank_name.prompt" />
+            </field>
+            <field property="account_name" depends="required">
+                <arg0 key="ach.account_name.prompt" />
+            </field>
+        </form>
+        <form name="numbering">
+            <field property="prefix" depends="maxlength">
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>20</var-value>
+                </var>
+                <arg0 key="invoice.numbering.prefix.prompt" />
+                <arg1 name="maxlength" key="${var:maxlength}" resource="false" />
+            </field>
+            <field property="number" depends="required,integer">
+                <arg0 key="invoice.numbering.sequence.prompt" />
+            </field>
+        </form>
+        <form name="userEdit">
+            <field property="username" depends="required,minlength,mask,maxlength">
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>4</var-value>
+                </var>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^[a-zA-Z0-9_\-\.\@\+]*$</var-value>
+                </var>
+                <arg0 key="user.prompt.username" />
+                <arg1 name="minlength" key="${var:minlength}" resource="false" />
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>50</var-value>
+                </var>
+                <arg1 name="maxlength" key="${var:maxlength}" resource="false" />
+            </field>
+            <field property="due_date_value" depends="integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>0</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>365</var-value>
+                </var>
+                <arg0 key="user.prompt.dueDate" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="partnerId" depends="integer">
+                <arg0 key="user.prompt.partner" />
+            </field>
+            <field property="password" depends="minlength,alphanum,noUserInfo,notRepeated">
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>6</var-value>
+                </var>
+                <arg0 key="prompt.password" />
+                <arg1 name="minlength" key="${var:minlength}" resource="false" />
+            </field>
+            <field property="credit_limit" depends="mask">
+                <arg0 key="user.prompt.creditLimit" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^[0-9\.\,\-]*$</var-value>
+                </var>
+            </field>
+            <field property="auto_recharge" depends="mask">
+                <arg0 key="user.prompt.autoRecharge" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^[0-9\.\,\-]*$</var-value>
+                </var>
+            </field>
+        </form>
+        <form name="signup">
+            <field property="address1" depends="required">
+                <arg0 key="contact.prompt.address1" />
+            </field>
+            <field property="city" depends="required">
+                <arg0 key="contact.prompt.city" />
+            </field>
+            <field property="postal_code" depends="required">
+                <arg0 key="contact.prompt.postalCode" />
+            </field>
+            <field property="state" depends="required">
+                <arg0 key="contact.prompt.stateProvince" />
+            </field>
+            <field property="country" depends="required">
+                <arg0 key="contact.prompt.countryCode" />
+            </field>
+            <field property="phone_area" depends="required,integer">
+                <arg0 key="contact.prompt.phoneAreaCode" />
+            </field>
+            <field property="phone_number" depends="required,mask,minlength">
+                <arg0 key="contact.prompt.phoneNumber" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^[0-9_\-\.\(\)\ ]*$</var-value>
+                </var>
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>6</var-value>
+                </var>
+                <arg1 name="minlength" key="${var:minlength}" resource="false" />
+            </field>
+            <field property="email" depends="required,email">
+                <arg0 key="contact.prompt.email" />
+            </field>
+            <field property="user_name" depends="required,minlength,mask,maxlength">
+                <arg0 key="prompt.username" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^[a-zA-Z0-9_\-]*$</var-value>
+                </var>
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>4</var-value>
+                </var>
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>50</var-value>
+                </var>
+                <arg1 name="minlength" key="${var:minlength}" resource="false" />
+                <arg1 name="maxlength" key="${var:maxlength}" resource="false" />
+            </field>
+            <field property="password" depends="required,minlength,maxlength,alphanum">
+                <arg0 key="prompt.password" ></arg0>
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>6</var-value>
+                </var>
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>20</var-value>
+                </var>
+                <arg1 name="minlength" key="${var:minlength}" resource="false" />
+                <arg1 name="maxlength" key="${var:maxlength}" resource="false" />
+            </field>
+            <field property="company_name" depends="required">
+                <arg0 key="contact.prompt.organizationName" />
+            </field>
+            <field property="first_name" depends="required">
+                <arg0 key="contact.prompt.firstName" />
+            </field>
+            <field property="last_name" depends="required">
+                <arg0 key="contact.prompt.lastName" />
+            </field>
+            <field property="partner_id" depends="integer">
+                <arg0 key="signup.prompt.parner" />
+            </field>
+            <field property="package" depends="required">
+                <arg0 key="signup.prompt.package.error" />
+            </field>
+            <field property="cc_number" depends="required,creditCard">
+                <arg0 key="payment.cc.number" />
+            </field>
+            <field property="cc_name" depends="required">
+                <arg0 key="payment.cc.name" />
+            </field>
+            <field property="cc_sec_code" depends="required,integer">
+                <arg0 key="signup.prompt.cc.sec" />
+            </field>
+            <field property="cc_month" depends="required">
+                <arg0 key="payment.cc.date" />
+            </field>
+            <field property="cc_year" depends="required">
+                <arg0 key="payment.cc.date" />
+            </field>
+        </form>
+        <form name="newEntity">
+            <field property="address1" depends="required">
+                <arg0 key="contact.prompt.address1" />
+            </field>
+            <field property="city" depends="required">
+                <arg0 key="contact.prompt.city" />
+            </field>
+            <field property="postal_code" depends="required">
+                <arg0 key="contact.prompt.postalCode" />
+            </field>
+            <field property="state" depends="required">
+                <arg0 key="contact.prompt.stateProvince" />
+            </field>
+            <field property="country" depends="required">
+                <arg0 key="contact.prompt.countryCode" />
+            </field>
+            <field property="phone_area" depends="integer">
+                <arg0 key="contact.prompt.phoneAreaCode" />
+            </field>
+            <field property="phone_number" depends="mask,minlength">
+                <arg0 key="contact.prompt.phoneNumber" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^[0-9_\-\.\(\)\ ]*$</var-value>
+                </var>
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>6</var-value>
+                </var>
+                <arg1 name="minlength" key="${var:minlength}" resource="false" />
+            </field>
+            <field property="email" depends="required,email">
+                <arg0 key="contact.prompt.email" />
+            </field>
+            <field property="user_name" depends="required,minlength,mask,maxlength">
+                <arg0 key="prompt.username" />
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^[a-zA-Z0-9_\-]*$</var-value>
+                </var>
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>4</var-value>
+                </var>
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>50</var-value>
+                </var>
+                <arg1 name="minlength" key="${var:minlength}" resource="false" />
+                <arg1 name="maxlength" key="${var:maxlength}" resource="false" />
+            </field>
+            <field property="password" depends="required,minlength,maxlength,alphanum">
+                <arg0 key="prompt.password" />
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>6</var-value>
+                </var>
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>20</var-value>
+                </var>
+                <arg1 name="minlength" key="${var:minlength}" resource="false" />
+                <arg1 name="maxlength" key="${var:maxlength}" resource="false" />
+            </field>
+            <field property="company_name" depends="required">
+                <arg0 key="contact.prompt.organizationName" />
+            </field>
+            <field property="first_name" depends="required">
+                <arg0 key="contact.prompt.firstName" />
+            </field>
+            <field property="last_name" depends="required">
+                <arg0 key="contact.prompt.lastName" />
+            </field>
+        </form>
+        
+        <form name="downloadInvoices">
+            <field property="customer" depends="integer">
+                <arg0 key="invoice.download.prompt.customer" />
+            </field>
+            <field property="rangeStart" depends="integer">
+                <arg0 key="invoice.download.label.startid" />
+            </field>
+            <field property="rangeEnd" depends="integer">
+                <arg0 key="invoice.download.label.endid" />
+            </field>
+            <field property="process" depends="integer">
+                <arg0 key="invoice.download.prompt.process" />
+            </field>
+            <field property="date_from_month" depends="integer,range">
+                <arg0 key="all.prompt.month" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>12</var-value>
+                </var>
+            </field>
+            <field property="date_from_year" depends="integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1900</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>2100</var-value>
+                </var>
+                <arg0 key="all.prompt.year" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="date_from_day" depends="integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>31</var-value>
+                </var>
+                <arg0 key="all.prompt.day" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="date_to_month" depends="integer,range">
+                <arg0 key="all.prompt.month" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>12</var-value>
+                </var>
+            </field>
+            <field property="date_to_year" depends="integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1900</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>2100</var-value>
+                </var>
+                <arg0 key="all.prompt.year" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="date_to_day" depends="integer,range">
+                <var>
+                    <var-name>min</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>max</var-name>
+                    <var-value>31</var-value>
+                </var>
+                <arg0 key="all.prompt.day" />
+                <arg1 name="range" key="${var:min}" resource="false" />
+                <arg2 name="range" key="${var:max}" resource="false" />
+            </field>
+            <field property="number_from" depends="maxlength">
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>30</var-value>
+                </var>
+                <arg0 key="invoice.download.prompt.number" />
+                <arg1 name="maxlength" key="${var:maxlength}" resource="false" />
+            </field>
+            <field property="number_to" depends="maxlength">
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>30</var-value>
+                </var>
+                <arg0 key="invoice.download.prompt.number" />
+                <arg1 name="maxlength" key="${var:maxlength}" resource="false" />
+            </field>
+            
+        </form>
+        
+    </formset>
+</form-validation>
+

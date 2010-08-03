@@ -1,0 +1,3 @@
+function int convert_to_minutes(Integer seconds) {
+	return ((int)  Math.ceil(seconds / 60)) + 1;
+}

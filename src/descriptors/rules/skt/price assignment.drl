@@ -1,0 +1,8 @@
+when
+    $result : MediationResult(step < MediationResult.STEP_6_ITEM_MANAGEMENT)
+    $price : PricingResult( pricingFieldsResultId == $result.id, price != null )
+    $line : OrderLineDTO( itemId == $price.itemId) from $result.lines
+then
+    $line.setPrice( $price.getPrice() );
+    update( $result );
+    LOG.debug("Price assigned " + $line + " record " + $result.getRecordKey());

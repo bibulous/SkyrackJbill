@@ -1,0 +1,659 @@
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<!--
+    jBilling - The Enterprise Open Source Billing System
+    Copyright (C) 2003-2009 Enterprise jBilling Software Ltd. and Emiliano Conde
+
+    This file is part of jbilling.
+
+    jbilling is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    jbilling is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with jbilling.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<struts-config>
+  <!-- ========== Form Bean Definitions =================================== -->
+    <form-beans>
+
+  <!-- My architecture test form bean -->
+  
+        <form-bean name="downloadInvoices" type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="operationType" type="java.lang.Integer" />
+            <form-property name="customer" type="java.lang.String" />
+            <form-property name="rangeStart" type="java.lang.String" />
+            <form-property name="rangeEnd" type="java.lang.String" />
+            <form-property name="process" type="java.lang.String" />
+            <form-property name="date_from_year" type="java.lang.String" />
+            <form-property name="date_from_month" type="java.lang.String" />
+            <form-property name="date_from_day" type="java.lang.String" />
+            <form-property name="date_to_year" type="java.lang.String" />
+            <form-property name="date_to_month" type="java.lang.String" />
+            <form-property name="date_to_day" type="java.lang.String" />
+            <form-property name="number_from" type="java.lang.String" />
+            <form-property name="number_to" type="java.lang.String" />
+        </form-bean>
+        <form-bean name="logoUpload" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="logoFile" type="org.apache.struts.upload.FormFile"/>
+        </form-bean>
+        <form-bean name="UserLoginForm" type="com.sapienter.jbilling.client.user.UserLoginForm" />
+        <form-bean name="OrderAddItemForm" type="com.sapienter.jbilling.client.order.OrderAddItemForm" />
+        <form-bean name="orderDTOForm" type="com.sapienter.jbilling.client.order.NewOrderDTOForm" />
+        <form-bean name="payment" type="com.sapienter.jbilling.client.util.DynaForm">
+            <form-property name="amount" type="java.lang.String" />
+            <form-property name="date_year" type="java.lang.String" />
+            <form-property name="date_month" type="java.lang.String" />
+            <form-property name="date_day" type="java.lang.String" />
+            <form-property name="bank" type="java.lang.String" />
+            <form-property name="chequeNumber" type="java.lang.String" />
+            <form-property name="chequeDate_year" type="java.lang.String" />
+            <form-property name="chequeDate_month" type="java.lang.String" />
+            <form-property name="chequeDate_day" type="java.lang.String" />
+            <form-property name="ccNumber" type="java.lang.String" />
+            <form-property name="ccExpiry_year" type="java.lang.String" />
+            <form-property name="ccExpiry_month" type="java.lang.String" />
+            <form-property name="ccExpiry_day" type="java.lang.String" />
+            <form-property name="ccName" type="java.lang.String" />
+            <form-property name="method" type="java.lang.String" />
+            <form-property name="chbx_processNow" type="java.lang.Boolean" initial="true" />
+            <form-property name="currencyId" type="java.lang.Integer" />
+            <form-property name="reset" type="java.lang.String" />
+            <form-property name="direct" type="java.lang.String" initial="no" />
+            <form-property name="create" type="java.lang.String" />
+            <form-property name="aba_code" type="java.lang.String" />
+            <form-property name="account_number" type="java.lang.String" />
+            <form-property name="bank_name" type="java.lang.String" />
+            <form-property name="account_name" type="java.lang.String" />
+            <form-property name="account_type" type="java.lang.Integer" />
+            <form-property name="id" type="java.lang.Integer" />
+        </form-bean>
+        <form-bean name="reportForm" type="com.sapienter.jbilling.client.report.Form" />
+        <form-bean name="userCreate" type="com.sapienter.jbilling.client.util.DynaForm">
+            <form-property name="username" type="java.lang.String" />
+            <form-property name="password" type="java.lang.String" />
+            <form-property name="verifyPassword" type="java.lang.String" />
+            <form-property name="email" type="java.lang.String" />
+            <form-property name="type" type="java.lang.Integer" />
+            <form-property name="contactFlag" type="java.lang.String" />
+            <form-property name="currencyId" type="java.lang.Integer" />
+            <form-property name="partnerId" type="java.lang.String" />
+            <form-property name="parentId" type="java.lang.String" />
+            <form-property name="chbx_is_parent" type="java.lang.Boolean" />
+            <form-property name="chbx_invoiceChild" type="java.lang.Boolean" />
+        </form-bean>
+        <form-bean name="userEdit" type="com.sapienter.jbilling.client.util.DynaForm">
+            <form-property name="id" type="java.lang.Integer" />
+            <form-property name="entity" type="java.lang.Integer" />
+            <form-property name="type" type="java.lang.Integer" />
+            <form-property name="username" type="java.lang.String" />
+            <form-property name="oldPassword" type="java.lang.String" />
+            <form-property name="password" type="java.lang.String" />
+            <form-property name="verifyPassword" type="java.lang.String" />
+            <form-property name="language" type="java.lang.Integer" />
+            <form-property name="status" type="java.lang.Integer" />
+            <form-property name="subscriberStatus" type="java.lang.Integer" />
+            <form-property name="currencyId" type="java.lang.Integer" />
+            <form-property name="deliveryMethodId" type="java.lang.Integer" />
+            <form-property name="due_date_unit_id" type="java.lang.Integer" />
+            <form-property name="due_date_value" type="java.lang.String" />
+            <form-property name="chbx_df_fm" type="java.lang.Boolean" />
+            <form-property name="partnerId" type="java.lang.String" />
+            <form-property name="chbx_excludeAging" type="java.lang.Boolean" />
+            <form-property name="balance_type" type="java.lang.Integer" />
+            <form-property name="credit_limit" type="java.lang.String" />
+            <form-property name="auto_recharge" type="java.lang.String" />
+        </form-bean>
+        <form-bean name="contact" type="com.sapienter.jbilling.client.util.DynaForm">
+            <form-property name="organizationName" type="java.lang.String" />
+            <form-property name="address1" type="java.lang.String" />
+            <form-property name="address2" type="java.lang.String" />
+            <form-property name="city" type="java.lang.String" />
+            <form-property name="stateProvince" type="java.lang.String" />
+            <form-property name="postalCode" type="java.lang.String" />
+            <form-property name="countryCode" type="java.lang.String" />
+            <form-property name="lastName" type="java.lang.String" />
+            <form-property name="firstName" type="java.lang.String" />
+            <form-property name="initial" type="java.lang.String" />
+            <form-property name="title" type="java.lang.String" />
+            <form-property name="phoneCountryCode" type="java.lang.Integer" />
+            <form-property name="phoneAreaCode" type="java.lang.String" />
+            <form-property name="phoneNumber" type="java.lang.String" />
+            <form-property name="faxCountryCode" type="java.lang.Integer" />
+            <form-property name="faxAreaCode" type="java.lang.Integer" />
+            <form-property name="faxNumber" type="java.lang.String" />
+            <form-property name="email" type="java.lang.String" />
+            <form-property name="type" type="java.lang.Integer" />
+            <form-property name="reload" type="java.lang.String" />
+            <form-property name="fieldsTable" type="java.util.Hashtable" />
+            <form-property name="chbx_include" type="java.lang.Boolean" />
+        </form-bean>
+        <form-bean name="item" type="com.sapienter.jbilling.client.util.DynaForm">
+            <form-property name="id" type="java.lang.Integer" />
+            <form-property name="internalNumber" type="java.lang.String" />
+            <form-property name="description" type="java.lang.String" />
+            <form-property name="types" type="java.lang.Integer[]" />
+            <form-property name="chbx_priceManual" type="java.lang.Boolean" />
+            <form-property name="create" type="java.lang.String" />
+            <form-property name="percentage" type="java.lang.String" />
+            <form-property name="prices" type="java.util.ArrayList" />
+            <form-property name="language" type="java.lang.Integer" />
+            <form-property name="chbx_hasDecimals" type="java.lang.Boolean" />
+        </form-bean>
+        <form-bean name="list" type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="listType" type="java.lang.String" />
+            <form-property name="pageSize" type="java.lang.String" />
+            <form-property name="search1" type="java.lang.String" />
+            <form-property name="search2" type="java.lang.String" />
+            <form-property name="search3" type="java.lang.String" />
+            <form-property name="search4" type="java.lang.String" />
+            <form-property name="search5" type="java.lang.String" />
+            <form-property name="search6" type="java.lang.String" />
+            <form-property name="fieldId" type="java.lang.Integer" />
+            <form-property name="dataType" type="java.lang.String" />
+            <form-property name="key" type="java.lang.String" />
+        </form-bean>
+        <form-bean name="order" type="com.sapienter.jbilling.client.util.DynaForm">
+            <form-property name="period" type="java.lang.Integer" />
+            <form-property name="cycle_year" type="java.lang.String" />
+            <form-property name="cycle_month" type="java.lang.String" />
+            <form-property name="cycle_day" type="java.lang.String" />
+            <form-property name="since_year" type="java.lang.String" />
+            <form-property name="since_month" type="java.lang.String" />
+            <form-property name="since_day" type="java.lang.String" />
+            <form-property name="until_year" type="java.lang.String" />
+            <form-property name="until_month" type="java.lang.String" />
+            <form-property name="until_day" type="java.lang.String" />
+            <form-property name="next_billable_year" type="java.lang.String" />
+            <form-property name="next_billable_month" type="java.lang.String" />
+            <form-property name="next_billable_day" type="java.lang.String" />
+            <form-property name="billingType" type="java.lang.Integer" />
+            <form-property name="chbx_notify" type="java.lang.Boolean" />
+            <form-property name="due_date_unit_id" type="java.lang.Integer" />
+            <form-property name="due_date_value" type="java.lang.String" />
+            <form-property name="chbx_df_fm" type="java.lang.Boolean" />
+            <form-property name="anticipate_periods" type="java.lang.String" />
+            <form-property name="chbx_own_invoice" type="java.lang.Boolean" />
+            <form-property name="notes" type="java.lang.String" />
+            <form-property name="chbx_notes" type="java.lang.Boolean" />
+            <form-property name="chbx_iscurrent" type="java.lang.Boolean" />
+        </form-bean>
+
+        <form-bean name="creditCard" type="com.sapienter.jbilling.client.util.DynaForm">
+            <form-property name="number" type="java.lang.String" />
+            <form-property name="expiry_year" type="java.lang.String" />
+            <form-property name="expiry_month" type="java.lang.String" />
+            <form-property name="expiry_day" type="java.lang.String" />
+            <form-property name="name" type="java.lang.String" />
+            <form-property name="create" type="java.lang.String" />
+            <form-property name="chbx_use_this" type="java.lang.Boolean" />
+        </form-bean>
+
+        <form-bean name="process" type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="id" type="java.lang.String" />
+        </form-bean>
+        <form-bean name="configuration" type="com.sapienter.jbilling.client.util.DynaForm">
+            <form-property name="run_year" type="java.lang.String" />
+            <form-property name="run_month" type="java.lang.String" />
+            <form-property name="run_day" type="java.lang.String" />
+            <form-property name="chbx_generateReport" type="java.lang.Boolean" />
+            <form-property name="retries" type="java.lang.String" />
+            <form-property name="retries_days" type="java.lang.String" />
+            <form-property name="report_days" type="java.lang.String" />
+            <form-property name="create" type="java.lang.String" />
+            <form-property name="period_unit_id" type="java.lang.String" />
+            <form-property name="period_unit_value" type="java.lang.String" />
+            <form-property name="due_date_unit_id" type="java.lang.String" />
+            <form-property name="due_date_value" type="java.lang.String" />
+            <form-property name="chbx_df_fm" type="java.lang.Boolean" />
+            <form-property name="chbx_only_recurring" type="java.lang.Boolean" />
+            <form-property name="chbx_invoice_date" type="java.lang.Boolean" />
+            <form-property name="chbx_auto_payment" type="java.lang.Boolean" />
+            <form-property name="maximum_periods" type="java.lang.String" />
+            <form-property name="chbx_payment_apply" type="java.lang.Boolean" />
+        </form-bean>
+        <form-bean name="message" type="com.sapienter.jbilling.client.util.DynaForm">
+            <form-property name="sections" type="java.lang.String[]" />
+            <form-property name="language" type="java.lang.Integer" />
+            <form-property name="create" type="java.lang.String" />
+            <form-property name="sectionNumbers" type="java.lang.Integer[]" />
+            <form-property name="reload" type="java.lang.String" />
+            <form-property name="chbx_use_flag" type="java.lang.Boolean" />
+        </form-bean>
+        <form-bean name="parameter" type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="name" type="java.lang.String[]" />
+            <form-property name="value" type="java.lang.String[]" />
+            <form-property name="create" type="java.lang.String" />
+        </form-bean>
+        <form-bean name="notificationEmails" type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="separator" type="java.lang.String" initial="," />
+            <form-property name="content" type="java.lang.String" />
+        </form-bean>
+        <form-bean name="itemType" type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="name" type="java.lang.String" />
+            <form-property name="create" type="java.lang.String" />
+            <form-property name="order_line_type" type="java.lang.Integer" />
+        </form-bean>
+        <form-bean name="branding" type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="css" type="java.lang.String" />
+            <form-property name="logo" type="java.lang.String" />
+            <form-property name="create" type="java.lang.String" />
+        </form-bean>
+        <form-bean name="currency" type="com.sapienter.jbilling.client.system.CurrencyArrayForm" />
+        <form-bean name="ageing" type="com.sapienter.jbilling.client.system.AgeingArrayForm" />
+        <form-bean name="partner" type="com.sapienter.jbilling.client.util.DynaForm">
+            <form-property name="balance" type="java.lang.String" />
+            <form-property name="rate" type="java.lang.String" />
+            <form-property name="fee" type="java.lang.String" />
+            <form-property name="fee_currency" type="java.lang.Integer" />
+            <form-property name="chbx_one_time" type="java.lang.Boolean" />
+            <form-property name="period_unit_id" type="java.lang.Integer" />
+            <form-property name="period_value" type="java.lang.String" />
+            <form-property name="payout_year" type="java.lang.String" />
+            <form-property name="payout_month" type="java.lang.String" />
+            <form-property name="payout_day" type="java.lang.String" />
+            <form-property name="chbx_process" type="java.lang.Boolean" />
+            <form-property name="clerk" type="java.lang.String" />
+            <form-property name="create" type="java.lang.String" />
+        </form-bean>
+        <form-bean name="partnerDefault" type="com.sapienter.jbilling.client.util.DynaForm">
+            <form-property name="rate" type="java.lang.String" />
+            <form-property name="fee" type="java.lang.String" />
+            <form-property name="fee_currency" type="java.lang.Integer" />
+            <form-property name="chbx_one_time" type="java.lang.Boolean" />
+            <form-property name="period_unit_id" type="java.lang.Integer" />
+            <form-property name="period_value" type="java.lang.String" />
+            <form-property name="chbx_process" type="java.lang.Boolean" />
+            <form-property name="clerk" type="java.lang.String" />
+            <form-property name="create" type="java.lang.String" />
+        </form-bean>
+        <form-bean name="payout" type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="start_day" type="java.lang.String" />
+            <form-property name="start_month" type="java.lang.String" />
+            <form-property name="start_year" type="java.lang.String" />
+            <form-property name="end_day" type="java.lang.String" />
+            <form-property name="end_month" type="java.lang.String" />
+            <form-property name="end_year" type="java.lang.String" />
+            <form-property name="method" type="java.lang.String" />
+        </form-bean>
+        <form-bean name="notes" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="notes" type="java.lang.String" />
+        </form-bean>
+        <form-bean name="notificationPreferences" type="com.sapienter.jbilling.client.util.DynaForm">
+            <form-property name="chbx_self_delivery" type="java.lang.Boolean" />
+            <form-property name="chbx_show_notes" type="java.lang.Boolean" />
+            <form-property name="create" type="java.lang.String" />
+            <form-property name="order_days1" type="java.lang.String" />
+            <form-property name="order_days2" type="java.lang.String" />
+            <form-property name="order_days3" type="java.lang.String" />
+            <form-property name="chbx_invoice_reminders" type="java.lang.Boolean" />
+            <form-property name="first_reminder" type="java.lang.String" />
+            <form-property name="next_reminder" type="java.lang.String" />
+        </form-bean>
+        <form-bean name="ach" type="com.sapienter.jbilling.client.util.DynaForm">
+            <form-property name="aba_code" type="java.lang.String" />
+            <form-property name="account_number" type="java.lang.String" />
+            <form-property name="account_type" type="java.lang.Integer" />
+            <form-property name="bank_name" type="java.lang.String" />
+            <form-property name="account_name" type="java.lang.String" />
+            <form-property name="create" type="java.lang.String" />
+            <form-property name="chbx_use_this" type="java.lang.Boolean" />
+        </form-bean>
+        <form-bean name="numbering" type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="create" type="java.lang.String" />
+            <form-property name="prefix" type="java.lang.String" />
+            <form-property name="number" type="java.lang.String" />
+        </form-bean>
+        <form-bean name="signup" type="com.sapienter.jbilling.client.util.DynaForm">
+            <form-property name="address1" type="java.lang.String" />
+            <form-property name="address2" type="java.lang.String" />
+            <form-property name="city" type="java.lang.String" />
+            <form-property name="state" type="java.lang.String" />
+            <form-property name="postal_code" type="java.lang.String" />
+            <form-property name="country" type="java.lang.String" />
+            <form-property name="phone_area" type="java.lang.String" />
+            <form-property name="phone_number" type="java.lang.String" />
+            <form-property name="email" type="java.lang.String" />
+            <form-property name="user_name" type="java.lang.String" />
+            <form-property name="password" type="java.lang.String" />
+            <form-property name="company_name" type="java.lang.String" />
+            <form-property name="package" type="java.lang.Integer" />
+            <form-property name="chbx_add_configuration" type="java.lang.Boolean" />
+            <form-property name="first_name" type="java.lang.String" />
+            <form-property name="last_name" type="java.lang.String" />
+            <form-property name="partner_id" type="java.lang.String" />
+            <form-property name="cc_number" type="java.lang.String" />
+            <form-property name="cc_name" type="java.lang.String" />
+            <form-property name="cc_month" type="java.lang.String" />
+            <form-property name="cc_year" type="java.lang.String" />
+            <form-property name="cc_sec_code" type="java.lang.String" />
+        </form-bean>
+        <form-bean name="newEntity" type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="address1" type="java.lang.String" />
+            <form-property name="address2" type="java.lang.String" />
+            <form-property name="city" type="java.lang.String" />
+            <form-property name="state" type="java.lang.String" />
+            <form-property name="postal_code" type="java.lang.String" />
+            <form-property name="country" type="java.lang.String" />
+            <form-property name="phone_area" type="java.lang.String" />
+            <form-property name="phone_number" type="java.lang.String" />
+            <form-property name="email" type="java.lang.String" />
+            <form-property name="user_name" type="java.lang.String" />
+            <form-property name="password" type="java.lang.String" />
+            <form-property name="company_name" type="java.lang.String" />
+            <form-property name="first_name" type="java.lang.String" />
+            <form-property name="last_name" type="java.lang.String" />
+        </form-bean>
+        <form-bean name="orderPeriod" type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="id" type="java.lang.Integer[]" />
+            <form-property name="unit" type="java.lang.Integer[]" />
+            <form-property name="value" type="java.lang.String[]" />
+            <form-property name="description" type="java.lang.String[]" />
+        </form-bean>
+        <form-bean name="partnerRanges" type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="range_from" type="java.lang.String[]" />
+            <form-property name="range_to" type="java.lang.String[]" />
+            <form-property name="percentage_rate" type="java.lang.String[]" />
+            <form-property name="referral_fee" type="java.lang.String[]" />
+            <form-property name="create" type="java.lang.String" />
+        </form-bean>
+    
+        <form-bean name="task" type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="tasks" type="com.sapienter.jbilling.server.pluggableTask.admin.PluggableTaskDTO[]" />
+        </form-bean>
+        <form-bean name="changePassword" type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="password" type="java.lang.String" />
+            <form-property name="verifyPassword" type="java.lang.String" />
+        </form-bean>
+        <form-bean name="medConfiguration" type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="configurations" type="java.util.List" />
+        </form-bean>
+        <form-bean name="blacklistUpload" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="addOrReplace" type="java.lang.String" initial="add" />
+            <form-property name="csvFile" type="org.apache.struts.upload.FormFile" />
+        </form-bean>
+
+    </form-beans>
+  
+  <!-- ========== Global Forward Definitions ==============================  -->
+    <global-forwards>
+        <forward name="orderNew" path="/order/newOrder.jsp" redirect="false" />
+        <forward name="orderNewItems" redirect="false" path="/orderMaintain.do?action=isParent" />
+        <forward name="orderView" redirect="false" path="/orderMaintain.do?action=view" />
+        <forward name="orderEdit" path="/order/edit.jsp" redirect="false" />
+        <forward name="listOrOrderEdit" path="/listOrOrder.do" redirect="false" />
+        <forward name="paymentList" path="/payment/list.jsp" redirect="false" />
+        <forward name="paymentCreate" redirect="false" path="/paymentMaintain.do?action=setup&amp;mode=payment" />
+        <forward name="paymentView" path="/paymentMaintain.do?action=view&amp;mode=payment" redirect="false" />
+        <forward name="paymentApply" path="/payment/apply.jsp" redirect="false" />
+        <forward name="payment_deleted" path="/payment/list.jsp" redirect="false" />
+        <forward name="userEdit" path="/user/edit.jsp" redirect="false" />
+        <forward name="userMaintain" path="/user/maintain.jsp" redirect="false" />
+        <forward name="userView" redirect="false" path="/userMaintain.do?action=setup" />
+        <forward name="itemTypeList" path="/item/listType.jsp" redirect="false" />
+        <forward name="itemTypeEdit" path="/itemTypeMaintain.do?action=setup&amp;mode=type" redirect="false" />
+        <forward name="itemList" path="/item/list.jsp" redirect="false" />
+        <forward name="itemEdit" path="/itemMaintain.do?action=setup&amp;mode=item" redirect="false" />
+        <forward name="error" path="/other/error.jsp" redirect="false" />
+        <forward name="invoiceView" path="/invoiceMaintain.do?action=setup&amp;mode=invoice" redirect="false" />
+        <forward name="processView" path="/processMaintain.do?action=view" redirect="false" />
+        <forward name="notificationView" path="/notificationMaintain.do?action=setup&amp;mode=notification" redirect="false" />
+        <forward name="partnerView" path="/partnerMaintain.do?action=view" redirect="false" />
+        <forward name="payoutView" path="/partnerMaintain.do?action=view&amp;payout=yes" redirect="false" />
+        <forward name="applyConfirm" path="/order/applyConfirm.jsp" redirect="false" />
+        <forward name="list" path="/other/list.jsp" redirect="false" />
+    </global-forwards>
+
+
+
+
+  <!-- ========== Action Mapping Definitions ============================== -->
+    <action-mappings>
+
+        <action path="/verifyPassword" name="UserLoginForm" scope="request" validate="true" input="/user/login.jsp" type="com.sapienter.jbilling.client.user.UserLoginAction">
+            <forward name="success" path="/initial.jsp" />
+            <forward name="changePassword" path="/user/changePassword.jsp" />
+        </action>
+
+        <action path="/changePassword" name="changePassword" scope="request" validate="true" input="/user/changePassword.jsp" type="com.sapienter.jbilling.client.user.ChangePasswordAction">
+            <forward name="success" path="/initial.jsp" />
+        </action>
+
+        <action path="/newOrderItem" type="com.sapienter.jbilling.client.order.NewOrderItemAction" name="OrderAddItemForm" input="/order/newOrder.jsp" scope="request">
+            <forward name="showOrderLIst" path="/order/newOrderItems.jsp" redirect="false" />
+        </action>
+        <action path="/reviewOrder" type="com.sapienter.jbilling.client.order.ReviewOrderAction" validate="true" scope="session" name="orderDTOForm" input="/order/orderReview.jsp">
+            <forward name="show" path="/order/orderReview.jsp?action=show" redirect="false" />
+            <forward name="noOrder" path="/order/newOrder.jsp" redirect="false" />
+            <forward name="view" redirect="false" path="/order/show.jsp" />
+            <forward name="list" path="/order/list.jsp" redirect="false" />
+            <forward name="setup" path="/orderMaintain.do?action=setup&amp;mode=order" redirect="false" />
+        </action>
+        <action path="/orderMaintain" type="com.sapienter.jbilling.client.order.MaintainAction" name="order" validate="false" scope="session">
+            <forward name="order_items" path="/order/newOrderItems.jsp" redirect="false" />
+            <forward name="order_edit" path="/order/edit.jsp" redirect="false" />
+            <forward name="view" path="/order/show.jsp" redirect="false" />
+            <forward name="list" path="/order/list.jsp" redirect="false" />
+            <forward name="sub_accounts" path="/order/listSubAccounts.jsp" redirect="false" />
+            <forward name="cdr_list" path="/order/listEvents.jsp" redirect="false" />
+        </action>
+        <action path="/listOrOrder" type="com.sapienter.jbilling.client.order.ListOrEditAction" name="order" validate="false" scope="session">
+            <forward name="list" path="/order/listSubAccounts.jsp" redirect="false" />
+            <forward name="order_edit" path="/order/edit.jsp" redirect="false" />
+        </action>
+
+        <action path="/paymentMaintain" type="com.sapienter.jbilling.client.payment.MaintainAction" name="payment" scope="session" input="/payment/enterInfoCheque.jsp" validate="false">
+            <forward name="payment_review" path="/payment/review.jsp?review=yes" redirect="false" />
+            <forward name="payment_view" path="/payment/view.jsp?view=yes" redirect="false" />
+            <forward name="payment_create" path="/payment/create.jsp?create=yes" redirect="false" />
+            <forward name="payment_edit" path="/payment/create.jsp?create=yes" redirect="false" />
+            <forward name="payment_list" path="/payment/list.jsp" redirect="false" />
+            <forward name="payment_fromOrder" path="/payment/createFromOrder.jsp" redirect="false" />
+            <forward name="payment_payout" redirect="false" path="/payment/payout.jsp" />
+            <forward name="payment_reviewPayout" path="/payment/reviewPayout.jsp" redirect="false" />
+            <forward name="payout_view" path="/user/payoutView.jsp?result=yes" redirect="false" />
+            <forward name="payment_update" path="/payment/update.jsp?create=on" redirect="false" />
+            <forward name="last_invoice" path="/paymentMaintain.do?action=setup&amp;mode=payment&amp;direct=yes&amp;create=yes" redirect="false" />
+            <forward name="payment_setupView" path="/paymentMaintain.do?action=view" redirect="false" />
+            <forward name="no_invoice" path="/initial.jsp" redirect="false" />
+        </action>
+        <action path="/reportTrigger" type="com.sapienter.jbilling.client.report.TriggerAction" name="UserLoginForm" validate="false" scope="request">
+            <forward name="show_result" path="/report/result.jsp" redirect="false" />
+        </action>
+        <action path="/reportSubmit" type="com.sapienter.jbilling.client.report.SubmitAction" name="reportForm" validate="true" scope="session">
+            <forward name="execute" path="/report/result.jsp" redirect="false" />
+            <forward name="error" path="/report/form.jsp" redirect="false" />
+            <forward name="save" path="/report/form.jsp" redirect="false" />
+        </action>
+        <action path="/reportList" type="com.sapienter.jbilling.client.report.ListAction" name="UserLoginForm" validate="false" scope="request">
+            <forward name="listType" path="/report/list.jsp" redirect="false" />
+        </action>
+        <action path="/userCreate" type="com.sapienter.jbilling.client.user.CreateAction" name="userCreate" scope="session" input="/user/create.jsp">
+            <forward name="done" path="/user/edit.jsp" redirect="false" />
+            <forward name="contact" path="/contactEdit.do?action=setup" redirect="false" />
+            <forward name="partner" path="/partnerMaintain.do?action=setup&amp;mode=partner" redirect="false" />
+            <forward name="error" path="/user/create.jsp" redirect="false" />
+        </action>
+        <action path="/contactEdit" type="com.sapienter.jbilling.client.user.ContactEditAction" name="contact" scope="session" input="/user/editContact.jsp">
+            <forward name="edit" path="/user/editContact.jsp" redirect="false" />
+            <forward name="done" path="/user/edit.jsp" redirect="false" />
+        </action>
+        <action path="/userMaintain" type="com.sapienter.jbilling.client.user.MaintainAction" name="userEdit" scope="session" validate="false" input="/user/edit.jsp">
+            <forward name="view" path="/user/view.jsp" redirect="false" />
+            <forward name="order" path="/order/edit.jsp" redirect="false" />
+            <forward name="edit" path="/user/edit.jsp" redirect="false" />
+            <forward name="confirmDelete" path="/user/confirmDelete.jsp" redirect="false"></forward>
+        </action>
+        <action path="/userAccount" type="com.sapienter.jbilling.client.user.AccountAction">
+            <forward name="passwordChange" path="/user/edit.jsp" redirect="false" />
+            <forward name="editContact" path="/contactEdit.do?action=setup" redirect="false" />
+        </action>
+        <action path="/userNotesEdit" type="com.sapienter.jbilling.client.user.NotesEditAction" name="notes" validate="false" scope="session">
+            <forward name="customer_view" path="/user/view.jsp" redirect="false" />
+            <forward name="notes_edit" path="/user/notesEdit.jsp" redirect="false" />
+        </action>
+        <action path="/logout" type="com.sapienter.jbilling.client.user.LogoutAction">
+            <forward name="login" path="/user/login.jsp" redirect="false" />
+        </action>
+        <action path="/itemMaintain" type="com.sapienter.jbilling.client.item.MaintainAction" name="item" scope="session" validate="false">
+            <forward name="item_edit" path="/item/maintain.jsp" redirect="false" />
+            <forward name="item_create" path="/item/create.jsp?create=yes" redirect="false" />
+            <forward name="item_deleted" path="/item/list.jsp" redirect="false" />
+            <forward name="item_list" path="/item/list.jsp" redirect="false" />
+        </action>
+        <action path="/itemTypeMaintain" type="com.sapienter.jbilling.client.item.TypeMaintainAction" name="itemType" validate="false" scope="session">
+            <forward name="type_edit" redirect="false" path="/item/maintainType.jsp" />
+            <forward name="type_create" path="/item/createType.jsp?create=yes" redirect="false" />
+            <forward name="type_deleted" redirect="false" path="/item/listType.jsp" />
+            <forward name="type_list" redirect="false" path="/item/listType.jsp" />
+        </action>
+        <action path="/genericListSelect" type="com.sapienter.jbilling.client.list.GenericListAction" name="list" scope="session" validate="false" input="/other/list.jsp" />
+        <action path="/creditCardMaintain" type="com.sapienter.jbilling.client.user.CreditCardMaintainAction" name="creditCard" validate="false" scope="session">
+            <forward name="creditCard_deleted" path="/user/creditCardEdit.jsp?deleted=yes" redirect="false" />
+            <forward name="creditCard_edit" redirect="false" path="/user/creditCardEdit.jsp" />
+            <forward name="creditCard_done" path="/user/edit.jsp" redirect="false" />
+        </action>
+        <action path="/achMaintain" type="com.sapienter.jbilling.client.user.AchMaintainAction" name="ach" validate="false" scope="session">
+            <forward name="ach_deleted" redirect="false" path="/user/achEdit.jsp?deleted=yes" />
+            <forward name="ach_edit" path="/user/achEdit.jsp" redirect="false" />
+            <forward name="ach_done" path="/user/edit.jsp" redirect="false" />
+        </action>
+        <action path="/invoiceMaintain" type="com.sapienter.jbilling.client.invoice.MaintainAction" name="UserLoginForm" validate="false" scope="request">
+            <forward name="invoice_view" path="/invoice/view.jsp" redirect="false" />
+            <forward name="invoice_list" path="/invoice/list.jsp" redirect="false" />
+            <forward name="no_invoice" path="/initial.jsp" redirect="false" />
+        </action>
+        <action path="/processMaintain" type="com.sapienter.jbilling.client.process.MaintainAction" name="process" validate="false" scope="session">
+            <forward name="process_list" path="/process/list.jsp" redirect="false" />
+            <forward name="process_view" path="/process/view.jsp" redirect="false" />
+            <forward name="process_review" path="/process/viewReview.jsp" redirect="false" />
+            <forward name="payment_create" path="/paymentMaintain.do?action=setup&amp;mode=payment&amp;direct=yes&amp;create=yes" redirect="false" />
+            <forward name="order_view" path="/order/show.jsp" redirect="false" />
+            <forward name="invoice_view" path="/invoice/view.jsp" redirect="false" />
+        </action>
+        <action path="/processConfigurationMaintain" type="com.sapienter.jbilling.client.process.ConfigurationMaintainAction" name="configuration" validate="false" scope="session">
+            <forward name="configuration_edit" path="/process/viewConfiguration.jsp" redirect="false" />
+        </action>
+        <action path="/notificationMaintain" type="com.sapienter.jbilling.client.notification.MaintainAction" name="message" validate="false" scope="session">
+            <forward name="notification_edit" path="/notification/editText.jsp" redirect="false" />
+        </action>
+        <action path="/parameterMaintain" type="com.sapienter.jbilling.client.task.MaintainAction" name="parameter" validate="false" scope="session">
+            <forward name="parameter_edit" path="/task/editParameter.jsp" redirect="false" />
+        </action>
+        <action path="/notificationEmails" type="com.sapienter.jbilling.client.notification.EmailsAction" name="notificationEmails" validate="false" scope="session">
+            <forward name="view" path="/notification/emails.jsp" redirect="false" />
+        </action>
+        <action path="/brandingMaintain" type="com.sapienter.jbilling.client.system.BrandingMaintainAction" name="branding" validate="false" scope="session">
+            <forward name="branding_edit" path="/system/branding.jsp" redirect="false" />
+        </action>
+        <action path="/currencyMaintain" type="com.sapienter.jbilling.client.system.CurrencyMaintainAction" name="currency" validate="false" scope="session">
+            <forward name="edit" path="/system/currency.jsp" redirect="false" />
+        </action>
+        <action path="/ageingMaintain" type="com.sapienter.jbilling.client.system.AgeingMaintainAction" name="ageing" validate="true" scope="session">
+            <forward name="edit" path="/system/ageing.jsp" redirect="false" />
+        </action>
+        <action path="/partnerMaintain" type="com.sapienter.jbilling.client.user.PartnerMaintainAction" name="partner" validate="false" scope="session">
+            <forward name="partner_list" path="/user/listPartner.jsp" redirect="false" />
+            <forward name="partner_edit" path="/user/partnerEdit.jsp" redirect="false" />
+            <forward name="partner_view" path="/user/partnerView.jsp" redirect="false" />
+            <forward name="partner_statement" path="/user/partnerStatement.jsp" redirect="false" />
+            <forward name="payout_view" path="/user/payoutView.jsp" redirect="false" />
+            <forward name="partner_create" path="/user/partnerEdit.jsp?create=yes" redirect="false" />
+            <forward name="partner_ranges" redirect="false" path="/partnerRangesMaintain.do?action=setup&amp;mode=ranges" />
+        </action>
+        <action path="/partnerDefaults" type="com.sapienter.jbilling.client.user.PartnerDefaultsAction" name="partnerDefault" validate="false" scope="session">
+            <forward name="partnerDefault_edit" path="/user/partnerDefault.jsp" redirect="false" />
+        </action>
+        <action path="/payout" type="com.sapienter.jbilling.client.user.PayoutAction" name="payout" scope="session" validate="false">
+            <forward name="edit" path="/user/payoutEdit.jsp" redirect="false" />
+            <forward name="payment" path="/paymentMaintain.do?action=setup&amp;mode=payment&amp;payout=yes" redirect="false" />
+            <forward name="view" path="/user/payoutView.jsp" redirect="false" />
+        </action>
+        <action path="/notificationPreference" type="com.sapienter.jbilling.client.notification.PreferenceAction" name="notificationPreferences" scope="session" validate="false">
+            <forward name="notificationPreference_edit" path="/notification/preference.jsp" redirect="false" />
+        </action>
+        <action path="/numberingMaintain" type="com.sapienter.jbilling.client.invoice.NumberingAction" name="numbering" validate="false" scope="session">
+            <forward name="invoiceNumbering_edit" redirect="false" path="/invoice/numbering.jsp" />
+        </action>
+        <action path="/signup" type="com.sapienter.jbilling.client.signup.SignupAction" name="signup" scope="session" input="/signup/signup.jsp" validate="false">
+            <forward name="agreement" redirect="false" path="/signup/signup.jsp?page=agreement" />
+            <forward name="form" path="/signup/signup.jsp?page=form" redirect="false" />
+        </action>
+        <action path="/orderPeriod" type="com.sapienter.jbilling.client.order.OrderPeriodAction" name="orderPeriod" validate="false" scope="session">
+            <forward name="view" path="/order/periods.jsp" redirect="false" />
+            <forward name="refresh" path="/orderPeriod.do?action=setup" redirect="false" />
+        </action>
+        <action path="/partnerRangesMaintain" type="com.sapienter.jbilling.client.user.PartnerRangesMaintainAction" name="partnerRanges" validate="false" scope="session">
+            <forward name="ranges_edit" path="/user/partnerRangesEdit.jsp" redirect="false" />
+            <forward name="ranges_partner" path="/user/partnerEdit.jsp" redirect="false" />
+            <forward name="partner_list" path="/user/listPartner.jsp" redirect="false" />
+        </action>
+        <action path="/signupEntity" type="com.sapienter.jbilling.client.signup.NewEntityAction" name="newEntity" scope="session" input="/signup/newEntity.jsp" validate="false">
+            <forward name="edit" path="/signup/newEntity.jsp" redirect="false" />
+            <forward name="done" path="/user/login.jsp" redirect="false" />
+        </action>
+        <action path="/forgetPassword" type="com.sapienter.jbilling.client.user.ForgetPasswordAction" name="UserLoginForm" input="/user/forgetPassword.jsp" scope="session">
+            <forward name="success" path="/user/login.jsp" redirect="false" />
+        </action>
+
+
+        <action path="/download" type="com.sapienter.jbilling.client.invoice.DownloadAction" name="downloadInvoices" scope="request" input="/invoice/batchDownload.jsp" validate="true">
+            <forward name="form" path="/invoice/batchDownload.jsp" />
+            <forward name="done" path="/invoice/fileDownload.jsp" />
+        </action>
+
+        <action path="/invoice/logoUpload" type="com.sapienter.jbilling.client.invoice.LogoUploadAction" name="logoUpload" scope="request" input="/invoice/logo.jsp" validate="true">
+            <forward name="done" path="/invoice/logo.jsp" redirect="false"/>
+        </action>
+
+        <action path="/task" type="com.sapienter.jbilling.client.system.TaskAction" name="task" validate="false" scope="session">
+            <forward name="edit" path="/system/task.jsp" redirect="false" />
+            <forward name="deleted" path="/task.do?action=setup" redirect="false" />
+            <forward name="added" path="/task.do?action=setup" redirect="false" />
+        </action>
+
+        <action path="/mediation/processList" type="com.sapienter.jbilling.client.mediation.ProcessListAction"
+    		name="processList" validate="false" scope="session">
+            <forward name="view" path="/mediation/process.jsp" redirect="false" />
+        </action>
+
+        <action path="/mediation/configuration" type="com.sapienter.jbilling.client.mediation.ConfigurationAction"
+    		name="medConfiguration" validate="false" scope="session">
+            <forward name="edit" path="/mediation/configuration.jsp" redirect="false" />
+            <forward name="deleted" path="/mediation/configuration.do?action=setup" redirect="false" />
+            <forward name="added" path="/mediation/configuration.do?action=setup" redirect="false" />
+        </action>
+
+        <action path="/system/blacklistUpload" type="com.sapienter.jbilling.client.system.BlacklistUploadAction" name="blacklistUpload" scope="request" input="/system/blacklist.jsp" validate="true">
+            <forward name="done" path="/system/blacklist.jsp" redirect="false"/>
+        </action>
+
+        <action path="/user/eventLog" type="com.sapienter.jbilling.client.user.EventLogAction" name="eventLog" scope="request" validate="false">
+            <forward name="displayLog" path="/user/listEventLog.jsp" redirect="false" />
+        </action>
+
+    </action-mappings>
+
+    <controller maxFileSize="10M" />
+
+    <message-resources parameter="ApplicationResources.properties" />
+
+  <!-- 
+     Add multiple validator resource files by setting the pathnames property 
+     with a comma delimitted list of resource files to load. 
+  -->
+    <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+        <set-property property="pathnames" value="/WEB-INF/validator-rules.xml,                                               /WEB-INF/validation.xml" />
+    </plug-in>
+  
+    <plug-in className="org.apache.struts.tiles.TilesPlugin">
+        <set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml" />
+        <set-property property="moduleAware" value="true" />
+    </plug-in>
+
+</struts-config>

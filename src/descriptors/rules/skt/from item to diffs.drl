@@ -1,0 +1,7 @@
+salience -10 # let all the item management rules fire first
+when
+    $result : MediationResult(step == MediationResult.STEP_6_ITEM_MANAGEMENT, oldLines != null)
+then
+    modify( $result ) {
+        setStep(MediationResult.STEP_7_DIFF);
+    }

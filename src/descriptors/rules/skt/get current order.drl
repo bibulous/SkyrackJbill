@@ -1,0 +1,8 @@
+when
+    $result : MediationResult(step == MediationResult.STEP_3_CURRENT_ORDER, currentOrder == null)
+then
+    modify( $result ) {
+        setCurrentOrder( OrderBL.getOrCreateCurrentOrder($result.getUserId(),
+                $result.getEventDate(), $result.getCurrencyId(), $result.getPersist()) );
+    }
+    LOG.debug("The current order was fetched" + " record " + $result.getRecordKey());

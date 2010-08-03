@@ -1,0 +1,2282 @@
+
+<!--
+Automatically created by Apache Jakarta Tomcat JspC.
+Place this fragment in the web.xml before all icon, display-name,
+description, distributable, and context-param elements.
+-->
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.initial_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.initial_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.achEdit_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.achEdit_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.achEditBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.achEditBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.changePassword_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.changePassword_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.changePasswordBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.changePasswordBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.confirmDelete_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.confirmDelete_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.confirmDeleteBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.confirmDeleteBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.create_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.create_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.createBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.createBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.creditCardEdit_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.creditCardEdit_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.creditCardEditBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.creditCardEditBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.displaySelected_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.displaySelected_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.edit_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.edit_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.editBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.editBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.editBodyTop_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.editBodyTop_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.editContact_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.editContact_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.editContactBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.editContactBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.forgetPassword_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.forgetPassword_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.forgetPasswordBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.forgetPasswordBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.initialBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.initialBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.initialLeftMenu_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.initialLeftMenu_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.leftBar_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.leftBar_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.list_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.list_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.listBodyTop_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.listBodyTop_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.listEventLog_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.listEventLog_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.listEventLogBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.listEventLogBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.listPartner_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.listPartner_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.listPartnerTop_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.listPartnerTop_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.listSubAccounts_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.listSubAccounts_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.listSubAccountsTop_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.listSubAccountsTop_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.login_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.login_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.loginBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.loginBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.maintain_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.maintain_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.maintainBodyTop_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.maintainBodyTop_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.notesEdit_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.notesEdit_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.notesEditBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.notesEditBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.partnerDefault_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.partnerDefault_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.partnerDefaultBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.partnerDefaultBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.partnerEdit_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.partnerEdit_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.partnerEditBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.partnerEditBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.partnerRangesEdit_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.partnerRangesEdit_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.partnerRangesEditBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.partnerRangesEditBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.partnerStatement_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.partnerStatement_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.partnerStatementHeader_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.partnerStatementHeader_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.partnerView_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.partnerView_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.partnerViewBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.partnerViewBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.partnerViewHeader_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.partnerViewHeader_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.partnerViewLeftBar_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.partnerViewLeftBar_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.payoutEdit_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.payoutEdit_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.payoutEditBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.payoutEditBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.payoutList_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.payoutList_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.payoutListTop_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.payoutListTop_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.payoutView_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.payoutView_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.payoutViewBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.payoutViewBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.view_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.view_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.viewBlacklistBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.viewBlacklistBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.viewBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.viewBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.viewContactBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.viewContactBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.viewCreditCardBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.viewCreditCardBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.viewHeader_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.viewHeader_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.viewNotesBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.viewNotesBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.viewReportsBar_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.user.viewReportsBar_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.task.editParameter_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.task.editParameter_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.task.editParameterBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.task.editParameterBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.system.ageing_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.system.ageing_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.system.ageingEdit_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.system.ageingEdit_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.system.blacklist_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.system.blacklist_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.system.blacklistUpload_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.system.blacklistUpload_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.system.branding_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.system.branding_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.system.brandingEdit_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.system.brandingEdit_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.system.currency_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.system.currency_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.system.currencyEdit_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.system.currencyEdit_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.system.task_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.system.task_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.system.taskEdit_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.system.taskEdit_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.signup.newEntity_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.signup.newEntity_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.report.delete_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.report.delete_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.report.deleteBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.report.deleteBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.report.download_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.report.download_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.report.form_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.report.form_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.report.formBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.report.formBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.report.list_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.report.list_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.report.listBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.report.listBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.report.result_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.report.result_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.report.resultBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.report.resultBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.report.userList_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.report.userList_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.process.list_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.process.list_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.process.listTop_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.process.listTop_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.process.view_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.process.view_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.process.viewBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.process.viewBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.process.viewConfiguration_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.process.viewConfiguration_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.process.viewConfigurationBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.process.viewConfigurationBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.process.viewReview_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.process.viewReview_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.process.viewReviewTop_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.process.viewReviewTop_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.apply_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.payment.apply_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.applyBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.payment.applyBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.applyTop_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.payment.applyTop_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.create_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.payment.create_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.createBodyTop_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.payment.createBodyTop_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.createFromOrder_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.payment.createFromOrder_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.createFromOrderTop_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.payment.createFromOrderTop_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.createRefundTop_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.payment.createRefundTop_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.customerSelect_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.payment.customerSelect_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.displaySelected_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.payment.displaySelected_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.editBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.payment.editBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.enterCustomerSelectionTop_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.payment.enterCustomerSelectionTop_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.enterLeftMenu_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.payment.enterLeftMenu_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.list_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.payment.list_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.listMap_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.payment.listMap_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.listRefund_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.payment.listRefund_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.listRefundTop_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.payment.listRefundTop_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.listTop_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.payment.listTop_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.payout_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.payment.payout_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.payoutHeader_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.payment.payoutHeader_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.review_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.payment.review_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.reviewPayout_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.payment.reviewPayout_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.reviewPayoutHeader_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.payment.reviewPayoutHeader_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.reviewRefundHeader_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.payment.reviewRefundHeader_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.update_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.payment.update_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.updateHeader_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.payment.updateHeader_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.view_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.payment.view_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.viewAuthorization_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.payment.viewAuthorization_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.viewBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.payment.viewBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.viewHeader_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.payment.viewHeader_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.viewLeftBar_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.payment.viewLeftBar_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.other.blank_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.other.blank_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.other.error_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.other.error_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.other.genericList_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.other.genericList_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.other.list_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.other.list_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.applyConfirm_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.order.applyConfirm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.applyConfirmTop_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.order.applyConfirmTop_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.applyInvoice_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.order.applyInvoice_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.applyInvoiceList_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.order.applyInvoiceList_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.confirmStatus_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.order.confirmStatus_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.confirmStatusBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.order.confirmStatusBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.createCustomer_005fselBodyTop_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.order.createCustomer_005fselBodyTop_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.edit_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.order.edit_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.editBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.order.editBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.editBodyHeader_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.order.editBodyHeader_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.itemListBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.order.itemListBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.itemListHeader_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.order.itemListHeader_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.list_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.order.list_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.listEvents_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.order.listEvents_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.listEventsBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.order.listEventsBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.listProcess_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.order.listProcess_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.listProcessTop_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.order.listProcessTop_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.listSubAccounts_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.order.listSubAccounts_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.listSubAccountsTop_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.order.listSubAccountsTop_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.listTop_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.order.listTop_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.newOrder_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.order.newOrder_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.newOrderItems_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.order.newOrderItems_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.newOrderLeftMenu_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.order.newOrderLeftMenu_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.orderReview_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.order.orderReview_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.orderReviewBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.order.orderReviewBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.orderReviewHeader_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.order.orderReviewHeader_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.orderReviewLeftMenuBar_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.order.orderReviewLeftMenuBar_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.orderRightBar_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.order.orderRightBar_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.periods_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.order.periods_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.periodsEdit_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.order.periodsEdit_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.show_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.order.show_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.showBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.order.showBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.showLeftMenuBar_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.order.showLeftMenuBar_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.view_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.order.view_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.notification.editText_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.notification.editText_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.notification.editTextBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.notification.editTextBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.notification.emails_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.notification.emails_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.notification.emailsBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.notification.emailsBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.notification.listTypes_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.notification.listTypes_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.notification.listTypesTop_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.notification.listTypesTop_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.notification.preference_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.notification.preference_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.notification.preferenceBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.notification.preferenceBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.mediation.configuration_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.mediation.configuration_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.mediation.configurationEdit_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.mediation.configurationEdit_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.mediation.process_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.mediation.process_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.mediation.processList_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.mediation.processList_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.layouts.bodyRightBar_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.layouts.bodyRightBar_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.layouts.bodySplitFive_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.layouts.bodySplitFive_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.layouts.bodySplitFour_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.layouts.bodySplitFour_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.layouts.bodySplitSeven_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.layouts.bodySplitSeven_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.layouts.bodySplitSix_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.layouts.bodySplitSix_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.layouts.bodySplitThree_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.layouts.bodySplitThree_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.layouts.bodySplitTwo_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.layouts.bodySplitTwo_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.layouts.centerLayout_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.layouts.centerLayout_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.layouts.classicLayout_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.layouts.classicLayout_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.layouts.mainLayout_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.layouts.mainLayout_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.layouts.menu_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.layouts.menu_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.create_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.item.create_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.createType_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.item.createType_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.editBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.item.editBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.editTypeBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.item.editTypeBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.list_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.item.list_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.listTop_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.item.listTop_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.listType_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.item.listType_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.listTypeTop_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.item.listTypeTop_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.maintain_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.item.maintain_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.maintainTop_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.item.maintainTop_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.maintainType_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.item.maintainType_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.maintainTypeTop_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.item.maintainTypeTop_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.promotionCreate_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.item.promotionCreate_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.promotionCreate2_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.item.promotionCreate2_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.promotionCreateTop_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.item.promotionCreateTop_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.promotionEditBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.item.promotionEditBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.promotionList_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.item.promotionList_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.promotionListTop_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.item.promotionListTop_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.promotionMaintain_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.item.promotionMaintain_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.promotionMaintainTop_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.item.promotionMaintainTop_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.batchDownload_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.invoice.batchDownload_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.displaySelected_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.invoice.displaySelected_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.download_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.invoice.download_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.downloadFile_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.invoice.downloadFile_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.downloadForm_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.invoice.downloadForm_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.fileDownload_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.invoice.fileDownload_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.list_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.invoice.list_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.listProcess_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.invoice.listProcess_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.listProcessTop_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.invoice.listProcessTop_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.listTop_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.invoice.listTop_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.logo_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.invoice.logo_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.logoImage_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.invoice.logoImage_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.logoUpload_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.invoice.logoUpload_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.numbering_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.invoice.numbering_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.numberingEdit_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.invoice.numberingEdit_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.view_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.invoice.view_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.viewBody_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.invoice.viewBody_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.viewLeftBar_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.invoice.viewLeftBar_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.common.dynamicLeftMenu_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.common.dynamicLeftMenu_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.common.dynamicMainMenu_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.common.dynamicMainMenu_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.common.dynamicSecondMenu_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.common.dynamicSecondMenu_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>com.sapienter.jbilling.client.jspc.common.footer_jsp</servlet-name>
+        <servlet-class>com.sapienter.jbilling.client.jspc.common.footer_jsp</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.initial_jsp</servlet-name>
+        <url-pattern>/initial.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.achEdit_jsp</servlet-name>
+        <url-pattern>/user/achEdit.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.achEditBody_jsp</servlet-name>
+        <url-pattern>/user/achEditBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.changePassword_jsp</servlet-name>
+        <url-pattern>/user/changePassword.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.changePasswordBody_jsp</servlet-name>
+        <url-pattern>/user/changePasswordBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.confirmDelete_jsp</servlet-name>
+        <url-pattern>/user/confirmDelete.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.confirmDeleteBody_jsp</servlet-name>
+        <url-pattern>/user/confirmDeleteBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.create_jsp</servlet-name>
+        <url-pattern>/user/create.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.createBody_jsp</servlet-name>
+        <url-pattern>/user/createBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.creditCardEdit_jsp</servlet-name>
+        <url-pattern>/user/creditCardEdit.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.creditCardEditBody_jsp</servlet-name>
+        <url-pattern>/user/creditCardEditBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.displaySelected_jsp</servlet-name>
+        <url-pattern>/user/displaySelected.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.edit_jsp</servlet-name>
+        <url-pattern>/user/edit.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.editBody_jsp</servlet-name>
+        <url-pattern>/user/editBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.editBodyTop_jsp</servlet-name>
+        <url-pattern>/user/editBodyTop.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.editContact_jsp</servlet-name>
+        <url-pattern>/user/editContact.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.editContactBody_jsp</servlet-name>
+        <url-pattern>/user/editContactBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.forgetPassword_jsp</servlet-name>
+        <url-pattern>/user/forgetPassword.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.forgetPasswordBody_jsp</servlet-name>
+        <url-pattern>/user/forgetPasswordBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.initialBody_jsp</servlet-name>
+        <url-pattern>/user/initialBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.initialLeftMenu_jsp</servlet-name>
+        <url-pattern>/user/initialLeftMenu.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.leftBar_jsp</servlet-name>
+        <url-pattern>/user/leftBar.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.list_jsp</servlet-name>
+        <url-pattern>/user/list.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.listBodyTop_jsp</servlet-name>
+        <url-pattern>/user/listBodyTop.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.listEventLog_jsp</servlet-name>
+        <url-pattern>/user/listEventLog.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.listEventLogBody_jsp</servlet-name>
+        <url-pattern>/user/listEventLogBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.listPartner_jsp</servlet-name>
+        <url-pattern>/user/listPartner.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.listPartnerTop_jsp</servlet-name>
+        <url-pattern>/user/listPartnerTop.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.listSubAccounts_jsp</servlet-name>
+        <url-pattern>/user/listSubAccounts.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.listSubAccountsTop_jsp</servlet-name>
+        <url-pattern>/user/listSubAccountsTop.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.login_jsp</servlet-name>
+        <url-pattern>/user/login.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.loginBody_jsp</servlet-name>
+        <url-pattern>/user/loginBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.maintain_jsp</servlet-name>
+        <url-pattern>/user/maintain.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.maintainBodyTop_jsp</servlet-name>
+        <url-pattern>/user/maintainBodyTop.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.notesEdit_jsp</servlet-name>
+        <url-pattern>/user/notesEdit.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.notesEditBody_jsp</servlet-name>
+        <url-pattern>/user/notesEditBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.partnerDefault_jsp</servlet-name>
+        <url-pattern>/user/partnerDefault.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.partnerDefaultBody_jsp</servlet-name>
+        <url-pattern>/user/partnerDefaultBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.partnerEdit_jsp</servlet-name>
+        <url-pattern>/user/partnerEdit.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.partnerEditBody_jsp</servlet-name>
+        <url-pattern>/user/partnerEditBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.partnerRangesEdit_jsp</servlet-name>
+        <url-pattern>/user/partnerRangesEdit.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.partnerRangesEditBody_jsp</servlet-name>
+        <url-pattern>/user/partnerRangesEditBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.partnerStatement_jsp</servlet-name>
+        <url-pattern>/user/partnerStatement.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.partnerStatementHeader_jsp</servlet-name>
+        <url-pattern>/user/partnerStatementHeader.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.partnerView_jsp</servlet-name>
+        <url-pattern>/user/partnerView.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.partnerViewBody_jsp</servlet-name>
+        <url-pattern>/user/partnerViewBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.partnerViewHeader_jsp</servlet-name>
+        <url-pattern>/user/partnerViewHeader.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.partnerViewLeftBar_jsp</servlet-name>
+        <url-pattern>/user/partnerViewLeftBar.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.payoutEdit_jsp</servlet-name>
+        <url-pattern>/user/payoutEdit.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.payoutEditBody_jsp</servlet-name>
+        <url-pattern>/user/payoutEditBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.payoutList_jsp</servlet-name>
+        <url-pattern>/user/payoutList.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.payoutListTop_jsp</servlet-name>
+        <url-pattern>/user/payoutListTop.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.payoutView_jsp</servlet-name>
+        <url-pattern>/user/payoutView.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.payoutViewBody_jsp</servlet-name>
+        <url-pattern>/user/payoutViewBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.view_jsp</servlet-name>
+        <url-pattern>/user/view.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.viewBlacklistBody_jsp</servlet-name>
+        <url-pattern>/user/viewBlacklistBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.viewBody_jsp</servlet-name>
+        <url-pattern>/user/viewBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.viewContactBody_jsp</servlet-name>
+        <url-pattern>/user/viewContactBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.viewCreditCardBody_jsp</servlet-name>
+        <url-pattern>/user/viewCreditCardBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.viewHeader_jsp</servlet-name>
+        <url-pattern>/user/viewHeader.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.viewNotesBody_jsp</servlet-name>
+        <url-pattern>/user/viewNotesBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.user.viewReportsBar_jsp</servlet-name>
+        <url-pattern>/user/viewReportsBar.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.task.editParameter_jsp</servlet-name>
+        <url-pattern>/task/editParameter.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.task.editParameterBody_jsp</servlet-name>
+        <url-pattern>/task/editParameterBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.system.ageing_jsp</servlet-name>
+        <url-pattern>/system/ageing.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.system.ageingEdit_jsp</servlet-name>
+        <url-pattern>/system/ageingEdit.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.system.blacklist_jsp</servlet-name>
+        <url-pattern>/system/blacklist.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.system.blacklistUpload_jsp</servlet-name>
+        <url-pattern>/system/blacklistUpload.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.system.branding_jsp</servlet-name>
+        <url-pattern>/system/branding.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.system.brandingEdit_jsp</servlet-name>
+        <url-pattern>/system/brandingEdit.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.system.currency_jsp</servlet-name>
+        <url-pattern>/system/currency.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.system.currencyEdit_jsp</servlet-name>
+        <url-pattern>/system/currencyEdit.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.system.task_jsp</servlet-name>
+        <url-pattern>/system/task.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.system.taskEdit_jsp</servlet-name>
+        <url-pattern>/system/taskEdit.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.signup.newEntity_jsp</servlet-name>
+        <url-pattern>/signup/newEntity.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.report.delete_jsp</servlet-name>
+        <url-pattern>/report/delete.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.report.deleteBody_jsp</servlet-name>
+        <url-pattern>/report/deleteBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.report.download_jsp</servlet-name>
+        <url-pattern>/report/download.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.report.form_jsp</servlet-name>
+        <url-pattern>/report/form.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.report.formBody_jsp</servlet-name>
+        <url-pattern>/report/formBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.report.list_jsp</servlet-name>
+        <url-pattern>/report/list.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.report.listBody_jsp</servlet-name>
+        <url-pattern>/report/listBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.report.result_jsp</servlet-name>
+        <url-pattern>/report/result.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.report.resultBody_jsp</servlet-name>
+        <url-pattern>/report/resultBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.report.userList_jsp</servlet-name>
+        <url-pattern>/report/userList.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.process.list_jsp</servlet-name>
+        <url-pattern>/process/list.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.process.listTop_jsp</servlet-name>
+        <url-pattern>/process/listTop.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.process.view_jsp</servlet-name>
+        <url-pattern>/process/view.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.process.viewBody_jsp</servlet-name>
+        <url-pattern>/process/viewBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.process.viewConfiguration_jsp</servlet-name>
+        <url-pattern>/process/viewConfiguration.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.process.viewConfigurationBody_jsp</servlet-name>
+        <url-pattern>/process/viewConfigurationBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.process.viewReview_jsp</servlet-name>
+        <url-pattern>/process/viewReview.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.process.viewReviewTop_jsp</servlet-name>
+        <url-pattern>/process/viewReviewTop.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.apply_jsp</servlet-name>
+        <url-pattern>/payment/apply.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.applyBody_jsp</servlet-name>
+        <url-pattern>/payment/applyBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.applyTop_jsp</servlet-name>
+        <url-pattern>/payment/applyTop.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.create_jsp</servlet-name>
+        <url-pattern>/payment/create.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.createBodyTop_jsp</servlet-name>
+        <url-pattern>/payment/createBodyTop.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.createFromOrder_jsp</servlet-name>
+        <url-pattern>/payment/createFromOrder.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.createFromOrderTop_jsp</servlet-name>
+        <url-pattern>/payment/createFromOrderTop.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.createRefundTop_jsp</servlet-name>
+        <url-pattern>/payment/createRefundTop.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.customerSelect_jsp</servlet-name>
+        <url-pattern>/payment/customerSelect.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.displaySelected_jsp</servlet-name>
+        <url-pattern>/payment/displaySelected.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.editBody_jsp</servlet-name>
+        <url-pattern>/payment/editBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.enterCustomerSelectionTop_jsp</servlet-name>
+        <url-pattern>/payment/enterCustomerSelectionTop.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.enterLeftMenu_jsp</servlet-name>
+        <url-pattern>/payment/enterLeftMenu.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.list_jsp</servlet-name>
+        <url-pattern>/payment/list.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.listMap_jsp</servlet-name>
+        <url-pattern>/payment/listMap.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.listRefund_jsp</servlet-name>
+        <url-pattern>/payment/listRefund.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.listRefundTop_jsp</servlet-name>
+        <url-pattern>/payment/listRefundTop.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.listTop_jsp</servlet-name>
+        <url-pattern>/payment/listTop.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.payout_jsp</servlet-name>
+        <url-pattern>/payment/payout.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.payoutHeader_jsp</servlet-name>
+        <url-pattern>/payment/payoutHeader.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.review_jsp</servlet-name>
+        <url-pattern>/payment/review.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.reviewPayout_jsp</servlet-name>
+        <url-pattern>/payment/reviewPayout.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.reviewPayoutHeader_jsp</servlet-name>
+        <url-pattern>/payment/reviewPayoutHeader.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.reviewRefundHeader_jsp</servlet-name>
+        <url-pattern>/payment/reviewRefundHeader.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.update_jsp</servlet-name>
+        <url-pattern>/payment/update.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.updateHeader_jsp</servlet-name>
+        <url-pattern>/payment/updateHeader.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.view_jsp</servlet-name>
+        <url-pattern>/payment/view.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.viewAuthorization_jsp</servlet-name>
+        <url-pattern>/payment/viewAuthorization.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.viewBody_jsp</servlet-name>
+        <url-pattern>/payment/viewBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.viewHeader_jsp</servlet-name>
+        <url-pattern>/payment/viewHeader.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.payment.viewLeftBar_jsp</servlet-name>
+        <url-pattern>/payment/viewLeftBar.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.other.blank_jsp</servlet-name>
+        <url-pattern>/other/blank.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.other.error_jsp</servlet-name>
+        <url-pattern>/other/error.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.other.genericList_jsp</servlet-name>
+        <url-pattern>/other/genericList.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.other.list_jsp</servlet-name>
+        <url-pattern>/other/list.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.applyConfirm_jsp</servlet-name>
+        <url-pattern>/order/applyConfirm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.applyConfirmTop_jsp</servlet-name>
+        <url-pattern>/order/applyConfirmTop.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.applyInvoice_jsp</servlet-name>
+        <url-pattern>/order/applyInvoice.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.applyInvoiceList_jsp</servlet-name>
+        <url-pattern>/order/applyInvoiceList.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.confirmStatus_jsp</servlet-name>
+        <url-pattern>/order/confirmStatus.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.confirmStatusBody_jsp</servlet-name>
+        <url-pattern>/order/confirmStatusBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.createCustomer_005fselBodyTop_jsp</servlet-name>
+        <url-pattern>/order/createCustomer_selBodyTop.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.edit_jsp</servlet-name>
+        <url-pattern>/order/edit.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.editBody_jsp</servlet-name>
+        <url-pattern>/order/editBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.editBodyHeader_jsp</servlet-name>
+        <url-pattern>/order/editBodyHeader.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.itemListBody_jsp</servlet-name>
+        <url-pattern>/order/itemListBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.itemListHeader_jsp</servlet-name>
+        <url-pattern>/order/itemListHeader.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.list_jsp</servlet-name>
+        <url-pattern>/order/list.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.listEvents_jsp</servlet-name>
+        <url-pattern>/order/listEvents.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.listEventsBody_jsp</servlet-name>
+        <url-pattern>/order/listEventsBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.listProcess_jsp</servlet-name>
+        <url-pattern>/order/listProcess.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.listProcessTop_jsp</servlet-name>
+        <url-pattern>/order/listProcessTop.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.listSubAccounts_jsp</servlet-name>
+        <url-pattern>/order/listSubAccounts.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.listSubAccountsTop_jsp</servlet-name>
+        <url-pattern>/order/listSubAccountsTop.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.listTop_jsp</servlet-name>
+        <url-pattern>/order/listTop.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.newOrder_jsp</servlet-name>
+        <url-pattern>/order/newOrder.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.newOrderItems_jsp</servlet-name>
+        <url-pattern>/order/newOrderItems.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.newOrderLeftMenu_jsp</servlet-name>
+        <url-pattern>/order/newOrderLeftMenu.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.orderReview_jsp</servlet-name>
+        <url-pattern>/order/orderReview.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.orderReviewBody_jsp</servlet-name>
+        <url-pattern>/order/orderReviewBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.orderReviewHeader_jsp</servlet-name>
+        <url-pattern>/order/orderReviewHeader.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.orderReviewLeftMenuBar_jsp</servlet-name>
+        <url-pattern>/order/orderReviewLeftMenuBar.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.orderRightBar_jsp</servlet-name>
+        <url-pattern>/order/orderRightBar.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.periods_jsp</servlet-name>
+        <url-pattern>/order/periods.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.periodsEdit_jsp</servlet-name>
+        <url-pattern>/order/periodsEdit.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.show_jsp</servlet-name>
+        <url-pattern>/order/show.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.showBody_jsp</servlet-name>
+        <url-pattern>/order/showBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.showLeftMenuBar_jsp</servlet-name>
+        <url-pattern>/order/showLeftMenuBar.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.order.view_jsp</servlet-name>
+        <url-pattern>/order/view.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.notification.editText_jsp</servlet-name>
+        <url-pattern>/notification/editText.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.notification.editTextBody_jsp</servlet-name>
+        <url-pattern>/notification/editTextBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.notification.emails_jsp</servlet-name>
+        <url-pattern>/notification/emails.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.notification.emailsBody_jsp</servlet-name>
+        <url-pattern>/notification/emailsBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.notification.listTypes_jsp</servlet-name>
+        <url-pattern>/notification/listTypes.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.notification.listTypesTop_jsp</servlet-name>
+        <url-pattern>/notification/listTypesTop.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.notification.preference_jsp</servlet-name>
+        <url-pattern>/notification/preference.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.notification.preferenceBody_jsp</servlet-name>
+        <url-pattern>/notification/preferenceBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.mediation.configuration_jsp</servlet-name>
+        <url-pattern>/mediation/configuration.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.mediation.configurationEdit_jsp</servlet-name>
+        <url-pattern>/mediation/configurationEdit.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.mediation.process_jsp</servlet-name>
+        <url-pattern>/mediation/process.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.mediation.processList_jsp</servlet-name>
+        <url-pattern>/mediation/processList.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.layouts.bodyRightBar_jsp</servlet-name>
+        <url-pattern>/layouts/bodyRightBar.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.layouts.bodySplitFive_jsp</servlet-name>
+        <url-pattern>/layouts/bodySplitFive.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.layouts.bodySplitFour_jsp</servlet-name>
+        <url-pattern>/layouts/bodySplitFour.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.layouts.bodySplitSeven_jsp</servlet-name>
+        <url-pattern>/layouts/bodySplitSeven.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.layouts.bodySplitSix_jsp</servlet-name>
+        <url-pattern>/layouts/bodySplitSix.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.layouts.bodySplitThree_jsp</servlet-name>
+        <url-pattern>/layouts/bodySplitThree.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.layouts.bodySplitTwo_jsp</servlet-name>
+        <url-pattern>/layouts/bodySplitTwo.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.layouts.centerLayout_jsp</servlet-name>
+        <url-pattern>/layouts/centerLayout.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.layouts.classicLayout_jsp</servlet-name>
+        <url-pattern>/layouts/classicLayout.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.layouts.mainLayout_jsp</servlet-name>
+        <url-pattern>/layouts/mainLayout.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.layouts.menu_jsp</servlet-name>
+        <url-pattern>/layouts/menu.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.create_jsp</servlet-name>
+        <url-pattern>/item/create.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.createType_jsp</servlet-name>
+        <url-pattern>/item/createType.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.editBody_jsp</servlet-name>
+        <url-pattern>/item/editBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.editTypeBody_jsp</servlet-name>
+        <url-pattern>/item/editTypeBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.list_jsp</servlet-name>
+        <url-pattern>/item/list.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.listTop_jsp</servlet-name>
+        <url-pattern>/item/listTop.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.listType_jsp</servlet-name>
+        <url-pattern>/item/listType.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.listTypeTop_jsp</servlet-name>
+        <url-pattern>/item/listTypeTop.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.maintain_jsp</servlet-name>
+        <url-pattern>/item/maintain.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.maintainTop_jsp</servlet-name>
+        <url-pattern>/item/maintainTop.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.maintainType_jsp</servlet-name>
+        <url-pattern>/item/maintainType.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.maintainTypeTop_jsp</servlet-name>
+        <url-pattern>/item/maintainTypeTop.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.promotionCreate_jsp</servlet-name>
+        <url-pattern>/item/promotionCreate.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.promotionCreate2_jsp</servlet-name>
+        <url-pattern>/item/promotionCreate2.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.promotionCreateTop_jsp</servlet-name>
+        <url-pattern>/item/promotionCreateTop.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.promotionEditBody_jsp</servlet-name>
+        <url-pattern>/item/promotionEditBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.promotionList_jsp</servlet-name>
+        <url-pattern>/item/promotionList.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.promotionListTop_jsp</servlet-name>
+        <url-pattern>/item/promotionListTop.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.promotionMaintain_jsp</servlet-name>
+        <url-pattern>/item/promotionMaintain.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.item.promotionMaintainTop_jsp</servlet-name>
+        <url-pattern>/item/promotionMaintainTop.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.batchDownload_jsp</servlet-name>
+        <url-pattern>/invoice/batchDownload.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.displaySelected_jsp</servlet-name>
+        <url-pattern>/invoice/displaySelected.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.download_jsp</servlet-name>
+        <url-pattern>/invoice/download.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.downloadFile_jsp</servlet-name>
+        <url-pattern>/invoice/downloadFile.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.downloadForm_jsp</servlet-name>
+        <url-pattern>/invoice/downloadForm.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.fileDownload_jsp</servlet-name>
+        <url-pattern>/invoice/fileDownload.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.list_jsp</servlet-name>
+        <url-pattern>/invoice/list.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.listProcess_jsp</servlet-name>
+        <url-pattern>/invoice/listProcess.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.listProcessTop_jsp</servlet-name>
+        <url-pattern>/invoice/listProcessTop.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.listTop_jsp</servlet-name>
+        <url-pattern>/invoice/listTop.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.logo_jsp</servlet-name>
+        <url-pattern>/invoice/logo.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.logoImage_jsp</servlet-name>
+        <url-pattern>/invoice/logoImage.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.logoUpload_jsp</servlet-name>
+        <url-pattern>/invoice/logoUpload.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.numbering_jsp</servlet-name>
+        <url-pattern>/invoice/numbering.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.numberingEdit_jsp</servlet-name>
+        <url-pattern>/invoice/numberingEdit.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.view_jsp</servlet-name>
+        <url-pattern>/invoice/view.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.viewBody_jsp</servlet-name>
+        <url-pattern>/invoice/viewBody.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.invoice.viewLeftBar_jsp</servlet-name>
+        <url-pattern>/invoice/viewLeftBar.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.common.dynamicLeftMenu_jsp</servlet-name>
+        <url-pattern>/common/dynamicLeftMenu.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.common.dynamicMainMenu_jsp</servlet-name>
+        <url-pattern>/common/dynamicMainMenu.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.common.dynamicSecondMenu_jsp</servlet-name>
+        <url-pattern>/common/dynamicSecondMenu.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>com.sapienter.jbilling.client.jspc.common.footer_jsp</servlet-name>
+        <url-pattern>/common/footer.jsp</url-pattern>
+    </servlet-mapping>
+
+<!--
+All session-config, mime-mapping, welcome-file-list, error-page, taglib,
+resource-ref, security-constraint, login-config, security-role,
+env-entry, and ejb-ref elements should follow this fragment.
+-->

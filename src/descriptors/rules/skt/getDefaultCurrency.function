@@ -1,0 +1,3 @@
+function int getDefaultCurrency(Integer userId) {
+    return new UserBL(userId).getCurrencyId();
+}

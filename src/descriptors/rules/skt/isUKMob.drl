@@ -1,0 +1,20 @@
+salience 80
+when	
+    $result : MediationResult(step == MediationResult.STEP_4_RESOLVE_ITEM)
+    $field : PricingField( name == "duration", resultId == $result.id)
+	
+    // determine if numberDialled is international 
+    PricingField( numberDialled : strValue, name == "numberDialled",
+	resultId == $result.id)
+
+    //Call function getUKMob to see if number is UK landline
+    eval(getUKMob(numberDialled) == true)
+	
+then
+	$result.getLines().add(newLine(109, new BigDecimal($field.getStrValue())));
+	$result.setStep(MediationResult.STEP_5_PRICING);
+	update( $result );
+	PricingResult request = priceRequest(109, $result); // call pricing function
+	insert( request );
+	LOG.debug("isUKMob rule Price request " + request + " record " + $result.getRecordKey());
+

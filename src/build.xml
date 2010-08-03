@@ -1,0 +1,916 @@
+<project name="bop" default="deploy-local" basedir=".">
+    
+    <property file="build.properties"/>
+    <property file="${jbilling.conf.dir}/jbilling.properties"/>
+    
+    <path id="compile.classpath">
+        <fileset dir="${source.lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+        <fileset dir="${basedir}/../lib">
+            <include name="**/*.jar"/>
+        </fileset>
+        <pathelement location="${digester.jar}"/>
+    </path>
+    
+    <path id="test.classpath">
+        <pathelement location="${junit.dir}/junit.jar"/>
+        <pathelement location="${build.deploy.dir}/jbilling_api.jar"/>
+        <pathelement location="${build.test.dir}"/>
+        <pathelement location="${source.lib.dir}/commons-logging.jar"/>
+        <pathelement location="${source.lib.dir}/log4j.jar"/>
+
+        <!-- classes for webservices -->
+        <pathelement location="${source.lib.dir}/spring.jar"/>
+        <pathelement location="${source.lib.dir}/hibernate3.jar"/>
+        <pathelement location="${source.lib.dir}/cxf.jar"/>
+        <pathelement location="${source.lib.dir}/XmlSchema.jar"/>
+        <pathelement location="${source.lib.dir}/wsdl4j.jar"/>
+        <pathelement location="${source.lib.dir}/FastInfoset.jar"/>
+        <pathelement location="${source.lib.dir}/neethi.jar"/>
+        <pathelement location="${source.lib.dir}/hessian.jar"/>
+        <pathelement location="${source.lib.dir}/joda-time.jar"/>
+    </path>
+    
+    <path id="drools.classpath">
+        <fileset dir="${libs.dir}/drools">
+            <include name="**/*.jar" />
+        </fileset>
+    </path>
+    
+    <path id="drools.run.classpath">
+        <fileset dir="${build.deploy.dir}">
+            <include name="*.jar" />
+        </fileset>
+        <fileset dir="${source.lib.dir}">
+            <include name="log4j*.jar"/>
+        </fileset>
+        <pathelement location="${source.lib.dir}/spring.jar"/>
+        <pathelement location="${source.lib.dir}/hibernate3.jar"/>
+    </path>
+    
+    <path id="run.classpath">
+        <path refid="compile.classpath"/>
+        <pathelement location="${build.deploy.dir}/jbilling.jar"/>
+        <pathelement location="${junit.dir}/junit.jar"/>
+        <pathelement location="${build.test.dir}"/>
+    </path>
+    
+    <path id="xdoclet.classpath">
+    <path refid="compile.classpath"/>
+        <fileset dir="${xdoclet.home.dir}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+    
+    <path id="hibernate.classpath">
+        <fileset dir="${hibernate.tools.dir}">
+            <include name="**/*.jar"/>
+        </fileset>
+        <pathelement location="${source.lib.dir}/postgresql*.jar"/>
+    </path>
+
+    <path id="spring.classpath">
+        <pathelement location="${source.spring.descriptor.dir}"/>
+    </path>
+
+    <path id="tomcat.classpath">
+        <fileset dir="${server.dir}/lib">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
+
+  <!-- Configure the Tomcat tasks for the Manager application -->
+  <taskdef name="tc-deploy"    classname="org.apache.catalina.ant.DeployTask">
+    <classpath refid="tomcat.classpath"/>
+  </taskdef>
+  <taskdef name="tc-list"      classname="org.apache.catalina.ant.ListTask">
+    <classpath refid="tomcat.classpath"/>
+  </taskdef>
+  <taskdef name="tc-reload"    classname="org.apache.catalina.ant.ReloadTask">
+    <classpath refid="tomcat.classpath"/>
+  </taskdef>
+  <taskdef name="tc-resources" classname="org.apache.catalina.ant.ResourcesTask">
+    <classpath refid="tomcat.classpath"/>
+  </taskdef>
+  <taskdef name="tc-roles"     classname="org.apache.catalina.ant.RolesTask">
+    <classpath refid="tomcat.classpath"/>
+  </taskdef>
+  <taskdef name="tc-start"     classname="org.apache.catalina.ant.StartTask">
+    <classpath refid="tomcat.classpath"/>
+  </taskdef>
+  <taskdef name="tc-stop"      classname="org.apache.catalina.ant.StopTask">
+    <classpath refid="tomcat.classpath"/>
+  </taskdef>
+  <taskdef name="tc-undeploy"  classname="org.apache.catalina.ant.UndeployTask">
+    <classpath refid="tomcat.classpath"/>
+  </taskdef>
+
+  <target name="tc-deploy" description="Install web application"
+          depends="compile">
+    <deploy url="${url}" username="${username}" password="${password}"
+            path="${path}" war="file:${build}${path}.war"/>
+  </target>
+
+  <target name="tc-reload" description="Reload web application">
+    <tc-reload  url="${url}" username="${username}" password="${password}"
+            path="${path}"/>
+  </target>
+
+  <target name="tc-undeploy" description="Remove web application">
+    <undeploy url="${url}" username="${username}" password="${password}"
+            path="${path}"/>
+  </target>
+    
+    <target name="init">
+        <mkdir dir="${source.dir}"/>
+        <mkdir dir="${source.classes.dir}"/>
+        <mkdir dir="${source.dir}/test"/>
+        <mkdir dir="${source.view.dir}"/>
+        <mkdir dir="${source.descriptor.dir}"/>
+        <mkdir dir="${source.web.descriptor.dir}"/>
+        <mkdir dir="${source.torque.descriptor.dir}"/>
+        <mkdir dir="${basedir}/build"/>
+        <mkdir dir="${basedir}/tmp"/>
+        <mkdir dir="${build.classes.dir}"/>
+        <mkdir dir="${build.api.dir}"/>
+        <mkdir dir="${build.test.dir}"/>
+        <mkdir dir="${build.view.dir}"/>
+        <mkdir dir="${build.designs.dir}"/>
+        <mkdir dir="${build.deploy.dir}"/>
+        <mkdir dir="${deploy.resources.dir}/designs"/>
+        <mkdir dir="${deploy.resources.dir}/invoices"/>
+                
+        <!-- Copy the messages file -->
+        <copy todir="${deploy.resources.dir}">
+            <fileset dir="${source.resources.descriptor.dir}">
+                <include name="entityNotifications*.properties"/>
+            </fileset>
+        </copy>
+        <!-- Copy the web services validator file -->
+        <copy todir="${build.dir}/META-INF">
+            <fileset dir="${source.resources.descriptor.dir}">
+                <include name="ws-validation.xml"/>
+            </fileset>
+            <fileset dir="${source.web.descriptor.dir}">
+                <include name="validator-rules.xml"/>
+            </fileset>
+        </copy>
+        
+        <!-- Check that one client library is available. If not, get
+		     all the client files required for a build from the 
+			 binary application -->
+        <available file="${libs.client.dir}/WEB-INF/struts-bean.tld" 
+                   property="client.libs.present"/>
+    </target>
+    
+    
+    <!-- =================================================================== -->
+    <!-- Generates the tld descriptors for the custom tags                   -->
+    <!-- =================================================================== -->
+   
+    <target name="xdoclet-webgenerate" depends="init">
+        <taskdef
+            name="webdoclet"
+            classname="xdoclet.modules.web.WebDocletTask"
+            classpathref="xdoclet.classpath"
+        />
+        
+        <webdoclet  destdir="${build.view.dir}/WEB-INF" verbose="true">
+            <fileset dir="${source.classes.dir}">
+                <include name="**/*Tag.java"/>
+            </fileset>
+            <jsptaglib jspversion="1.2" shortname="bettyTags"/>
+        </webdoclet>
+    </target>
+    
+    
+    
+    <!-- =================================================================== -->
+    <!-- Complies the source code                                            -->
+    <!-- =================================================================== -->
+   
+    <target name="compile" depends="init">
+        <javac
+            debug="on"
+            destdir="${build.classes.dir}">
+            <classpath refid="compile.classpath"/>
+            <src path="${source.classes.dir}"/>
+        </javac>
+    </target>
+    
+    <!-- =================================================================== -->
+    <!-- Create the JAR file with all the servers side classes               -->
+    <!-- =================================================================== -->
+ 
+    <target name="jar" depends="compile, findRevision">
+        <copy file="${source.resources.descriptor.dir}/ehcache.xml" 
+              todir="${jbilling.conf.dir}"/>
+        <jar jarfile="${build.deploy.dir}/jbilling.jar">
+            <fileset dir="${build.classes.dir}">
+                <include name="${source.server.package.dir}/**"/>
+                <include name="${source.common.package.dir}/**"/>
+            </fileset>
+            <fileset dir="${build.dir}" includes="META-INF/**">
+            </fileset>
+            <fileset dir="${source.resources.descriptor.dir}" 
+                     includes="entityNotifications*.properties"/>
+            <manifest>
+                <attribute name="Company" value="Enterprise jBilling Software Ltd."/>
+                <attribute name="Version" value="${version}"/>
+                <attribute name="Date" value="${DSTAMP} ${TSTAMP}"/>
+                <attribute name="Revision" value="${revisionNumber}"/>
+            </manifest>
+        </jar>
+    </target>
+    
+    <target name="findRevision">
+        <exec executable="svnversion" outputproperty="revisionNumber" failifexecutionfails="false">
+            <arg value="--no-newline"/>
+            <arg value="${basedir}"/>
+        </exec>
+        <tstamp/>
+    </target>
+    
+    
+    <target name="compile_api" depends="init">
+        <javac debug="on" destdir="${build.api.dir}" target="1.5" source="1.5">
+            <classpath refid="compile.classpath"/>
+            <src path="${source.classes.dir}"/>
+            <include name="com/sapienter/jbilling/server/util/api/*.java"/>
+        </javac>
+    </target>
+    
+    <target name="jar_api" depends="compile_api, findRevision">
+        <jar jarfile="${build.deploy.dir}/jbilling_api.jar">
+            <fileset dir="${build.api.dir}"/>
+            <manifest>
+                <attribute name="Company" value="Enterprise jBilling Software Ltd."/>
+                <attribute name="Version" value="${version}"/>
+                <attribute name="Date" value="${DSTAMP} ${TSTAMP}"/>
+                <attribute name="Revision" value="${revisionNumber}"/>
+            </manifest>
+        </jar>
+    </target>
+    
+    <!-- =================================================================== -->
+    <!-- Create the WAR file for the web-client, to be run by tomcat -->
+    <!-- =================================================================== -->
+ 
+    <target name="war" depends="jspc, jar">
+        <copy todir="${build.classes.dir}">
+            <fileset dir="${source.web.descriptor.dir}">
+                <include name="*.properties"/>
+            </fileset>      
+        </copy>      
+        
+        <war
+            destfile="${build.deploy.dir}/billing.war"
+            webxml="${build.view.dir}/WEB-INF/web.xml"
+            compress="false"
+        >
+            <fileset dir="${source.view.dir}"/>
+            <webinf dir="${build.view.dir}/WEB-INF">
+                <exclude name="web.xml"/>
+            </webinf>
+            <lib dir="${source.lib.dir}">
+                <include name="*.jar"/>
+            </lib>
+            <lib dir="${build.deploy.dir}">
+                <include name="jbilling.jar"/>
+            </lib>
+            <classes dir="${build.classes.dir}" >
+                <include name="${source.client.package.dir}/**"/>
+                <include name="com/sapienter/jbilling/client/jspc/**"/>
+                <include name="*.properties"/>
+            </classes>
+        </war>
+    </target>
+        
+    
+    <!-- =================================================================== -->
+    <!-- Deploys localy, in the self contained environment                -->
+    <!-- =================================================================== -->
+   
+    <target name="deploy-local" depends="jar,war,designs">
+        <copy file="${build.deploy.dir}/billing.war" 
+              todir="${deploy.local.dir}"/>
+        <copy todir="${deploy.resources.dir}/designs">
+            <fileset dir="${build.designs.dir}">
+                <include name="*.jasper"/>
+            </fileset>
+        </copy>
+        <copy todir="${jbilling.conf.dir}" overwrite="yes">
+            <fileset dir="${source.spring.descriptor.dir}">
+                <include name="*.xml"/>
+            </fileset>
+        </copy>
+        <copy file="${source.resources.descriptor.dir}/log4j.xml" 
+              todir="${jbilling.conf.dir}"/>
+    </target>
+    
+    <!-- compile the Jasper design reports -->
+    <target name="designs" depends="init">
+        <taskdef name="jrc" classname="net.sf.jasperreports.ant.JRAntCompileTask"> 
+            <classpath refid="compile.classpath"/>
+            <!--
+		  <classpath>
+			<pathelement location="${jasper.home.dir}/classes"/>
+		    <fileset dir="${jasper.home.dir}/lib">
+		      <include name="**/*.jar"/>
+		    </fileset>
+		  </classpath>
+		  -->
+        </taskdef>
+        
+        <jrc destdir="${build.designs.dir}"
+            tempdir="${basedir}/tmp"
+            keepjava="true"
+            xmlvalidation="true">
+            <src>
+                <fileset dir="${source.descriptor.dir}/designs">
+                    <include name="**/*.jrxml"/>
+                </fileset>
+            </src>
+
+            <classpath>
+                <path refid="compile.classpath"/>
+                <pathelement location="${build.deploy.dir}/jbilling.jar"/>
+            </classpath>
+            <!--
+			<classpath>
+				<pathelement location="${jasper.home.dir}/classes"/>
+			    <fileset dir="${jasper.home.dir}/lib">
+			      <include name="**/*.jar"/>
+			    </fileset>
+			</classpath>
+			-->
+        </jrc> 
+        
+    </target>
+    
+    <!-- Wipes out the whole thing -->
+    <target name="purge">
+        <delete includeemptydirs="true" failonerror="false">
+            <fileset dir="${build.dir}" includes="**/*"/>
+        </delete>
+        <delete>
+            <fileset dir="${base_dir}/rules" includes="*.pkg"/>
+        </delete>
+    </target>
+    
+    <!-- Builds from scratch -->
+    <target name="clean" depends="purge,deploy-local, jar_api">
+    </target>
+    <!-- Builds from scratch and prepares test -->
+    <target name="dclean" depends="purge,deploy-local, jar_api, prepare-test">
+    </target>
+    
+    
+    <target name="prepare-test" depends="compile-rules,prepare-test-db">
+    </target>
+
+    <target name="prepare-test-db">
+        <echo>Importing test data</echo>
+        <exec executable="psql" failonerror="true">
+            <arg line=" -U jbilling -f ${basedir}/sql/jbilling_test.sql jbilling_test"/>
+        </exec>
+        <echo>Ready. Start-up Tomcat and run 'ant test'</echo>
+    </target>
+
+    <target  name="test-unit">
+        <javac debug="on"
+               destdir="${build.test.dir}"
+               srcdir="${source.test.dir}">
+
+            <!-- change source to test/unit path when available, and remove hardcoded tests -->
+            <include name="**/PricingFieldTest.java"/>
+            <include name="**/PeriodOfTimeTest.java"/>
+
+            <classpath  refid="run.classpath"/>
+            <classpath  refid="test.classpath"/>
+        </javac>
+
+        <copy  file="${source.spring.descriptor.dir}/jbilling-database.xml" todir="${build.test.dir}"/>
+
+        <junit printsummary="off" haltonfailure="true">
+            <classpath>
+                <path refid="run.classpath"/>
+                <path refid="test.classpath"/>
+                <path refid="spring.classpath"/>
+                <pathelement path="${build.test.dir}"/>
+            </classpath>
+
+            <formatter type="brief" usefile="false"/>
+
+            <test name="com.sapienter.jbilling.server.item.PricingFieldTest"/>
+            <test name="com.sapienter.jbilling.server.process.PeriodOfTimeTest"/>
+
+            <!-- ideally we should be able to run ALL unit tests on the path, but our current
+                 structure doesn't allow it as we can't differentiate between a ws test, unit test etc.
+
+                 todo: break tests into separate paths so we can use batchtest; any additional unit tests will run automatically
+                        test/ws/... Web Service tests
+                        test/unit/... Unit tests for domain objects, don't require container or db access
+                        test/integration/... Mediation, Provisioning, Process tests
+            -->
+            <!--
+            <batchtest  fork="yes">
+                <fileset dir="${source.test.dir}">
+                    <include name="**/*Test*.java"/>
+                    <exclude name="**/*Tester*.java"/>
+                    <exclude name="**/*TestCase*.java"/>
+                </fileset>
+            </batchtest>
+            -->
+        </junit>
+    </target>
+
+    <target name="test-ws" depends="jar_api">
+        <javac debug="on" destdir="${build.test.dir}"
+               srcdir="${source.test.dir}"
+               includes="**/WSTest*.java">
+            <classpath refid="test.classpath"/>
+        </javac>
+
+        <copy file="${source.spring.descriptor.dir}/jbilling-remote-beans.xml" todir="${build.test.dir}"/>
+
+        <junit printsummary="off"
+               haltonfailure="true"
+               fork="yes">
+            <jvmarg value="-Djava.security.manager" />
+            <jvmarg value="-Djava.security.policy=${source.resources.descriptor.dir}/app.policy" />
+            <jvmarg value="-Djava.security.auth.login.config=${source.resources.descriptor.dir}/auth.conf" />
+            
+            <classpath refid="test.classpath"/>
+            <formatter type="brief" usefile="false"/>
+
+            <!--
+    	    <test name="com.sapienter.jbilling.server.user.WSTestQuick"/>
+	  	    -->
+            <test name="com.sapienter.jbilling.server.order.WSTest"/>
+            <test name="com.sapienter.jbilling.server.user.WSTest"/>
+            <test name="com.sapienter.jbilling.server.payment.WSTest"/>
+            <test name="com.sapienter.jbilling.server.item.WSTest" />
+            <test name="com.sapienter.jbilling.server.invoice.WSTest" />
+        </junit>
+    </target>
+    
+    <target name="test-mediation">
+        <copy file="${source.spring.descriptor.dir}/jbilling-remote-beans.xml" todir="${build.test.dir}"/>
+        <delete  dir="${base_dir}/mediation"/>
+        <mkdir dir="${base_dir}/mediation"/>
+        <mkdir dir="${base_dir}/mediation/errors"/>
+        
+        <copy todir="${base_dir}/mediation">
+            <fileset dir="${source.mediation.descriptor.dir}" includes="mediation.dtd"/>
+            <fileset dir="${source.mediation.descriptor.dir}" includes="asterisk.xml"/>
+            <fileset dir="${source.mediation.descriptor.dir}" includes="asterisk-sample1.csv, mediation-batch-test.csv"/>
+            <fileset dir="${source.mediation.descriptor.dir}" includes="jbilling_cdr.*"/>
+        </copy>
+
+        <javac debug="on"
+               destdir="${build.test.dir}"
+               srcdir="${source.test.dir}/com/sapienter/jbilling/server/mediation">
+            <classpath refid="run.classpath"/>
+        </javac>
+
+        <junit printsummary="off" haltonfailure="true" fork="yes">
+            <jvmarg value="-Djava.security.manager" />
+            <jvmarg value="-Djava.security.policy=${source.resources.descriptor.dir}/app.policy" />
+            <jvmarg value="-Djava.security.auth.login.config=${source.resources.descriptor.dir}/auth.conf" />
+
+            <sysproperty key="mediation.errors.dir" value="${base_dir}/mediation/errors"/>
+            
+            <classpath refid="run.classpath"/>
+            <formatter type="brief" usefile="false"/>
+            <test name="com.sapienter.jbilling.server.mediation.MediationTest"/>
+        </junit>
+    </target>
+
+    <target name="test-provisioning">
+        <copy file="${source.spring.descriptor.dir}/jbilling-remote-beans.xml" todir="${build.test.dir}"/>
+
+        <javac debug="on"
+               destdir="${build.test.dir}"
+               srcdir="${source.test.dir}/com/sapienter/jbilling/server/provisioning">
+            <classpath refid="run.classpath"/>
+        </javac>
+
+        <junit printsummary="off" haltonfailure="true" fork="yes">
+            <jvmarg value="-Djava.security.manager" />
+            <jvmarg value="-Djava.security.policy=${source.resources.descriptor.dir}/app.policy" />
+            <jvmarg value="-Djava.security.auth.login.config=${source.resources.descriptor.dir}/auth.conf" />
+            <classpath refid="run.classpath"/>
+            <formatter type="brief" usefile="false"/>
+            <test name="com.sapienter.jbilling.server.provisioning.ProvisioningTest"/>
+        </junit>
+    </target>
+
+    <target name="test-partners">
+        <copy file="${source.spring.descriptor.dir}/jbilling-remote-beans.xml" todir="${build.test.dir}"/>
+
+        <javac debug="on"
+               destdir="${build.test.dir}"
+               srcdir="${source.test.dir}/com/sapienter/jbilling/server/user"
+               includes="PartnerTest.java">
+            <classpath refid="run.classpath"/>
+        </javac>
+        
+        <junit printsummary="off" haltonfailure="true" fork="yes">
+            <classpath refid="run.classpath"/>
+            <formatter type="brief" usefile="false"/>
+            <test name="com.sapienter.jbilling.server.user.PartnerTest"/>
+        </junit>
+    </target>
+
+    <target name="test-process">
+        <javac debug="on"
+               destdir="${build.test.dir}"
+               srcdir="${source.test.dir}/com/sapienter/jbilling/server/process">
+            <classpath refid="run.classpath"/>
+        </javac>
+
+        <junit printsummary="off" haltonfailure="true" fork="yes">
+            <classpath refid="run.classpath"/>
+            <classpath refid="spring.classpath"/>
+            <formatter type="brief" usefile="false"/>
+            <test name="com.sapienter.jbilling.server.process.BillingProcessTest"/>
+        </junit>
+    </target>
+
+    <target name="test" depends="prepare-test, tc-reload, test-unit, test-ws, test-partners, test-process, test-mediation, test-provisioning">
+    </target>
+    
+    <!--
+     Warning: this task needs a lot of memory. At least 400Megs. Otherwise
+     it fails with an obscure error. To fix use ANT_OPTS=-Xmx400m -Xss128k
+   -->
+    <target name="db" depends="init">
+        <!-- copy the schema files into torque dirs -->
+        <copy todir="${torque.home.dir}/src/schema">
+            <fileset dir="${source.torque.descriptor.dir}" includes="jbilling*"/>
+        </copy>
+        
+        <ant dir="${torque.home.dir}" 
+      antfile="build-torque.xml"
+      target="sql" >
+            <property name="torque.database" value="mysql"/>
+        </ant>
+        <copy file="${torque.home.dir}/src/sql/jbilling-schema.sql"
+              tofile="${image.source.dir}/jbilling/resources/db-samples/jbilling-schema-mysql.sql"/>
+        <ant dir="${torque.home.dir}" 
+      antfile="build-torque.xml"
+      target="sql" >
+            <property name="torque.database" value="db2"/>
+        </ant>
+        <copy file="${torque.home.dir}/src/sql/jbilling-schema.sql"
+              tofile="${image.source.dir}/jbilling/resources/db-samples/jbilling-schema-db2.sql"/>
+        
+        <ant dir="${torque.home.dir}" 
+      antfile="build-torque.xml"
+      target="sql" >
+            <property name="torque.database" value="hypersonic"/>
+        </ant>
+        <copy file="${torque.home.dir}/src/sql/jbilling-schema.sql"
+              tofile="${image.source.dir}/jbilling/resources/db-samples/jbilling-schema-hypersonic.sql"/>
+        
+        <ant dir="${torque.home.dir}" 
+      antfile="build-torque.xml"
+      target="sql" >
+            <property name="torque.database" value="mssql"/>
+        </ant>
+        <copy file="${torque.home.dir}/src/sql/jbilling-schema.sql"
+              tofile="${image.source.dir}/jbilling/resources/db-samples/jbilling-schema-mssql.sql"/>
+        
+        <ant dir="${torque.home.dir}" 
+      antfile="build-torque.xml"
+      target="sql" >
+            <property name="torque.database" value="oracle"/>
+        </ant>
+        <copy file="${torque.home.dir}/src/sql/jbilling-schema.sql"
+              tofile="${image.source.dir}/jbilling/resources/db-samples/jbilling-schema-oracle.sql"/>
+        
+        <ant dir="${torque.home.dir}" 
+      antfile="build-torque.xml"
+      target="sql" >
+            <property name="torque.database" value="postgresql"/>
+        </ant>
+        <copy file="${torque.home.dir}/src/sql/jbilling-schema.sql"
+              tofile="${image.source.dir}/jbilling/resources/db-samples/jbilling-schema-postgresql.sql"/>
+        
+        <ant dir="${torque.home.dir}" 
+      antfile="build-torque.xml"
+      target="sql" >
+            <property name="torque.database" value="sybase"/>
+        </ant>
+        <copy file="${torque.home.dir}/src/sql/jbilling-schema.sql"
+              tofile="${image.source.dir}/jbilling/resources/db-samples/jbilling-schema-sybase.sql"/>
+        
+        <ant dir="${torque.home.dir}" 
+      antfile="build-torque.xml"
+      target="datasql" />
+        <copy file="${torque.home.dir}/src/jbilling-data.sql"
+              todir="${image.source.dir}/jbilling/resources/db-samples"/>
+        
+    </target>
+    
+    
+    <!-- Creates the full downloadable package -->
+    <target name="packageImage" depends="jspc">
+        <!-- make sure it'll get the latest binaries -->
+        <copy todir="${image.source.dir}/jbilling/webapps">
+            <fileset dir="${build.deploy.dir}">
+                <include name="billing.war"/>
+            </fileset>
+        </copy>
+        <copy todir="${image.source.dir}/jbilling/conf" 
+              file="${source.resources.descriptor.dir}/ehcache.xml"/>
+        <!-- if the app server was up, it generated temp files -->
+        <delete dir="${image.source.dir}/jbilling/work"/>
+        <delete>
+            <fileset dir="${image.source.dir}/jbilling/logs">
+                <include name="*.*"/>
+            </fileset>
+        </delete>
+        <!-- ship with some additional files for the installer and
+		     the paper invoice -->
+        <mkdir dir="${image.source.dir}/jbilling/resources/designs"/>
+        <copy todir="${image.source.dir}/jbilling/resources/designs">
+            <fileset dir="${build.designs.dir}">
+                <include name="simple_invoice_b2b.jasper"/>
+            </fileset>
+        </copy>
+        <mkdir dir="${image.source.dir}/jbilling/resources/logos"/>
+        <copy file="${source.view.dir}/graphics/jbilling-paper.jpg" 
+              tofile="${image.source.dir}/jbilling/resources/logos/entity-1.jpg"/>
+        <!-- include the jbilling api as well -->
+        <mkdir dir="${image.source.dir}/jbilling/resources/api" />
+        <copy todir="${image.source.dir}/jbilling/resources/api" 
+               file="${build.deploy.dir}/jbilling_api.jar" />
+        <copy todir="${image.source.dir}/jbilling/resources/api"
+               file="${build.deploy.dir}/jbilling.jar" />
+        
+        <mkdir dir="${image.target.dir}"/>
+        <zip filesonly="false" update="false"
+             destfile="${image.target.dir}/jbilling-${version}.zip">
+            <fileset dir="${image.source.dir}">
+                <include name="**/*"/>
+            </fileset>
+        </zip>
+    </target>
+    
+    <!-- Creates the source packages for distribution -->
+    <target name="packageSource">
+        <delete file="${image.target.dir}/${jbilling-${version}-src.zip}"/>
+        <zip filesonly="false" update="false"
+             destfile="${image.target.dir}/jbilling-${version}-src.zip">
+            <zipfileset dir="${source.dir}" prefix="jbilling/src"
+                        excludes="**/log4j.xml,**/postgres-ds.xml,**/server.xml,build/**,nbproject/**,**/.git/,activemq-data/**,*,**/*.swp,tmp/**,**/*.jasper,**/simple_invoice_jb.jrxml,**/Verisign.jar"/>
+            <!-- the following three files are taken from the binary
+                 view. My own are configured for my box -->
+            <zipfileset dir="${image.source.dir}/jbilling/conf" 
+                        includes="log4j.xml" prefix="jbilling/src/descriptors/resources"/>
+            <zipfileset dir="${basedir}" includes="build.properties.sample" 
+                        fullpath="jbilling/src/build.properties"/>
+            <zipfileset dir="${basedir}" includes="build.xml" prefix="jbilling/src"/>
+            <zipfileset dir="${basedir}" includes="COPYING" prefix="jbilling/src"/>
+        </zip>
+    </target>
+    
+    <target name="uploadRelease">
+        <ftp password="admin@jbilling.com" remotedir="incoming" depends="yes"
+server="upload.sourceforge.net" userid="anonymous">
+            <fileset dir="${image.target.dir}">
+                <include name="jbilling-${version}-src.zip"/>
+                <include name="jbilling-${version}.zip"/>
+                <include name="jbilling_installation_instructions.pdf"/>
+            </fileset>
+        </ftp>
+    </target>
+    
+    
+    <!-- JSPC target to precompile JSP's 
+	     This is only used to generate the binary image for a release,
+	     to avoid having the Java SDK as a requirement. -->
+    <target name="jspc" depends="compile, xdoclet-webgenerate">
+        
+        <taskdef classname="org.apache.jasper.JspC" name="jasper2"> 
+            <classpath id="jspc.classpath">
+                <!-- Classpath for extra jars -->
+                <fileset dir="${tools.dir}/lib">
+                    <include name="*.jar" />
+                </fileset>
+                <fileset dir="${tools.dir}/bin">
+                    <include name="*.jar" />
+                </fileset>
+                <fileset dir="${libs.dir}">
+                    <include name="**/*.jar" />
+                </fileset>
+                <fileset dir="${source.lib.dir}">
+                    <include name="**/*.jar" />
+                </fileset>
+
+                <pathelement location="${source.lib.dir}/rowset.jar"/>
+                
+                <!-- Directory for taglibs -->
+                <dirset dir="${source.dir}\build\classes">
+                </dirset>
+                
+            </classpath>
+        </taskdef>
+        
+        <!-- Copy the view to the build directory -->
+        <copy todir="${build.view.dir}">
+            <fileset dir="${source.dir}/view">
+                <include name="**/*.jsp"/>
+            </fileset>
+        </copy>
+
+        <copy todir="${build.view.dir}/WEB-INF">
+            <fileset dir="${source.web.descriptor.dir}">
+                <include name="*.xml"/>
+            </fileset>
+            <fileset dir="${taglib.home.dir}">
+                <include name="*.tld"/>
+            </fileset>
+            <fileset dir="${struts.home.tag.dir}">
+                <include name="*.tld"/>
+            </fileset>
+        </copy>
+
+        <!-- Create the directory to hold compiled jsp-->
+        <mkdir dir="${source.dir}/build/jsp-classes"/>
+        
+        <!-- Compile the jsp to .java files -->
+        <jasper2 
+            package="com.sapienter.jbilling.client.jspc"
+            uriroot = "${build.view.dir}"
+            outputDir = "${source.dir}/build/jsp-classes"
+            webXmlFragment="${build.dir}/jspc-web.xml"/>
+
+        <loadfile property="jpc-code" srcfile="${build.dir}/jspc-web.xml" />
+        <replace file="${build.view.dir}/WEB-INF/web.xml"
+                 token="jspc-webxml"
+                 value="${jpc-code}" />
+
+        <!-- Create the directory to hold compiled jsp-->
+        <mkdir dir="${build.view.dir}/WEB-INF/classes"/>
+        
+        <!-- Compile the intermediate jsp's-->
+        <javac srcdir="${source.dir}/build/jsp-classes"
+              destdir="${build.classes.dir}" >
+            <classpath refid="jspc.classpath" /> 
+            <classpath refid="compile.classpath" />
+        </javac> 
+        
+    </target>
+    
+    <!-- Hibernate tools tasks -->
+
+    <!-- Create the entity classes for the JPA migration -->
+    <target name="entityGeneration" 
+            description="Generates the entity classes based on a JDBC schema">
+        
+        <delete dir="${source.classes.dir}/com/sapienter/jbilling/server/util/db/generated"/>
+        
+        <taskdef name="hibernatetool"
+   classname="org.hibernate.tool.ant.HibernateToolTask"
+   classpathref="hibernate.classpath"/>
+        
+        <hibernatetool destdir="${source.classes.dir}/">
+            <jdbcconfiguration 
+                packagename="com.sapienter.jbilling.server.util.db.generated"
+                propertyfile="${source.hibernate.descriptor.dir}/jdbc.properties"
+                revengfile="${source.hibernate.descriptor.dir}/reveng.xml"
+                detectmanytomany="true"
+                detectoptimisticlock="false"/>
+            <classpath path="${build.classes.dir}"/>
+            <hbm2java jdk5="true" ejb3="true"/>
+            <hbm2dao/>
+        </hibernatetool>
+    </target>
+    
+    <!-- Export the database schema -->
+    <target name="schemaexport" depends="compile"
+            description="Exports DDL to file in build directory">
+        
+        <taskdef name="hibernatetool"
+                 classname="org.hibernate.tool.ant.HibernateToolTask"
+                 classpathref="hibernate.classpath"/>
+        <hibernatetool destdir="${build.dir}">
+            <classpath path="${build.classes.dir}"/>
+            <jpaconfiguration persistenceunit="caveatemptor"/>
+            <hbm2ddl
+                drop="true"
+                create="true"
+                export="false"
+                outputfilename="${proj.shortname}-ddl.sql"
+                delimiter=";"
+                format="true"/>
+        </hibernatetool>
+    </target>
+    
+    <target name="compile-rules" description="compile rules files">
+        <echo>Compiling the binary rules</echo>
+
+        <delete dir="${base_dir}/rules"/>
+        <mkdir dir="${base_dir}/rules"/>
+        <taskdef name="rulebase" 
+                 classname="org.drools.contrib.DroolsCompilerAntTask" 
+                 classpathref="drools.classpath" />
+        
+        <rulebase 
+            srcdir="${source.rules.dir}" 		
+            tofile="${base_dir}/rules/CancelFees.pkg"
+            classpathref="drools.run.classpath"
+            binformat="package">
+            <include name="CancelFees.drl" />
+        </rulebase>
+        <rulebase 
+            srcdir="${source.rules.dir}" 		
+            tofile="${base_dir}/rules/ItemsRules.pkg"
+            classpathref="drools.run.classpath"
+            binformat="package">
+            <include name="ItemsRules.drl" />
+        </rulebase>
+        <rulebase 
+            srcdir="${source.rules.dir}" 		
+            tofile="${base_dir}/rules/Mediation.pkg"
+            classpathref="drools.run.classpath"
+            binformat="package">
+            <include name="Mediation.drl" />
+        </rulebase>
+        <rulebase 
+            srcdir="${source.rules.dir}" 		
+            tofile="${base_dir}/rules/PricingRules.pkg"
+            classpathref="drools.run.classpath"
+            binformat="package">
+            <include name="PricingRules.drl" />
+        </rulebase>
+        <rulebase 
+        	srcdir="${source.rules.dir}" 		
+        	tofile="${base_dir}/rules/provisioning_commands.pkg"
+        	classpathref="drools.run.classpath"
+        	binformat="package">
+        	<include name="provisioning_commands.drl" />
+        </rulebase>
+        <rulebase 
+        	srcdir="${source.rules.dir}" 		
+        	tofile="${base_dir}/rules/InternalEventsRulesTask520.pkg"
+        	classpathref="drools.run.classpath"
+        	binformat="package">
+        	<include name="InternalEventsRulesTask520.drl" />
+        </rulebase>
+        <rulebase 
+        	srcdir="${source.rules.dir}" 		
+        	tofile="${base_dir}/rules/ValidatePurchaseRules.pkg"
+        	classpathref="drools.run.classpath"
+        	binformat="package">
+        	<include name="ValidatePurchaseRules.drl" />
+        </rulebase>
+        <rulebase 
+        	srcdir="${source.rules.dir}" 		
+        	tofile="${base_dir}/rules/RateCard.pkg"
+        	classpathref="drools.run.classpath"
+        	binformat="package">
+        	<include name="RateCard.xls" />
+        </rulebase>
+    </target>
+
+    <target name="export">
+        <tstamp/>
+        <!-- Create the zip file in the 'src' directory. -->
+        <delete file="${source.dir}/jbilling-exp-${DSTAMP}.zip"/>
+        <zip filesonly="false" update="false"
+             destfile="${source.dir}/jbilling-exp-${DSTAMP}.zip">
+            <!-- Copy jbilling.war and guvnor.war. -->
+            <zipfileset dir="${deploy.local.dir}" prefix="webapps" includes="*.war"/>
+            <!-- Copy jasperserver -->
+            <zipfileset dir="${deploy.local.dir}" prefix="webapps" includes="jasperserver/**/*"/>
+            <!-- Copy the API jar file -->
+            <zipfileset dir="${build.deploy.dir}" prefix="resources/api" includes="jbilling_api.jar"/>
+            <!-- Copy the conf directory. -->
+            <zipfileset dir="${jbilling.conf.dir}" prefix="conf"/>
+            <!-- Copy the resources directory. -->
+            <zipfileset dir="${deploy.resources.dir}" prefix="resources"/>
+            <!-- Copy the DB dump (assumed to be 'data.sql' in the 'src' 
+                 directory). -->
+            <zipfileset dir="${source.dir}" includes="data.sql" fullpath="backup/data-${DSTAMP}.sql"/>
+            <!-- Copy the reports DB dump (assumed to be reports.sql in the 
+                 'src' directory). -->
+            <zipfileset dir="${source.dir}" includes="reports.sql" fullpath="backup/reports-${DSTAMP}.sql"/>
+            <!-- Copy the rules repository files (from 'bin' directory). -->
+            <zipfileset dir="${server.dir}/bin" includes="repository.xml" prefix="bin"/>
+            <zipfileset dir="${server.dir}/bin/repository" prefix="bin/repository"/>
+            <!-- Copy the extra libs required by Guvnor -->
+            <zipfileset dir="${server.dir}/lib/" includes="jsf*.jar" prefix="lib"/>
+            <zipfileset dir="${server.dir}/lib/" includes="jboss-faces.jar" prefix="lib"/>
+        </zip>
+    </target>
+
+</project>
+<!--
+  <property name="showme" refid="test.classpath"/>
+  <echo message="${showme}" />
+  -->

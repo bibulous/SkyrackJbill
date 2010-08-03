@@ -1,0 +1,8 @@
+when
+    $result : MediationResult(step == MediationResult.STEP_1_START, eventDate == null)
+    $field : PricingField( name == "start", resultId == $result.id)
+then
+    modify( $result ) {
+        setEventDate( $field.getDateValue() );
+    }
+    LOG.debug("day set to " + $result.getEventDate() + " record " + $result.getRecordKey());

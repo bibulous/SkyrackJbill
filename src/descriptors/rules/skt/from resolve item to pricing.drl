@@ -1,0 +1,7 @@
+when
+    $result : MediationResult(step == MediationResult.STEP_4_RESOLVE_ITEM, description != null )
+    PricingResult( price == null, pricingFieldsResultId == $result.id )
+then
+    modify( $result ) {
+        setStep(MediationResult.STEP_5_PRICING);
+    }

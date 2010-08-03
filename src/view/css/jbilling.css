@@ -1,0 +1,436 @@
+/* 
+    Defualts 
+    dark   #13544E
+    medium #89A9A6
+    light: #D0DDDC
+    white: #E6EFED
+ */
+ 
+p {  
+	font-family: Verdana, Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 11px; 
+	color: black;
+}
+
+table {
+   border-collapse:collapse;
+   margin: 0 0 0 0;
+}
+
+a {
+    text-decoration: underline; 
+    font-family: Verdana, Arial, Helvetica, sans-serif; 
+    font-size: 12px; 
+    color: #13544E;
+}
+
+a:hover {
+    color: #89A9A6
+}
+
+option {
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 9pt; 
+}
+
+input {
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 9pt; 
+}
+
+body {
+    margin: 0 0 0 0;
+}
+
+/* 
+    Top bar: menu and title
+ */
+tr.topBar {
+   height: 72px;
+   background-color: #13544E;
+}
+
+tr.bar {
+   height: 24px;
+   background-color: #13544E;
+}
+table.threeBars {
+   border-collapse:collapse;
+   background-color: #13544E;
+   width: 640px;
+}
+td.logo {
+    width: 120px;
+    vertical-align: center;
+}
+td.threeBars {
+}
+/* top menu options */
+table.menu {
+    height: 24px;
+}
+table.submenu {
+    height: 24px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+td.menu {
+    background-color: #89A9A6;
+    border: 2px solid #13544E;
+    text-align: center;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    height: 24px;
+}
+
+td.menu A {  
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 12px; 
+    color: white;
+    text-decoration: none; 
+}
+td.menu A:hover {  
+    color: #13544E;
+}
+
+td.menuSelected {
+    background-color: #13544E;
+    text-align: center;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+td.menuSelected A {  
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 12px; 
+    color: white;
+    background-color: #13544E; 
+    font-weight: bold;
+    text-decoration: none; 
+}
+
+/* title */
+table.title {
+    height: 24px;
+}
+
+td.title {
+    background-color: #D0DDDC;
+    font-family: Verdana, Arial, Helvetica, sans-serif; 
+    font-size: 15px; 
+    color: black;
+    text-align: left;
+    padding-left: 15px;
+    height: 24px;
+    width: 100%;
+}
+
+/* logout */
+td.logout {
+    background-color: #89A9A6;
+    border: 2px solid #13544E; 
+    text-align: center;
+    padding-left: 3px;
+    padding-right: 3px;
+
+}
+td.logout A {  
+    font-family: Verdana, Arial, Helvetica, sans-serif; 
+    font-size: 12px; 
+    color: white;
+    text-decoration: none; 
+}
+td.logout A:hover {  
+    color: #13544E;
+}
+
+/* left menu */
+td.leftMenu {
+    width: 120px;
+    background-color: #13544E;
+    text-align: center;
+    vertical-align: top;
+}
+td.leftMenu table {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+td.leftMenuOption {
+    background-color: #89A9A6;
+    border-bottom: 1px solid #13544E;
+    text-align: center;
+    width: 100%;
+}
+table.leftMenu {
+   text-align: left;
+}
+a.leftMenu {
+    font-family: Verdana, Arial, Helvetica, sans-serif; 
+    font-size: 12px; 
+    color: white;
+    text-decoration: none; 
+    width: 110px;
+}
+a.leftMenu:hover {
+    color: #13544E;
+}
+
+/*
+    Body
+ */
+
+/* body area */
+td.body {
+   border: 1px solid #D0DDDC;
+   text-align: center;
+}
+
+table.body {
+   margin: 15px auto 15px auto;
+   text-align: center;
+}
+
+/* the instructions paragraph */
+p.instr {
+	font-family: Verdana, Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 11px; 
+	color: black;
+    padding-bottom: 10px;
+}
+
+/* order summary (right bar) */
+table.order_summary {
+    border-color: #13544E;
+    border-style: solid;
+    border-width: 1px;
+    padding-top: 15px;
+}
+tr.order_summary_title {
+    font-family: Verdana, Arial, Helvetica, sans-serif; 
+    font-size: 13px; 
+    color: white;
+    background-color: #13544E;
+    height: 20px;
+}
+tr.order_summary_lines {
+    font-family: Verdana, Arial, Helvetica, sans-serif; 
+    font-size: 12px; 
+    color: white;
+    background-color: #89A9A6;
+}
+
+/* info box */
+table.info {
+   border-color: #13544E;
+   border-style: solid;
+   border-width: thin;
+   width: 95%;
+   margin-bottom: 10;
+   margin-top: 10;
+   margin-right: 10;
+   margin-left: 10;
+}
+th.info {
+   font-family: Verdana, Arial, Helvetica, sans-serif; 
+   font-size: 13px; 
+   color: black;
+   background-color: #89A9A6;
+   text-align: left;
+   padding-left: 30;
+   font-weight: bold;
+}
+tr.infoA {
+   background-color: #E6EFED;
+}
+tr.infoB {
+   background-color: #D0DDDC;
+}
+
+td.infoprompt{
+   font-family: Verdana, Arial, Helvetica, sans-serif; 
+   font-size: 12px; 
+   color: rgb(0,0,0);
+   padding-left: 15;
+   width: 40%;
+   border-right-color: white;
+   border-right-style: solid;
+   border-right-width: 1px;
+}
+td.infodata {
+   font-family: Verdana, Arial, Helvetica, sans-serif; 
+   font-size: 12px; 
+   padding-left: 15;
+}
+td.infocommands {
+   font-family: Verdana, Arial, Helvetica, sans-serif; 
+   font-size: 12px; 
+   text-align: center;
+}
+
+/* generic list */
+table.listControls {
+   width: 100%;
+}
+tr.listControls {
+    font-family: Verdana, Arial, Helvetica, sans-serif; 
+    font-size: 12px; 
+    color: black;
+}
+td.listControls {
+    font-family: Verdana, Arial, Helvetica, sans-serif; 
+    font-size: 12px; 
+    color: black;
+    text-align: center;
+}
+table.listSearch {
+   margin-bottom: 3;
+   margin-top: 0;
+   margin-right: 10;
+   margin-left: 10;
+}
+tr.listSearch {
+    font-family: Verdana, Arial, Helvetica, sans-serif; 
+    font-size: 11px; 
+    color: black;
+    background-color: #E6EFED;
+    text-align: left;
+}
+
+table.list {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+tr.listH {
+    font-family: Verdana, Arial, Helvetica, sans-serif; 
+    font-size: 12px; 
+    font-weight: bold;
+    color: black;
+    background-color: #89A9A6;
+    text-align: center;
+    height: 22px;
+}
+
+tr.listA {
+    font-family: Verdana, Arial, Helvetica, sans-serif; 
+    font-size: 12px; 
+    color: black;
+    background-color: #E6EFED;
+}
+
+tr.listB {
+    font-family: Verdana, Arial, Helvetica, sans-serif; 
+    font-size: 12px; 
+    color: black;
+    background-color: #D0DDDC;
+}
+tr.listSubaccount {
+    font-family: Verdana, Arial, Helvetica, sans-serif; 
+    font-size: 12px; 
+    font-weight: bold; 
+    color: black;
+    background-color: white;
+}
+
+td.list {
+   border: thin solid white;
+}
+
+/* title, instructions */
+p.title {
+    text-align: center;
+    color: #13544E;
+    font-size: 14px; 
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+/* forms */
+table.form {
+	margin-left: auto;
+	margin-right: auto;
+}
+tr.form {
+    font-family: Verdana, Arial, Helvetica, sans-serif; 
+    font-size: 12px; 
+    color: rgb(0,0,0);
+}
+td.form_prompt {
+    padding-right: 20px;
+    background-color: #E6EFED;
+    border: 1px solid white;
+}
+td.form_button {
+    text-align: center;
+}
+input.form_button { 
+    border-left: solid 2px #E6EFED;
+    border-top: solid 2px #E6EFED;
+    border-right: solid 2px #13544E;
+    border-bottom: solid 2px #13544E;
+    font-family: Verdana, Arial, Helvetica, sans-serif; 
+    font-weight: bold; 
+    font-size: 8pt; 
+    color: black;
+    cursor: hand; 
+    background-color: #89A9A6;
+}
+
+
+/* errors */
+p.error {
+	background-color: white;
+	color: red;
+    font-family: Verdana, Arial, Helvetica, sans-serif; 
+    font-size: 12px; 
+    border-color: red;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/* footer */
+p.footer {
+    text-align: center;
+    color: rgb(0,0,0);
+    font-size: 10px; 
+    padding-top: 15px;
+    border-top: solid 1px #13544E;
+}
+
+/* welcome */
+
+p.wel_text {
+    text-align: left;
+    color: black;
+    font-size: 11px; 
+    font-family: Verdana, Arial, Helvetica, sans-serif; 
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+/* signup */
+td.signup_prompt {
+    padding-left: 10px;
+    background-color: #E6EFED;
+    border: 2px solid white;
+}
+td.signup_subtitle {
+    font-size: 13px; 
+    padding-left: 30px;
+    text-decoration: underline;
+}
+td.signup_pad {
+    padding-left: 50px;
+    background-color: white;
+}
+td.signup_instr {
+	font-size: 10px; 
+	padding-right: 50px;
+}
+

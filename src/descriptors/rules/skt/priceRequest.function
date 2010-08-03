@@ -1,0 +1,6 @@
+function PricingResult priceRequest(Integer itemId, MediationResult result) {
+    PricingResult pricing = new PricingResult(itemId, result.getUserId(),
+            result.getCurrencyId());
+    pricing.setPricingFieldsResultId(result.getId());
+    return pricing;
+ }

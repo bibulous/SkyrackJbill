@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<!-- External Provisioning Module command translation configuration
+    file.
+-->
+
+<beans>
+  <bean id="provisioning" class="com.sapienter.jbilling.server.provisioning.config.Provisioning">
+    <property name="commands">
+      <list>
+        <bean class="com.sapienter.jbilling.server.provisioning.config.Command">
+          <property name="id" value="activate_user" />
+          <property name="fields">
+            <list>
+              <bean class="com.sapienter.jbilling.server.provisioning.config.Field">
+                <property name="name" value="msisdn" />
+              </bean>
+              <bean class="com.sapienter.jbilling.server.provisioning.config.Field">
+                <property name="name" value="imsi" />
+                <property name="defaultValue" value="REMOVE" />
+              </bean>
+            </list>
+          </property>
+          <property name="processors">
+            <list>
+              <bean class="com.sapienter.jbilling.server.provisioning.config.Processor">
+                <property name="id" value="test" />
+                <property name="requests">
+                  <list>
+                    <bean class="com.sapienter.jbilling.server.provisioning.config.Request">
+                      <property name="order" value="1" />
+                      <property name="submit" value="CREATE:HLRSUB:MSISDN,|msisdn|:IMSI,|imsi|:PROFILE,60;" />
+                      <property name="rollback" value="DELETE:HLRSUB:MSISDN,|msisdn|;" />
+                      <property name="postResult" value="true" />
+                      <property name="continueOnType" value="success" />
+                    </bean>
+                    <bean class="com.sapienter.jbilling.server.provisioning.config.Request">
+                      <property name="order" value="2" />
+                      <property name="submit" value="CREATE:VMSUB:SUBID,|msisdn|:EXTNO,-1:COS,201:PWD,1234;" />
+                    </bean>
+                  </list>
+                </property>
+              </bean>
+            </list>
+          </property>
+        </bean>
+        <bean class="com.sapienter.jbilling.server.provisioning.config.Command">
+          <property name="id" value="result_test" />
+          <property name="fields">
+            <list>
+              <bean class="com.sapienter.jbilling.server.provisioning.config.Field">
+                <property name="name" value="msisdn" />
+              </bean>
+              <bean class="com.sapienter.jbilling.server.provisioning.config.Field">
+                <property name="name" value="imsi" />
+                <property name="defaultValue" value="REMOVE" />
+              </bean>
+            </list>
+          </property>
+          <property name="processors">
+            <list>
+              <bean class="com.sapienter.jbilling.server.provisioning.config.Processor">
+                <property name="id" value="test" />
+                <property name="requests">
+                  <list>
+                    <bean class="com.sapienter.jbilling.server.provisioning.config.Request">
+                      <property name="order" value="1" />
+                      <property name="submit" value="DELETE:THIS:MSISDN,|msisdn|:IMSI,|imsi|;" />
+                      <property name="postResult" value="true" />
+                      <property name="continueOnType" value="success" />
+                    </bean>
+                    <bean class="com.sapienter.jbilling.server.provisioning.config.Request">
+                      <property name="order" value="2" />
+                      <property name="submit" value="DELETE:THAT:MSISDN,|msisdn|:IMSI,|imsi|;" />
+                      <property name="postResult" value="true" />
+                    </bean>
+                  </list>
+                </property>
+              </bean>
+            </list>
+          </property>
+        </bean>
+        <bean class="com.sapienter.jbilling.server.provisioning.config.Command">
+          <property name="id" value="cai_test" />
+          <property name="fields">
+            <list>
+              <bean class="com.sapienter.jbilling.server.provisioning.config.Field">
+                <property name="name" value="msisdn" />
+              </bean>
+              <bean class="com.sapienter.jbilling.server.provisioning.config.Field">
+                <property name="name" value="imsi" />
+              </bean>
+            </list>
+          </property>
+          <property name="processors">
+            <list>
+              <bean class="com.sapienter.jbilling.server.provisioning.config.Processor">
+                <property name="id" value="cai" />
+                <property name="requests">
+                  <list>
+                    <bean class="com.sapienter.jbilling.server.provisioning.config.Request">
+                      <property name="order" value="1" />
+                      <property name="submit" value="CREATE:HLRSUB:MSISDN,|msisdn|:IMSI,|imsi|;" />
+                      <property name="postResult" value="true" />
+                    </bean>
+                  </list>
+                </property>
+              </bean>
+            </list>
+          </property>
+        </bean>
+         <bean class="com.sapienter.jbilling.server.provisioning.config.Command">
+          <property name="id" value="mmsc_test" />
+          <property name="fields">
+            <list>
+              <bean class="com.sapienter.jbilling.server.provisioning.config.Field">
+                <property name="name" value="msisdn" />
+              </bean>
+              <bean class="com.sapienter.jbilling.server.provisioning.config.Field">
+                <property name="name" value="subscriptionType" />
+              </bean>
+            </list>
+          </property>
+          <property name="processors">
+            <list>
+              <bean class="com.sapienter.jbilling.server.provisioning.config.Processor">
+                <property name="id" value="mmsc" />
+                <property name="requests">
+                  <list>
+                    <bean class="com.sapienter.jbilling.server.provisioning.config.Request">
+                      <property name="order" value="1" />
+                      <property name="submit" value="addCustomer:msisdn,|msisdn|:subscriptionType,|subscriptionType|;" />
+                      <property name="postResult" value="true" />
+                    </bean>
+                  </list>
+                </property>
+              </bean>
+            </list>
+          </property>
+        </bean>
+      </list>
+    </property>
+  </bean>
+<!--
+  <bean id="cai" class="com.sapienter.jbilling.server.provisioning.task.TelnetCommunication">
+  </bean>
+-->
+  <bean id="cai" class="com.sapienter.jbilling.server.provisioning.task.TestCommunication">
+  </bean>
+  <bean id="mmsc" class="com.sapienter.jbilling.server.provisioning.task.TestMMSCCommunication">
+  </bean>
+</beans>

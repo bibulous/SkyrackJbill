@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Configuration for accessing remote beans from a client.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+
+    <!-- SOAP Web Service -->
+    <!--
+    <jaxws:client id="apiClient"
+            serviceClass="com.sapienter.jbilling.server.util.IWebServicesSessionBean"
+            address="http://localhost/billing/cxf/soap.service"
+            username="admin" password="123qwe"/>
+    -->
+
+    <!-- RMI Service -->
+    <!--
+    <bean id="apiClient" class="org.springframework.remoting.rmi.RmiProxyFactoryBean" lazy-init="true">
+        <property name="serviceUrl" value="rmi://localhost:1199/RmiService"/>
+        <property name="serviceInterface" value="com.sapienter.jbilling.server.util.IWebServicesSessionBean"/>
+    </bean>
+    -->
+    
+    <!-- Burlap Web Service -->
+    <!--
+    <bean id="apiClient" class="org.springframework.remoting.caucho.BurlapProxyFactoryBean" lazy-init="true">
+        <property name="serviceUrl" value="http://localhost/billing/services/burlap.service"/>
+        <property name="serviceInterface" value="com.sapienter.jbilling.server.util.IWebServicesSessionBean"/>
+        <property name="username" value="admin"/>
+        <property name="password" value="123qwe"/>
+    </bean>
+    -->
+
+
+    <!-- Hessian Web Service -->
+    <!--
+            Hessian/Burlap web services are incompatible with remote session beans that return Hibernate managed
+            objects (instances of HibernateProxy). Only use Hessian/Burlap remoting with WebService beans
+            that return *WS objects, which are specifically designed for this purpose.
+    -->
+    <bean id="apiClient" class="org.springframework.remoting.caucho.HessianProxyFactoryBean" lazy-init="true">
+        <property name="serviceUrl" value="http://localhost:8080/billing/services/hessian.service"/>
+        <property name="serviceInterface" value="com.sapienter.jbilling.server.util.IWebServicesSessionBean"/>
+        <property name="hessian2" value="true"/>
+        <property name="username" value="admin"/>
+        <property name="password" value="123qwe"/>
+    </bean>
+
+    <bean id="apiClient2" class="org.springframework.remoting.caucho.HessianProxyFactoryBean" lazy-init="true">
+        <property name="serviceUrl" value="http://localhost:8080/billing/services/hessian.service"/>
+        <property name="serviceInterface" value="com.sapienter.jbilling.server.util.IWebServicesSessionBean"/>
+        <property name="hessian2" value="true"/>
+        <property name="username" value="mordor"/>
+        <property name="password" value="123qwe"/>
+    </bean>    
+
+
+    <!-- Remote Session Beans -->
+    <!--
+            Unsecured remote service beans for testing. Remove from production installations!
+    -->
+    <bean id="itemRemoteSession"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean"
+          lazy-init="true">
+        <property name="serviceUrl" value="http://localhost:8080/billing/remoting/ItemService"/>
+        <property name="serviceInterface" value="com.sapienter.jbilling.server.item.IItemSessionBean"/>
+    </bean>
+
+    <bean id="listRemoteSession"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean"
+          lazy-init="true">
+        <property name="serviceUrl" value="http://localhost:8080/billing/remoting/ListService"/>
+        <property name="serviceInterface" value="com.sapienter.jbilling.server.list.IListSessionBean"/>
+    </bean>
+
+    <bean id="userRemoteSession"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean"
+          lazy-init="true">
+        <property name="serviceUrl" value="http://localhost:8080/billing/remoting/UserService"/>
+        <property name="serviceInterface" value="com.sapienter.jbilling.server.user.IUserSessionBean"/>
+    </bean>
+
+    <bean id="invoiceRemoteSession"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean"
+          lazy-init="true">
+        <property name="serviceUrl" value="http://localhost:8080/billing/remoting/InvoiceService"/>
+        <property name="serviceInterface" value="com.sapienter.jbilling.server.invoice.IInvoiceSessionBean"/>
+    </bean>
+
+    <bean id="orderRemoteSession"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean"
+          lazy-init="true">
+        <property name="serviceUrl" value="http://localhost:8080/billing/remoting/OrderService"/>
+        <property name="serviceInterface" value="com.sapienter.jbilling.server.order.IOrderSessionBean"/>
+    </bean>
+
+    <bean id="paymentRemoteSession"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean"
+          lazy-init="true">
+        <property name="serviceUrl" value="http://localhost:8080/billing/remoting/PaymentService"/>
+        <property name="serviceInterface" value="com.sapienter.jbilling.server.payment.IPaymentSessionBean"/>
+    </bean>
+
+    <bean id="billingProcessRemoteSession"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean"
+          lazy-init="true">
+        <property name="serviceUrl" value="http://localhost:8080/billing/remoting/ProcessService"/>
+        <property name="serviceInterface" value="com.sapienter.jbilling.server.process.IBillingProcessSessionBean"/>
+    </bean>
+
+    <bean id="mediationRemoteSession"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean"
+          lazy-init="true">
+        <property name="serviceUrl" value="http://localhost:8080/billing/remoting/MediationService"/>
+        <property name="serviceInterface" value="com.sapienter.jbilling.server.mediation.IMediationSessionBean"/>
+    </bean>
+
+    <bean id="provisioningProcessRemoteSession"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean"
+          lazy-init="true">
+        <property name="serviceUrl" value="http://localhost:8080/billing/remoting/ProvisioningService"/>
+        <property name="serviceInterface" value="com.sapienter.jbilling.server.provisioning.IProvisioningProcessSessionBean"/>
+    </bean>
+
+</beans>

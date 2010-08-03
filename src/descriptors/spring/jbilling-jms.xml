@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Configuration of Java Message Service (JMS)
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jms="http://www.springframework.org/schema/jms"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-2.5.xsd">
+
+    <!-- ActiveMQ Connection Factory -->
+    <bean id="jmsConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="vm://localhost"/>
+        <!-- <property name="brokerURL" value="tcp://localhost:61616"/> -->
+    </bean>
+
+    <!-- JMS Template -->
+    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory">
+            <!-- wrap in a pool to avoid creating a connection per send -->
+            <bean class="org.springframework.jms.connection.SingleConnectionFactory">
+                <property name="targetConnectionFactory">
+                    <ref local="jmsConnectionFactory" />
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <!-- Queue and Topic Destinations -->
+    <bean id="processorsDestination" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg index="0" value="queue.jbilling.processors"/>
+    </bean>
+    <bean id="provisioningCommandsDestination" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg index="0" value="queue.jbilling.provisioningCommands"/>
+    </bean>
+    <bean id="provisioningCommandsReplyDestination" class="org.apache.activemq.command.ActiveMQTopic">
+        <constructor-arg index="0" value="topic.jbilling.provisioningCommandsReply"/>
+    </bean>
+
+    <!-- Message-Driven Beans (MDBs) -->
+    <bean id="processPaymentMDB" class="com.sapienter.jbilling.server.payment.event.ProcessPaymentMDB"/>
+    <bean id="provisioningCommandsMDB" class="com.sapienter.jbilling.server.provisioning.task.ProvisioningCommandsMDB"/>
+    <bean id="testExternalProvisioningMDB" class="com.sapienter.jbilling.server.provisioning.TestExternalProvisioningMDB"/>
+    <bean id="externalProvisioningMDB" class="com.sapienter.jbilling.server.provisioning.ExternalProvisioningMDB"/>
+
+    <!-- Mapping of MDBs to queues/topics they listen to -->
+    <!-- Queue Listeners -->
+    <jms:listener-container connection-factory="jmsConnectionFactory">
+        <jms:listener ref="processPaymentMDB" destination="queue.jbilling.processors"/>
+        <!-- <jms:listener ref="processPaymentMDB" destination="jbilling.processors.queue" selector="entityId = 1" /> -->
+        <jms:listener ref="externalProvisioningMDB" destination="queue.jbilling.provisioningCommands"/>
+    </jms:listener-container>
+
+    <!-- Topics Listeners -->
+    <jms:listener-container connection-factory="jmsConnectionFactory" destination-type="topic">
+        <jms:listener ref="provisioningCommandsMDB" destination="topic.jbilling.provisioningCommandsReply"/>
+        <jms:listener ref="testExternalProvisioningMDB" destination="topic.jbilling.provisioningCommandsReply"/>
+    </jms:listener-container>
+
+</beans>

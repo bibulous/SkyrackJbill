@@ -1,0 +1,4 @@
+function Integer getUserIdFromUsername(String username, Integer entityId) {
+    UserBL user = new UserBL(username, entityId);
+    return user.getEntity() != null ? user.getEntity().getUserId() : null;
+}

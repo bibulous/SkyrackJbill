@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created using an evaluation version of JasperAssistant (http://www.jasperassistant.com) -->
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+
+<jasperReport name="simple_invoice" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="40" bottomMargin="40">
+	<property name="com.jasperassistant.designer.GridHeight" value="12"/>
+	<property name="com.jasperassistant.designer.GridWidth" value="12"/>
+	<property name="com.jasperassistant.designer.SnapToGrid" value="false"/>
+	<property name="com.jasperassistant.designer.Grid" value="false"/>
+	<reportFont name="detail_title" isDefault="false" fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+	<reportFont name="arial_12_bold" isDefault="false" fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+	<reportFont name="times_1_italic" isDefault="false" fontName="Arial" size="11" isBold="false" isItalic="true" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Italic" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+	<reportFont name="arial_12" isDefault="false" fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+	<reportFont name="arial_11" isDefault="false" fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+	<parameter name="invoiceNumber" class="java.lang.String">
+	</parameter>
+	<parameter name="entityName" class="java.lang.String">
+	</parameter>
+	<parameter name="entityAddress" class="java.lang.String">
+	</parameter>
+	<parameter name="entityCity" class="java.lang.String">
+	</parameter>
+	<parameter name="entityProvince" class="java.lang.String">
+	</parameter>
+	<parameter name="entityPostalCode" class="java.lang.String">
+	</parameter>
+	<parameter name="invoiceDate" class="java.lang.String">
+	</parameter>
+	<parameter name="invoiceDueDate" class="java.lang.String">
+	</parameter>
+	<parameter name="customerName" class="java.lang.String">
+	</parameter>
+	<parameter name="customerAddress" class="java.lang.String">
+	</parameter>
+	<parameter name="customerCity" class="java.lang.String">
+	</parameter>
+	<parameter name="customerProvince" class="java.lang.String">
+	</parameter>
+	<parameter name="customerPostalCode" class="java.lang.String">
+	</parameter>
+	<parameter name="customerMessage1" class="java.lang.String">
+	</parameter>
+	<parameter name="entityLogo" class="java.io.File">
+	</parameter>
+	<parameter name="customerMessage2" class="java.lang.String">
+	</parameter>
+	<parameter name="notes" class="java.lang.String">
+	</parameter>
+	<parameter name="customerOrganization" class="java.lang.String">
+	</parameter>
+	<parameter name="totalWithTax" class="java.lang.String">
+	</parameter>
+	<parameter name="totalWithoutTax" class="java.lang.String">
+	</parameter>
+	<parameter name="tax" class="java.lang.String">
+	</parameter>
+	<field name="quantity" class="java.math.BigDecimal">
+	</field>
+	<field name="description" class="java.lang.String">
+	</field>
+	<field name="price" class="java.math.BigDecimal">
+	</field>
+	<field name="amount" class="java.math.BigDecimal">
+	</field>
+	<group name="invoice_total">
+		<groupFooter>
+		<band height="84">
+			<rectangle>
+				<reportElement positionType="Float" x="8" y="3" width="540" height="62"/>
+				<graphicElement/>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" x="16" y="6" width="92" height="17"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font reportFont="arial_12_bold" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Total amount:]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="451" y="6" width="89" height="17"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font reportFont="arial_12_bold" fontName="Arial" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{totalWithoutTax}]]></textFieldExpression>
+			</textField>
+
+			<staticText>
+				<reportElement positionType="Float" x="16" y="26" width="92" height="17"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font reportFont="arial_12_bold" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[VAT:]]></text>
+			</staticText>			
+			<textField>
+				<reportElement positionType="Float" x="451" y="26" width="89" height="17"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font reportFont="arial_12_bold" fontName="Arial" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tax}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="16" y="46" width="92" height="17"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font reportFont="arial_12_bold" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Total due:]]></text>
+			</staticText>			
+			<textField>
+				<reportElement positionType="Float" x="451" y="46" width="89" height="17"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font reportFont="arial_12_bold" fontName="Arial" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{totalWithTax}]]></textFieldExpression>
+			</textField>
+			
+
+		</band>
+		</groupFooter>
+	</group>
+	<title>
+		<band height="221">
+		
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="299" y="125" width="256" height="84"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font reportFont="arial_11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{notes}]]></textFieldExpression>
+			</textField>
+		
+			<textField>
+				<reportElement positionType="Float" x="371" y="31" width="150" height="17"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font reportFont="arial_11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{invoiceNumber}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="299" y="31" width="66" height="17"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font reportFont="arial_11"/>
+				</textElement>
+				<text><![CDATA[Invoice]]></text>
+			</staticText>
+			<image>
+				<reportElement positionType="Float" x="15" y="6" width="168" height="53"/>
+				<graphicElement/>
+				<imageExpression class="java.io.File"><![CDATA[$P{entityLogo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement positionType="Float" x="15" y="135" width="73" height="17"/>
+				<textElement>
+					<font reportFont="arial_11"/>
+				</textElement>
+				<text><![CDATA[Invoice To:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="15" y="64" width="270" height="17"/>
+				<textElement>
+					<font reportFont="arial_11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{entityName}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="15" y="83" width="270" height="17"/>
+				<textElement>
+					<font reportFont="arial_11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{entityAddress}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="15" y="103" width="270" height="17"/>
+				<textElement>
+					<font reportFont="arial_11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{entityCity} + ", " + $P{entityProvince} + " " + $P{entityPostalCode}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="14" y="153" width="238" height="17"/>
+				<textElement>
+					<font reportFont="arial_11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{customerOrganization}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="14" y="172" width="238" height="16"/>
+				<textElement>
+					<font reportFont="arial_11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{customerAddress}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="299" y="57" width="66" height="17"/>
+				<textElement>
+					<font reportFont="arial_11"/>
+				</textElement>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="371" y="57" width="150" height="17"/>
+				<textElement>
+					<font reportFont="arial_11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{invoiceDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="299" y="79" width="66" height="17"/>
+				<textElement>
+					<font reportFont="arial_11"/>
+				</textElement>
+				<text><![CDATA[Due Date:]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="371" y="79" width="150" height="17"/>
+				<textElement>
+					<font reportFont="arial_11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{invoiceDueDate}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="299" y="153" width="250" height="56"/>
+				<textElement isStyledText="true">
+					<font reportFont="times_1_italic"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{customerMessage1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="299" y="101" width="66" height="17"/>
+				<textElement>
+					<font reportFont="arial_11"/>
+				</textElement>
+				<text><![CDATA[Total Due:]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement positionType="Float" x="371" y="101" width="150" height="17"/>
+				<textElement>
+					<font reportFont="arial_11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{totalWithTax}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="14" y="191" width="238" height="16"/>
+				<textElement>
+					<font reportFont="arial_11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{customerCity} + ", " + $P{customerProvince} + " " + $P{customerPostalCode}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="34">
+			<rectangle>
+				<reportElement positionType="Float" x="8" y="8" width="540" height="22" backcolor="#c3c3c3"/>
+				<graphicElement/>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" x="16" y="10" width="50" height="17"/>
+				<textElement textAlignment="Center">
+					<font reportFont="detail_title"/>
+				</textElement>
+				<text><![CDATA[Qty.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="64" y="10" width="328" height="17"/>
+				<textElement textAlignment="Center">
+					<font reportFont="detail_title"/>
+				</textElement>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="415" y="10" width="56" height="17"/>
+				<textElement textAlignment="Right">
+					<font reportFont="detail_title"/>
+				</textElement>
+				<text><![CDATA[Price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="482" y="10" width="56" height="17"/>
+				<textElement textAlignment="Right">
+					<font reportFont="detail_title"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="20">
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="16" y="2" width="30" height="17">
+					<printWhenExpression><![CDATA[new Boolean($F{quantity} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(new DecimalFormat("#,##0.##")).format($F{quantity})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="64" y="2" width="328" height="17"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="416" y="2" width="55" height="17">
+					<printWhenExpression><![CDATA[new Boolean($F{price} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(new DecimalFormat("#,##0.00")).format($F{price})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="481" y="2" width="59" height="17">
+					<printWhenExpression><![CDATA[new Boolean($F{amount} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[(new DecimalFormat("#,##0.00")).format($F{amount})]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="34">
+			<textField evaluationTime="Report">
+				<reportElement positionType="Float" x="295" y="1" width="26" height="14"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="124" y="15" width="317" height="17"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="6" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Skyrack Technology Ltd 25 Chapel Street, Hambleton, Selby, North Yorkshire, YO8 9JG
+Registered in England and Wales Company No. 07051067. UK VAT Registration number 985351585
+]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="230" y="1" width="60" height="14"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page " + String.valueOf($V{PAGE_NUMBER}) + " of "]]></textFieldExpression>
+			</textField>
+
+
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="762">
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="12" y="33" width="531" height="36"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true" pdfFontName="Times-Roman"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{customerMessage2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="4" width="526" height="12"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="6" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Payment]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="17" width="526" height="46"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="6" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Payment terms 30 days please.
+Please make cheques payable to "Skyrack Technology Ltd".
+Bank transfers to Santander Account: 42734855 Sort code: 09-01-27 IBAN: GB48ABBY09012742734855
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="57" width="526" height="12"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="6" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Terms and Conditions]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="57" width="526" height="108"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="6" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[1. Minutes plans include 5 DDIs and 5 Channels. Out of bundle charges are made at UK Landlines 1p on/off-peak / UK mobiles 9.9p/7.9p on/off-peak
+2. 0800 plans out of bundle charges are made at 2p/per minute + any additional divert costs
+3. Freephone calls and calls with connect charges are excluded.
+4. Directory enquiry charges are excluded.
+5. 0870s are included in landline minutes.
+6. Mobile plans cover Orange, O2, Orange, 3, T-Mobile, and Vodafone.
+7. Mobile Other destinations are not covered by mobile minutes. 0843, 0844, 0845, 0871, 0872 are included in mobile minutes.
+8. Rest of world (ROW) minutes additional exclusions: Antarctica, Ascension, Cook Islands, Cuba, Diego Garcia, East Timor, Emsat, Falkland Islands, Greenland, Inmarsat, Iridium, Italy Other Mobile, Kiribati, Midway Islands, Nauru, Niue, Norfolk Island, North Korea, Papua New Guinea, Sao Tome & Principe, Soloman Islands, South Georgia and South Sandwich, St Helena, Thuraya, Tokelau, Tonga, Tristan da Cunha, Tuvalu, UK Personal, UK PRS, Vanuatu, Directory Enquiries, Wake Island, Wallace & Futuna Islands
+
+]]></text>
+			</staticText>
+			
+			<textField>
+				<reportElement positionType="Float" x="230" y="725" width="60" height="14"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page " + String.valueOf($V{PAGE_NUMBER}) + " of "]]></textFieldExpression>
+			</textField>
+
+			<textField evaluationTime="Report">
+				<reportElement positionType="Float" x="295" y="725" width="26" height="14"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+
+			<staticText>
+				<reportElement x="124" y="742" width="317" height="17"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="6" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Skyrack Technology Ltd 25 Chapel Street, Hambleton, Selby, North Yorkshire, YO8 9JG
+Registered in England and Wales Company No. 07051067. UK VAT Registration number 985351585
+]]></text>
+			</staticText>			
+			
+		</band>
+	</summary>
+</jasperReport>

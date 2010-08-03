@@ -1,0 +1,135 @@
+package SktItemsRules
+
+#imports
+import com.sapienter.jbilling.server.item.PricingField
+import com.sapienter.jbilling.server.mediation.task.MediationResult
+import com.sapienter.jbilling.server.item.db.ItemDTO
+import com.sapienter.jbilling.server.order.db.OrderLineDTO;
+import com.sapienter.jbilling.server.order.db.OrderLineDAS;
+import com.sapienter.jbilling.server.order.db.OrderDTO;
+import com.sapienter.jbilling.server.item.tasks.SubscriptionResult
+import com.sapienter.jbilling.server.order.OrderLineBL;
+import com.sapienter.jbilling.server.order.OrderBL;
+import com.sapienter.jbilling.server.item.tasks.PricingResult
+import java.util.ArrayList;
+import java.math.BigDecimal;
+import java.util.List;
+import org.apache.log4j.Logger;
+
+# globals
+global org.apache.log4j.Logger LOG;
+
+function List getOrderLines(Integer userId, Integer itemId) {
+    return new OrderLineDAS().findByUserItem(userId, itemId);
+}
+
+rule "UKLL - subscribed"
+salience 100
+when
+    $order : OrderDTO( )
+    $subsc : SubscriptionResult( userId == $order.userId, itemId == 200, subscribed == true )  # Plan
+    $line : OrderLineDTO(itemId == 107 || itemId ==108, $quantity : quantity ) from $order.lines      # Generic UKLL Call
+then
+    $order.getLines().remove($line); # remove generic item
+    OrderLineBL.addItem($order, 104, $quantity, false); # add as included
+    update( $order );
+    LOG.debug("Plan: included UKLL calls: " + $order);
+end
+
+rule "UKMob - subscribed"
+salience 90
+when
+    $order : OrderDTO( )
+    $subsc : SubscriptionResult( userId == $order.userId, itemId == 200, subscribed == true )  # Plan
+    $line : OrderLineDTO(itemId == 107 || itemId ==108, $quantity : quantity ) from $order.lines      # Generic UKLL Call
+then
+    $order.getLines().remove($line); # remove generic item
+    OrderLineBL.addItem($order, 104, $quantity, false); # add as included
+    update( $order );
+    LOG.debug("Plan: included UKMob calls: " + $order);
+end
+
+rule "UKRoW - subscribed"
+salience 80
+when
+    $order : OrderDTO( )
+    $subsc : SubscriptionResult( userId == $order.userId, itemId == 200, subscribed == true )  # Plan
+    $line : OrderLineDTO(itemId == 112, $quantity : quantity ) from $order.lines      # Generic UKLL Call
+then
+    $order.getLines().remove($line); # remove generic item
+    OrderLineBL.addItem($order, 106, $quantity, false); # add as included
+    update( $order );
+    LOG.debug("Plan: included UK RoW calls: " + $order);
+end
+
+
+
+rule "bundle A - included units"
+	dialect "mvel"
+	when
+		$order : OrderDTO( )
+		$line : OrderLineDTO( itemId == 16, $quantity : quantity ) from $order.lines
+		SubscriptionResult( userId == $order.userId, itemId == 12, subscribed == true )
+		$pricing : PricingResult(userId == $order.userId, itemId == 13)
+	then
+		$order.getLines().remove($line);
+		OrderLineBL.addItem($order, 13, new Integer($quantity.intValue()), $pricing.getPrice());update($order);
+end
+
+
+
+
+
+# for this to work from the GUI, have a new rule adding the MediationResult and PricingResult into the memory context.
+# This rule should be in a package that is not part of the mediation plug-in
+rule "long distance generic - not subscribed"
+when
+    $order : OrderDTO( )
+    $subsc : SubscriptionResult( userId == $order.userId, itemId == 2702, subscribed == false )  # Plan
+    $line : OrderLineDTO(itemId == 2900, $quantity : quantity ) from $order.lines      # Generic Long Distance Call
+    $result : MediationResult($subsc.userId == userId)
+    $price : PricingResult(itemId == 2800, pricingFieldsResultId == $result.id) # it's ok if price = null
+then
+    $order.getLines().remove($line); # remove generic item
+    OrderLineBL.addItem($order, 2800, $quantity.intValue(), $price.getPrice()); # add as normal
+    update( $order );
+    LOG.debug("Plan: not included calls: " + $order);
+end
+
+# for this to work from the GUI, have a new rule adding the MediationResult and PricingResult into the memory context.
+# This rule should be in a package that is not part of the mediation plug-in
+rule "long distance include - plan limit"
+when
+    $order : OrderDTO( )
+    $line : OrderLineDTO(itemId == 2801, $quantity : quantity, quantity.intValue > 1000 ) from $order.lines      # Long Distance Call Included
+    $result : MediationResult($order.userId == userId)
+    $price : PricingResult(itemId == 2800, pricingFieldsResultId == $result.id) # it's ok if price = null
+then
+    OrderLineBL.addItem($order, 2800, $quantity.intValue() - 1000, $price.getPrice());
+    $line.setQuantity(new BigDecimal(1000)); # only the first 1000 is included
+    update( $order );
+    LOG.debug("Plan:excess included calls: " + $order);
+end
+
+
+rule 'rateOrder test1'
+	dialect "java"
+when
+	$field : PricingField( name == "add" )
+	$order  : OrderDTO( )
+then
+    for (OrderLineDTO line: $order.getLines()) {
+        line.setPrice(line.getPrice().add(new BigDecimal($field.getDoubleValue())));
+    }
+end
+
+rule 'rateOrder test2'
+	dialect "java"
+when
+	$field : PricingField( name == "subtract" )
+	$order  : OrderDTO( )
+then
+    for (OrderLineDTO line: $order.getLines()) {
+        line.setPrice(line.getPrice().subtract(new BigDecimal( $field.getDoubleValue())));
+    }
+end

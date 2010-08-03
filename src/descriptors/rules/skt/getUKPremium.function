@@ -1,0 +1,10 @@
+function boolean getUKPremium(String numberDialled) {	
+    boolean isUKPremium = false;
+			if (numberDialled.length() <= 12 && numberDialled.length() > 5
+		    		&& numberDialled.substring(0,4).matches("09\\d\\d")
+		    		|| numberDialled.substring(0,4).matches("07[0,6]\\d")) {
+
+		    	isUKPremium = true;
+    	}
+    return isUKPremium;
+}

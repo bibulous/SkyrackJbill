@@ -1,0 +1,13 @@
+when
+    $result : MediationResult(step == MediationResult.STEP_4_RESOLVE_ITEM)
+    $quantity : PricingField( name == "duration", resultId == $result.id)
+    not ( OrderLineDTO( itemId == 2900 ) from $result.lines ) // not needed, since the step is imediatelly changed in this case
+then
+    $result.getLines().add(newLine(2900, new BigDecimal($quantity.getStrValue())));
+    $result.setStep(MediationResult.STEP_5_PRICING);
+    update( $result );
+    LOG.debug("Added line with item 2900 for quantity " + $quantity);
+    
+    PricingResult request = priceRequest(2800, $result); // because it will be converted to this...
+    insert( request );
+    LOG.debug("Price request " + request + " record " + $result.getRecordKey());

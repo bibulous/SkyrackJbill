@@ -1,0 +1,8 @@
+when
+    $result : MediationResult(step == MediationResult.STEP_1_START, done == false )
+    $field : PricingField( name == "duration", resultId == $result.id, value < 0 )
+then
+    $result.setDone(true);
+    $result.addError("ERR-DURATION");
+    retract($result);
+    LOG.debug("Incorrect call duration for record " + $result.getRecordKey() + " record " + $result.getRecordKey());
