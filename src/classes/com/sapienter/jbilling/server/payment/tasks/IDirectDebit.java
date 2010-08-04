@@ -14,7 +14,7 @@ import sun.misc.BASE64Encoder;
 public class IDirectDebit {
 	
     private static final String requestMethod = "POST";
-    private static final String fromCommandLine = "";
+    private static final String fromEclipse = "";
 	private static final String requestHost = "https://secure.ddprocessing.co.uk";
 	private static final String adhocValidatePath = "/api/ddi/adhoc/validate";
 	private static final String adhocCreatePath = "/api/ddi/adhoc/create"; 
