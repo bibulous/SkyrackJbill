@@ -11,7 +11,7 @@ import java.util.Date;
 
 import sun.misc.BASE64Encoder;
 
-public class IDirectDebit {
+public class PaymentIDirectDebitTask {
 	
     private static final String requestMethod = "POST";
     private static final String fromEclipse = "";
