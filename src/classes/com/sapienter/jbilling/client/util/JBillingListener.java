@@ -24,14 +24,21 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import com.sapienter.jbilling.client.process.JobScheduler;
+import com.sapienter.jbilling.server.pluggableTask.OrderPeriodTask;
+import com.sapienter.jbilling.server.pluggableTask.admin.PluggableTaskException;
+import com.sapienter.jbilling.server.pluggableTask.admin.PluggableTaskManager;
+import com.sapienter.jbilling.server.process.task.IScheduledTask;
+import com.sapienter.jbilling.server.user.db.CompanyDAS;
+import com.sapienter.jbilling.server.user.db.CompanyDTO;
+import com.sapienter.jbilling.server.util.*;
 import org.apache.log4j.Logger;
 
 import com.sapienter.jbilling.client.item.CurrencyArrayWrap;
 import com.sapienter.jbilling.client.process.Trigger;
 import com.sapienter.jbilling.common.SessionInternalError;
-import com.sapienter.jbilling.common.Util;
 import com.sapienter.jbilling.server.list.IListSessionBean;
-import com.sapienter.jbilling.server.util.Context;
+import org.quartz.SchedulerException;
 
 /**
  * Listens for servlet context initialization and destruction. Used to
@@ -47,10 +54,39 @@ public class JBillingListener implements ServletContextListener {
         // validate that the java version is correct
         validateJava();
 		
-        // this initializes the cron service, that takes care of 
-        // periodically run the billing and other batch process
+        // initializes scheduled billing batch processes
 		Trigger.Initialize();
-        
+
+        // initializes ScheduledTask plug-ins
+        JobScheduler scheduler = JobScheduler.getInstance();
+
+        LOG.debug("Processing pluggable scheduled tasks...");
+
+        try {
+            for (CompanyDTO entity : new CompanyDAS().findEntities()) {
+                PluggableTaskManager<IScheduledTask> taskManager =
+                        new PluggableTaskManager<IScheduledTask>
+                                (entity.getId(), com.sapienter.jbilling.server.util.Constants.PLUGGABLE_TASK_SCHEDULED);
+
+                LOG.debug(taskManager.getAllTasks().size() + " scheduled tasks for entity " + entity.getId());
+
+                IScheduledTask task = taskManager.getNextClass();
+                while (task != null) {
+                    LOG.debug("scheduled task '" + task.getTaskName() + "', " + task.getClass());
+                    scheduler.getScheduler().scheduleJob(task.getJobDetail(), task.getTrigger());
+                    task = taskManager.getNextClass();
+                }
+            }
+        } catch (PluggableTaskException e) {
+            LOG.error("Exception occurred scheduling pluggable tasks.", e);
+        } catch (SchedulerException e) {
+            LOG.error("Exception occurred scheduling pluggable tasks.", e);
+        }
+
+        // start the scheduler now that all the tasks have been scheduled.
+        LOG.debug("Starting up the scheduler...");
+        scheduler.start();
+
         // initialize the currencies, which are in application scope
         ServletContext context = event.getServletContext();
         LOG.debug("Loadding application currency symbols");
@@ -84,6 +120,6 @@ public class JBillingListener implements ServletContextListener {
 
     public void contextDestroyed(ServletContextEvent event) {
         Context.shutdown(); // shutdown Spring container
-        Trigger.shutdown(); // shutdown Quartz scheduler
+        JobScheduler.getInstance().shutdown(); // shutdown Quartz scheduler
     }
 }
