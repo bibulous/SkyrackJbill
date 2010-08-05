@@ -54,7 +54,7 @@ import com.sapienter.jbilling.server.util.Context;
 public class Trigger implements Job {
 
     private static final Logger LOG = Logger.getLogger(Trigger.class);
-    private static Scheduler sched = null;
+    //private static Scheduler sched = null;
 
     /**
      * Initialize tool Trigger. Load properties from jbilling.properties and set up Quartz job/trigger
@@ -134,8 +134,8 @@ public class Trigger implements Job {
 
         // startup trigger
         try {
-            SchedulerFactory schedFact = new org.quartz.impl.StdSchedulerFactory();
-            sched = schedFact.getScheduler();
+            //SchedulerFactory schedFact = new org.quartz.impl.StdSchedulerFactory();
+            //sched = schedFact.getScheduler();
             JobDetail jbillingJob = new JobDetail("jbilling", Scheduler.DEFAULT_GROUP, Trigger.class);
 
             SimpleTrigger trigger = new SimpleTrigger("jbillingTrigger",
@@ -147,22 +147,27 @@ public class Trigger implements Job {
 
             trigger.setMisfireInstruction(SimpleTrigger.MISFIRE_INSTRUCTION_RESCHEDULE_NEXT_WITH_EXISTING_COUNT);
 
-            sched.scheduleJob(jbillingJob, trigger);
-
-            sched.start();
+            /*2.1.0 version of triggering and scheduling jobs
+             * Using job scheduler SHOULD leave 2.1.0 tasks as is BUT fire type 22 plugins?
+             */
+            //sched.scheduleJob(jbillingJob, trigger);
+            //sched.start();
+            
+            JobScheduler.getInstance().getScheduler().scheduleJob(jbillingJob, trigger);
+            
         } catch (SchedulerException e) {
             LOG.debug(e);
         }
     }
 
-    // called at shutdown
-    public static void shutdown() {
+    // called at shutdown.  NOT anymore.  This is in JobScheduler
+    /*public static void shutdown() {
         try {
             sched.shutdown();
         } catch (SchedulerException e) {
             LOG.debug(e);
         }
-    }
+    }*/
 
     public static void main(String[] args) {
 
