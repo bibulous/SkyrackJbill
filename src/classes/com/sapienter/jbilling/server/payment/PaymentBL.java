@@ -589,7 +589,7 @@ public class PaymentBL extends ResultList implements PaymentSQL {
     }
 
     /**
-     * Does the actual work of deleteing the payment
+     * Does the actual work of deleting the payment
      * 
      * @throws SessionInternalError
      */
@@ -878,5 +878,9 @@ public class PaymentBL extends ResultList implements PaymentSQL {
         dto.setInvoiceId(map.getInvoiceEntity().getId());
         dto.setCurrencyId(map.getPayment().getCurrency().getId());
         return dto;
+    }
+    
+    public void save(PaymentDTO paymentDto) {
+    	payment = paymentDas.save(paymentDto);
     }
 }

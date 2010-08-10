@@ -21,7 +21,11 @@
 package com.sapienter.jbilling.server.payment;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
@@ -144,5 +148,25 @@ public class PaymentAuthorizationBL {
             throw new SessionInternalError("linking authorization to user payment",
                     PaymentAuthorizationBL.class, e);
         } 
+    }
+    
+    public List<PaymentAuthorizationDTO> 
+    	findByDateAndCode(String approvalCode, Date createDatetime, Integer entityId) {
+        // This will return a list of PaymentAuthorizationDTOs. 
+        List<PaymentAuthorizationDTO> paDtosList = null;
+        Collection paymentAuthorizations = 
+        	paymentAuthorizationDas.findByDateAndCode(approvalCode, createDatetime, entityId);
+
+        if (paymentAuthorizations != null) {
+        	paDtosList = new ArrayList<PaymentAuthorizationDTO>(paymentAuthorizations); 
+        } else {
+        	paDtosList = new ArrayList<PaymentAuthorizationDTO>(); // empty
+        }
+
+        return paDtosList;
+    }
+    
+    public void save(PaymentAuthorizationDTO paDto) {
+    	paymentAuthorization = paymentAuthorizationDas.save(paDto);
     }
 }
