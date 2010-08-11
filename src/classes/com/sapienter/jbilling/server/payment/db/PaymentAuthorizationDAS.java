@@ -21,12 +21,20 @@
 package com.sapienter.jbilling.server.payment.db;
 
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Date;
 
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
+
+import com.sapienter.jbilling.common.Constants;
+import com.sapienter.jbilling.server.user.db.UserDAS;
+import com.sapienter.jbilling.server.user.db.UserDTO;
 import com.sapienter.jbilling.server.util.db.AbstractDAS;
 
 /**
  * 
- * @author abimael
+ * @author abimael, Si Bury
  *
  */
 public class PaymentAuthorizationDAS extends AbstractDAS<PaymentAuthorizationDTO> {
@@ -41,4 +49,26 @@ public class PaymentAuthorizationDAS extends AbstractDAS<PaymentAuthorizationDTO
 		return save(auto);
 	}
 
+	/*
+	 * Method created for checking if a Micropayments was reversed in the last 6 weeks.
+	 * Allowing date and code to be passed in makes it more generic and useful.
+	 */
+	public Collection<PaymentAuthorizationDTO> 
+		findByDateAndCode(String approvalCode, Date createDatetime, Integer entityId) {
+		/*TODO should add some form of restriction maybe for entities and/or users?
+		 * 
+		 */
+		Criteria criteria = getSession().createCriteria(PaymentAuthorizationDTO.class);
+		criteria.add(Restrictions.eq("approvalCode", approvalCode));
+		criteria.add(Restrictions.ge("createDate", createDatetime));
+		
+		return criteria.list();
+	}
+	
+	/*
+	 * Method to save object to dB
+	 */
+	public PaymentAuthorizationDTO save(PaymentAuthorizationDTO paDto) {
+		return save(paDto);
+	}
 }

@@ -119,7 +119,7 @@ public class PaymentMicropaymentTask extends PaymentTaskWithTimeout implements
 	private static final String RESPONSE_CODE_INIT = "INIT";
 	//Existing session has been newly created and is waiting for confirmation
 	private static final String RESPONSE_CODE_REINIT = "REINIT";
-	//Payment has been confirmed; the payment amount will be debited in the bext few days.
+	//Payment has been confirmed; the payment amount will be debited in the next few days.
 	private static final String RESPONSE_CODE_APPROVED = "APPROVED";
 	//The amount has been successfully debited. 
 	private static final String RESPONSE_CODE_CHARGED = "CHARGED";
@@ -153,16 +153,15 @@ public class PaymentMicropaymentTask extends PaymentTaskWithTimeout implements
 	private static final String RESPONSE_CODE_DECLINED = "D"; //Declined
 	private static final String RESPONSE_CODE_ERROR = "E"; //Exception
 */
-	/*
-	 * default fields for testing.
-	 */
+	
+	//default fields for testing.
 	String payloadData = "";
 	String rootUrl = PARAMETER_WEB_URL+"?";
 	private String project = "projectCode";
 	private String currency = "EUR";
-	private String title = "myItem";
-	private String payText = "bought_my_item";
-	private String ip = "1.2.3.4";
+	private String title = "Fax_usage";
+	private String payText = "Voxtelo_Jbilling_Test_Buchung";
+	private String ip = "tenios.de";
 	private Logger log;
 	private int amount = 0;
 
@@ -236,8 +235,6 @@ public class PaymentMicropaymentTask extends PaymentTaskWithTimeout implements
 			}
 				
 			//This calls gateway and sets response parameters
-			//PaymentAuthorizationDTO response = processPGRequest(data);
-			//TODO update sessionGet method
 			PaymentAuthorizationDTO response = sessionGet(paymentInfo, method, preAuth, paDto);
 			paymentInfo.setAuthorization(response);
 
@@ -755,7 +752,6 @@ EFT
 	private int sessionApprove(PaymentDTOEx paymentInfo, int method, boolean preAuth,
 			PaymentAuthorizationDTO paDto) {
 		int responseCode = 0;
-		// TODO Auto-generated method stub
 		// construct payloadData.
 		payloadData = "";
 		payloadData+="action=sessionApprove";

@@ -947,6 +947,10 @@ public class InvoiceBL extends ResultList implements Serializable, InvoiceSQL {
         }
     }
 
+	public void save(InvoiceDTO invoiceDto) {
+		invoice = invoiceDas.save(invoiceDto);		
+	}
+
     /*
     public static InvoiceWS getWS(InvoiceDTO dto) {
         InvoiceWS ret = new InvoiceWS();
