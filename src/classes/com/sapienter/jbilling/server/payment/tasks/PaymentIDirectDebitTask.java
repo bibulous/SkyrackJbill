@@ -8,172 +8,46 @@ import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.math.BigDecimal;
+import java.util.HashMap;
+
+import org.apache.log4j.Logger;
+
+import com.sapienter.jbilling.server.payment.PaymentAuthorizationBL;
+import com.sapienter.jbilling.server.payment.PaymentDTOEx;
+import com.sapienter.jbilling.server.payment.db.PaymentAuthorizationDTO;
+import com.sapienter.jbilling.server.payment.db.PaymentResultDAS;
+import com.sapienter.jbilling.server.user.ContactWS;
+import com.sapienter.jbilling.server.user.UserWS;
+import com.sapienter.jbilling.server.user.UserDTOEx;
+import com.sapienter.jbilling.server.util.Constants;
+import com.sapienter.jbilling.server.pluggableTask.PaymentTask;
+import com.sapienter.jbilling.server.pluggableTask.PaymentTaskWithTimeout;
+import com.sapienter.jbilling.server.pluggableTask.admin.PluggableTaskException;
 
 import sun.misc.BASE64Encoder;
 
-public class PaymentIDirectDebitTask {
+
+public class PaymentIDirectDebitTask extends PaymentTaskWithTimeout implements PaymentTask {
 	
-    private static final String requestMethod = "POST";
-    private static final String fromEclipse = "";
-	private static final String requestHost = "https://secure.ddprocessing.co.uk";
-	private static final String adhocValidatePath = "/api/ddi/adhoc/validate";
-	private static final String adhocCreatePath = "/api/ddi/adhoc/create"; 
+    private static final Logger LOG = Logger.getLogger(PaymentIDirectDebitTask.class);
+       
+	private static final String REQUEST_HOST = "https://secure.ddprocessing.co.uk";
+	private static final String ADHOC_VALIDATE_PATH = "/api/ddi/adhoc/validate";
+	private static final String ADHOC_CREATE_PATH = "/api/ddi/adhoc/create"; 
 	
 	//These need to set on create
 	//private String testReferenceNumber = "226730";
-
+	private static final int PAYMENT_METHOD_ACH = 2;
+	private static final String CCF_REFERENCE_NO = "1"; //The CCF id (customer_field_type) is set to 1,	
+	private static final String PROCESSOR = "PaymentIDirectDebitTask";
+	public static int CONNECTION_TIMEOUT = 60000;
 	
     //These should be set as PaymentTaskParams
-	private static final String username = "apitestno31";
-	private static final String password = "APINo3196";	    
+	public static String PARAM_IDD_USERNAME = "idd_username";
+	public static String PARAM_IDD_PASSWORD = "idd_password";	
+ // Needs to be a String as GUI can only pass Strings! 	
 	
-	//Test
-	public static void main (String[]args){
-				
-		//Create the direct debit (date needs to be set 13 days in advance)
-		//validate();
-		//String referenceNo = create();
-		
-		//Charge (date needs to be set 5 days in advance
-		//update(String referenceNo, int amountInPence, String debitDate);
-
-		
-		// The mandatory request parameters
-
-		//$payer_ref = 'PHP-12345';
-		/*
-		HttpURLConnection connection = null;		
-		
-		try{
-			//Variable Validate params
-			StringBuffer sbParamsVariableValidate = new StringBuffer(120);
-			sbParamsVariableValidate.append("variable_ddi[first_name]="+URLEncoder.encode(firstname,"UTF-8"));
-			sbParamsVariableValidate.append("&variable_ddi[last_name]="+URLEncoder.encode(lastname,"UTF-8"));
-			sbParamsVariableValidate.append("&variable_ddi[address_1]="+URLEncoder.encode(address1,"UTF-8"));
-			sbParamsVariableValidate.append("&variable_ddi[town]="+URLEncoder.encode(town,"UTF-8"));
-			sbParamsVariableValidate.append("&variable_ddi[postcode]="+URLEncoder.encode(postcode,"UTF-8"));
-			sbParamsVariableValidate.append("&variable_ddi[country]="+URLEncoder.encode(country,"UTF-8"));
-			sbParamsVariableValidate.append("&variable_ddi[account_name]="+URLEncoder.encode(accountName,"UTF-8"));
-			sbParamsVariableValidate.append("&variable_ddi[sort_code]="+URLEncoder.encode(sortCode,"UTF-8"));
-			sbParamsVariableValidate.append("&variable_ddi[account_number]="+accountNumber);
-			sbParamsVariableValidate.append("&variable_ddi[frequency_type]="+URLEncoder.encode(frequencyType,"UTF-8"));
-			sbParamsVariableValidate.append("&variable_ddi[service_user][pslid]="+URLEncoder.encode(pslId,"UTF-8"));
-			String variableValidateParams = sbParamsVariableValidate.toString();
-			
-			//Adhoc Validate params
-			StringBuffer sbParamsAdhocValidateCreate = new StringBuffer(120);
-			sbParamsAdhocValidateCreate.append("adhoc_ddi[first_name]="+URLEncoder.encode(firstname,"UTF-8"));
-			sbParamsAdhocValidateCreate.append("&adhoc_ddi[last_name]="+URLEncoder.encode(lastname,"UTF-8"));
-			sbParamsAdhocValidateCreate.append("&adhoc_ddi[address_1]="+URLEncoder.encode(address1,"UTF-8"));
-			sbParamsAdhocValidateCreate.append("&adhoc_ddi[town]="+URLEncoder.encode(town,"UTF-8"));
-			sbParamsAdhocValidateCreate.append("&adhoc_ddi[postcode]="+URLEncoder.encode(postcode,"UTF-8"));
-			sbParamsAdhocValidateCreate.append("&adhoc_ddi[country]="+URLEncoder.encode(country,"UTF-8"));
-			sbParamsAdhocValidateCreate.append("&adhoc_ddi[account_name]="+URLEncoder.encode(accountName,"UTF-8"));
-			sbParamsAdhocValidateCreate.append("&adhoc_ddi[sort_code]="+URLEncoder.encode(sortCode,"UTF-8"));
-			sbParamsAdhocValidateCreate.append("&adhoc_ddi[account_number]="+accountNumber);
-			sbParamsAdhocValidateCreate.append("&adhoc_ddi[service_user][pslid]="+URLEncoder.encode(pslId,"UTF-8"));			
-			//Optional param
-			sbParamsAdhocValidateCreate.append("&adhoc_ddi[email_address]="+URLEncoder.encode(emailAddress,"UTF-8"));
-			/*OPTIONAL Params: adhoc_ddi[payer_reference], adhoc_ddi[start_date]Format: YYYY-MM-DD adhoc_ddi[end_date],
-			adhoc_ddi[title],adhoc_ddi[address_2],adhoc_ddi[address_3],adhoc_ddi[county]
-			adhoc_ddi[email_address],adhoc_ddi[promotion],adhoc_ddi[reference_number]*/
-			//Initial Set of Debits Dont need
-			//sbParamsAdhocValidateCreate.append("&adhoc_ddi[debits][debit][][amount]="+debitAmountInPence);
-			//sbParamsAdhocValidateCreate.append("&adhoc_ddi[debits][debit][][date]="+URLEncoder.encode(debitDate,"UTF-8"));
-		/*
-			String adhocValidateCreateParams = sbParamsAdhocValidateCreate.toString();
-			
-			//Update
-			StringBuffer sbParamsAdhocUpdate = new StringBuffer(120);
-			sbParamsAdhocUpdate.append("&adhoc_ddi[debits][debit][][amount]="+debitAmountInPence);
-			sbParamsAdhocUpdate.append("&adhoc_ddi[debits][debit][][date]="+URLEncoder.encode(debitDate,"UTF-8"));			
-			String adhocUpdateParams = sbParamsAdhocUpdate.toString();			
-			
-						
-			
-		    URL url = new URL(requestHost+adhocValidatePath);
-		    connection = (HttpURLConnection)url.openConnection();			
-			
-		    
-			// write auth header for username and password
-			BASE64Encoder encoder = new BASE64Encoder();
-			String encodedCredential = encoder.encode( (username + ":" + password).getBytes() );
-			connection.setRequestProperty("Authorization", "Basic " + encodedCredential);			
-			//connection.se
-
-			
-		    // Send data - write inputStream if we're doing POST or PUT ???
-			connection.setDoOutput(true);				
-			connection.setRequestMethod("POST");				
-		    OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream());
-		    System.out.println("RequestMethod:"+requestMethod+" to iDirectDebit URL:"+url.toString()+" output stream params:"+adhocUpdateParams);
-		    wr.write(adhocValidateCreateParams);
-		    wr.flush();
-			
-			
-			//Make call
-			long time = System.currentTimeMillis();			
-			connection.connect();		
-			int responseCode = connection.getResponseCode();		
-			String responseMessage = connection.getResponseMessage(); 
-			time = System.currentTimeMillis() - time;		
-			System.out.println("Response from iDirectDebit responseCode:"+responseCode+" responseMessage:"+responseMessage+" time:"+time+"ms");//That'll be POST!
-			
-			//Extract response
-			byte buffer[] = new byte[8192];
-			int read = 0;	
-			       			
-			//Success - InputStream
-			if (responseCode==200){
-				InputStream responseBodyStream = connection.getInputStream();
-				StringBuffer responseBody = new StringBuffer();
-				while ((read = responseBodyStream.read(buffer)) != -1)
-				{
-					responseBody.append(new String(buffer, 0, read));
-				}
-		        System.out.print("Response(sucess) from iDirectDebit:"+responseBody);
-		        System.out.flush();            
-			}
-			else{
-				InputStream errorResponseBodyStream = connection.getErrorStream();
-				StringBuffer errorResponseBody = new StringBuffer();
-				while ((read = errorResponseBodyStream.read(buffer)) != -1)
-				{
-					errorResponseBody.append(new String(buffer, 0, read));
-				}
-		        System.out.print("Response(error) from iDirectDebit:"+ errorResponseBody); 			
-			}
-			
-			// Print Headers
-			// the 0th header has a null key, and the value is the response line ("HTTP/1.1 200 OK" or whatever)
-	        String header = null;
-	        String headerValue = null;
-	        StringBuffer sbHeaderValues = new StringBuffer(120);
-	        int index = 0;
-	        while ((headerValue = connection.getHeaderField(index)) != null){
-	        	header = connection.getHeaderFieldKey(index);
-			                
-	        	if (header == null){
-	        		sbHeaderValues.append("["+headerValue+"] ");
-	        	}
-	        	else{
-	        		sbHeaderValues.append("["+header+": "+headerValue+"] ");
-	        	}
-	        	index++;
-	        }
-	        System.out.println("Reponse Headers from iDirectDebit:"+sbHeaderValues.toString());	        
-		}
-		catch(Exception e){
-			System.out.println("Exception e:"+e.getMessage());
-		}
-		finally{
-			if (connection!=null){
-				connection.disconnect();// Indicates that other requests to the server are unlikely in the near future.
-			}
-		}
-		*/
-	}
-
 	/**
 	* Validates a set of inputs. Should be used before creating a customer direct debit instruction
 	* @param firstname
@@ -198,7 +72,7 @@ public class PaymentIDirectDebitTask {
 	public boolean validate(String firstname, String lastname, String address1, String town, String postcode,
 						 	String country, String accountName, String sortCode, int accountNumber, String emailAddress){
 		
-        System.out.println("iDirectDebit validate called firstname:"+firstname+" lastname:"+lastname+" address1:"+address1+
+        LOG.info("iDirectDebit validate called firstname:"+firstname+" lastname:"+lastname+" address1:"+address1+
         		" town:"+town+" postcode:"+postcode+" country:"+country+" accountName:"+accountName+" sortCode:"+sortCode+
         		" accountNumber:"+accountNumber+" emailAddress:"+emailAddress);
 		
@@ -218,7 +92,7 @@ public class PaymentIDirectDebitTask {
 			sbParamsAdhocValidate.append("&adhoc_ddi[account_name]="+URLEncoder.encode(accountName,"UTF-8"));
 			sbParamsAdhocValidate.append("&adhoc_ddi[sort_code]="+URLEncoder.encode(sortCode,"UTF-8"));
 			sbParamsAdhocValidate.append("&adhoc_ddi[account_number]="+accountNumber);
-			sbParamsAdhocValidate.append("&adhoc_ddi[service_user][pslid]="+URLEncoder.encode(username,"UTF-8"));			
+			sbParamsAdhocValidate.append("&adhoc_ddi[service_user][pslid]="+URLEncoder.encode(PARAM_IDD_USERNAME,"UTF-8"));			
 			//Optional param
 			sbParamsAdhocValidate.append("&adhoc_ddi[email_address]="+URLEncoder.encode(emailAddress,"UTF-8"));
 			/*OPTIONAL Params: adhoc_ddi[payer_reference], adhoc_ddi[start_date]Format: YYYY-MM-DD adhoc_ddi[end_date],
@@ -228,16 +102,17 @@ public class PaymentIDirectDebitTask {
 			String adhocValidateParams = sbParamsAdhocValidate.toString();
 				
 			//Make call
-			String responseBody = callIDirectDebit(adhocValidatePath, adhocValidateParams);
+			HashMap<String,String> responseMap = callIDirectDebit(ADHOC_VALIDATE_PATH, adhocValidateParams);
 			
 			//Extract referenceNumber from body
+			String responseBody = responseMap.get("responseBody");
 			String searchString = "<successful>";	
 			if (responseBody!=null && responseBody.contains(searchString) ){
 				isValidated=true;				
 			}					
 		}
 		catch(Exception e){
-			System.out.println("Exception thrown:"+e.getMessage());
+			LOG.error("iDirectDebit validate Exception thrown:"+e.getMessage());
 		}
 
 		return isValidated;				
@@ -284,7 +159,7 @@ public class PaymentIDirectDebitTask {
 	public String create(String firstname, String lastname, String address1, String town, String postcode,
 						 String country, String accountName, String sortCode, int accountNumber, String emailAddress){
 		
-        System.out.println("iDirectDebit create called firstname:"+firstname+" lastname:"+lastname+" address1:"+address1+
+        LOG.info("iDirectDebit create called firstname:"+firstname+" lastname:"+lastname+" address1:"+address1+
         		" town:"+town+" postcode:"+postcode+" country:"+country+" accountName:"+accountName+" sortCode:"+sortCode+
         		" accountNumber:"+accountNumber+" emailAddress:"+emailAddress);
 		
@@ -304,7 +179,7 @@ public class PaymentIDirectDebitTask {
 			sbParamsAdhocCreate.append("&adhoc_ddi[account_name]="+URLEncoder.encode(accountName,"UTF-8"));
 			sbParamsAdhocCreate.append("&adhoc_ddi[sort_code]="+URLEncoder.encode(sortCode,"UTF-8"));
 			sbParamsAdhocCreate.append("&adhoc_ddi[account_number]="+accountNumber);
-			sbParamsAdhocCreate.append("&adhoc_ddi[service_user][pslid]="+URLEncoder.encode(username,"UTF-8"));			
+			sbParamsAdhocCreate.append("&adhoc_ddi[service_user][pslid]="+URLEncoder.encode(PARAM_IDD_USERNAME,"UTF-8"));			
 			//Optional param
 			sbParamsAdhocCreate.append("&adhoc_ddi[email_address]="+URLEncoder.encode(emailAddress,"UTF-8"));
 			/*OPTIONAL Params: adhoc_ddi[payer_reference], adhoc_ddi[start_date]Format: YYYY-MM-DD adhoc_ddi[end_date],
@@ -316,9 +191,10 @@ public class PaymentIDirectDebitTask {
 			String adhocCreateParams = sbParamsAdhocCreate.toString();
 				
 			//Make call
-			String responseBody = callIDirectDebit(adhocCreatePath, adhocCreateParams);
+			HashMap<String,String> hashMap = callIDirectDebit(ADHOC_CREATE_PATH, adhocCreateParams);
 			
 			//Extract referenceNumber from body
+			String responseBody = hashMap.get("responseBody");
 			String searchString = "<reference_number>";
 			String searchStringEnd = "</reference_number>";			
 			if (responseBody!=null && responseBody.contains(searchString) ){
@@ -329,7 +205,7 @@ public class PaymentIDirectDebitTask {
 			}					
 		}
 		catch(Exception e){
-			System.out.println("Exception thrown:"+e.getMessage());
+			LOG.info("iDirectDebit create Exception thrown:"+e.getMessage());
 		}
 
 		return referenceNumber;				
@@ -341,7 +217,7 @@ public class PaymentIDirectDebitTask {
 	* @param String refereceNumber - Uniquely identifies the customer and account. 
 	* @param String amountInPence - Amount to be billed
 	* @param String debitDate - Must be at least 5 days in the future. Format YYYY-MM-DD e.g.2010-08-12
-	* @return boolean willBeBilled
+	* @return String dataReturned
 	* 
 	* ResponseUpdate will be like
 		Response(sucess) from iDirectDebit:<?xml version="1.0" encoding="UTF-8"?>
@@ -370,38 +246,59 @@ public class PaymentIDirectDebitTask {
   			</service_user>
 		</adhoc_ddi>
 	*/
-	public boolean update(String referenceNumber, int amountInPence, String debitDate){
+	public PaymentAuthorizationDTO update(String referenceNumber, int amountInPence, String debitDate) throws Exception {
 		
-        System.out.println("iDirectDebit update called referenceNumber:"+referenceNumber+" amountInPence:"+amountInPence+" debitDate:"+debitDate);
-		
-		//Set the return
-		boolean willBeBilled = false;		
-		
+        LOG.info("iDirectDebit update called referenceNumber:"+referenceNumber+" amountInPence:"+amountInPence+" debitDate:"+debitDate);
+				
 		//Set URL path
 		String adhocUpdatePath = "/api/ddi/adhoc/"+referenceNumber+"/update";
+				
+		//Set the params
+		StringBuffer sbParamsAdhocUpdate = new StringBuffer(120);
+		sbParamsAdhocUpdate.append("&adhoc_ddi[debits][debit][][amount]="+amountInPence);
+		sbParamsAdhocUpdate.append("&adhoc_ddi[debits][debit][][date]="+URLEncoder.encode(debitDate,"UTF-8"));			
+		String adhocUpdateParams = sbParamsAdhocUpdate.toString();		
 		
-		try{
+		//Make call
+		HashMap<String,String> responseMap = callIDirectDebit(adhocUpdatePath, adhocUpdateParams);
+			
+		//Initialise response for JBilling
+		PaymentAuthorizationDTO paymentAuthDTO = new PaymentAuthorizationDTO();			
+			
+		//Extract values and insert into return
+		String responseCode = responseMap.get("responseCode");
+		String responseMessage = responseMap.get("responseMessage");
+		String responseBody = responseMap.get("responseBody");			
+        LOG.debug("iDirectDebit update returned responseCode:"+responseCode+" responseMessage:"+responseMessage+" responseBody:"+responseBody);
 		
-			//Set the params
-			StringBuffer sbParamsAdhocUpdate = new StringBuffer(120);
-			sbParamsAdhocUpdate.append("&adhoc_ddi[debits][debit][][amount]="+amountInPence);
-			sbParamsAdhocUpdate.append("&adhoc_ddi[debits][debit][][date]="+URLEncoder.encode(debitDate,"UTF-8"));			
-			String adhocUpdateParams = sbParamsAdhocUpdate.toString();		
+		//Set paymentAuthDTO
+		paymentAuthDTO.setCode1(responseCode);		
+		if (responseMessage!=null){
+			paymentAuthDTO.setCode2(responseMessage);
+		}		
+		paymentAuthDTO.setProcessor(PROCESSOR);
+		Date now = new Date();
+		paymentAuthDTO.setCreateDate(now);
 		
-			//Make call
-			String responseBody = callIDirectDebit(adhocUpdatePath, adhocUpdateParams);
-			if (responseBody!=null){
-				willBeBilled = true;
-			}
-			else{
-				willBeBilled = false;
-			}		
-		}
-		catch(Exception e){
-			System.out.println("Exception thrown:"+e.getMessage());
+		//Error code
+		String error = "";
+		if (!("200".equals(responseCode))){
+			//Extract error from body
+			String searchString = "<error>";
+			String searchStringEnd = "</error>";			
+			if (responseBody!=null && responseBody.contains(searchString) ){
+				
+				int beginIndex = responseBody.indexOf(searchString);
+				int endIndex = responseBody.indexOf(searchStringEnd);
+				error = responseBody.substring(beginIndex+searchString.length(), endIndex);
+				
+				paymentAuthDTO.setResponseMessage(error);
+			}	
 		}
 
-		return willBeBilled;
+        LOG.debug("iDirectDebit update paymentAuthDTO set with code1:"+responseCode+" code2:"+responseMessage+" processor:"+PROCESSOR+" createdDate:"+now.toString()+" responseMessage:"+error);		
+		
+		return paymentAuthDTO;
 				
 	}
 
@@ -409,39 +306,41 @@ public class PaymentIDirectDebitTask {
 	* This makes a call to iDirectDebit
 	* @param String urlSuffix - The url which determines whether its a validate, create or update 
 	* @param String params - The parameters to be passed in
-	* @return String responseBody (on success, otherwise null)
+	* @return HashMap responseCode (e.g. "200","404"), responseMessage("OK") and responseBody
 	*/	
-	private String callIDirectDebit(String urlSuffix, String params){
+	private HashMap<String,String> callIDirectDebit(String urlSuffix, String params){
 		
 		HttpURLConnection connection = null;	
 		String responseBody = null;
-		
+		int responseCode = 0;
+		HashMap<String,String> responseMap  = new HashMap<String,String>();
+				
 		try{
 		
-			URL url = new URL(requestHost+urlSuffix);
+			URL url = new URL(REQUEST_HOST+urlSuffix);
 			connection = (HttpURLConnection)url.openConnection();			
 			    
 			// write auth header for username and password
 			BASE64Encoder encoder = new BASE64Encoder();
-			String encodedCredential = encoder.encode( (username + ":" + password).getBytes() );
+			String encodedCredential = encoder.encode( (PARAM_IDD_USERNAME + ":" + PARAM_IDD_PASSWORD).getBytes() );
 			connection.setRequestProperty("Authorization", "Basic " + encodedCredential);			
 		
 			// Send data - write inputStream
 			connection.setDoOutput(true);				
 			connection.setRequestMethod("POST");
-			connection.setReadTimeout(1000*60*60); //Give a minute
+			connection.setReadTimeout(CONNECTION_TIMEOUT); //Give a minute
 			OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream());
-			System.out.println("RequestMethod:"+requestMethod+" to iDirectDebit URL:"+url.toString()+" Outputstream params:"+params);
+			LOG.info("RequestMethod:POST to iDirectDebit URL:"+url.toString()+" Outputstream params:"+params);
 			wr.write(params);
 			wr.flush();
 				
 			//Make call
 			long time = System.currentTimeMillis();			
 			connection.connect();		
-			int responseCode = connection.getResponseCode();		
+			responseCode = connection.getResponseCode();
 			String responseMessage = connection.getResponseMessage(); 
 			time = System.currentTimeMillis() - time;		
-			System.out.println("Response from iDirectDebit responseCode:"+responseCode+" responseMessage:"+responseMessage+" time:"+time+"ms");//That'll be POST!
+			LOG.info("Response from iDirectDebit responseCode:"+responseCode+" responseMessage:"+responseMessage+" time:"+time+"ms");//That'll be POST!
 		
 			//Extract response
 			byte buffer[] = new byte[8192];
@@ -454,16 +353,17 @@ public class PaymentIDirectDebitTask {
 				while ((read = responseBodyStream.read(buffer)) != -1){
 					sbResponseBody.append(new String(buffer, 0, read));
 				}
-				System.out.print("Response(sucess) from iDirectDebit:"+sbResponseBody.toString());
+				LOG.debug("Response(sucess) from iDirectDebit:"+sbResponseBody.toString());
 				responseBody = sbResponseBody.toString();
 			}
 			else{
 				InputStream errorResponseBodyStream = connection.getErrorStream();
-				StringBuffer errorResponseBody = new StringBuffer();
+				StringBuffer sbResponseBody = new StringBuffer();
 				while ((read = errorResponseBodyStream.read(buffer)) != -1){
-					errorResponseBody.append(new String(buffer, 0, read));
+					sbResponseBody.append(new String(buffer, 0, read));
 				}
-				System.out.print("Response(error) from iDirectDebit:"+ errorResponseBody); 			
+				LOG.error("Response(error) from iDirectDebit:"+ sbResponseBody);
+				responseBody = sbResponseBody.toString();				
 			}
 		
 			// Print Headers
@@ -483,13 +383,18 @@ public class PaymentIDirectDebitTask {
 				}
 				index++;
 			}
-			System.out.println("Reponse Headers from iDirectDebit:"+sbHeaderValues.toString());
+			LOG.debug("Reponse Headers from iDirectDebit:"+sbHeaderValues.toString());
 			
-			return responseBody;
+			//Set return
+			responseMap.put("responseCode", ""+responseCode);
+			responseMap.put("responseMessage", responseMessage);
+			responseMap.put("responseBody", responseBody);			
+			
+			return responseMap;
 		}
 		catch(Exception e){
-			System.out.println("Exception e:"+e.getMessage());
-			return responseBody;
+			LOG.error("callIDirectDebit Exception e:"+e.getMessage());
+			return null;
 		}
 		finally{
 			if (connection!=null){
@@ -497,4 +402,107 @@ public class PaymentIDirectDebitTask {
 			}
 		}		
 	}
+
+	@Override
+	public boolean confirmPreAuth(PaymentAuthorizationDTO arg0,
+			PaymentDTOEx arg1) throws PluggableTaskException {
+		// Not supported
+		return false;
+	}
+
+	@Override
+	public void failure(Integer arg0, Integer arg1) {
+		// Not supported
+		
+	}
+
+	@Override
+	public boolean preAuth(PaymentDTOEx arg0) throws PluggableTaskException {
+		// Not supported
+		return false;
+	}
+
+	@Override
+	/*
+	 * Method gets params and calls IDirectDebit update.
+	 * The customer ach must have been set up with a stored reference number	 * 
+	 */
+	public boolean process(PaymentDTOEx paymentDTOEx) throws PluggableTaskException {
+	
+		try{
+			// VALIDATION		
+			//Make sure we've got payment details
+			if (paymentDTOEx.getAch()==null){
+				LOG.error("process - paymentDTOEx.getAch is null");
+				throw new PluggableTaskException();
+			}
+			
+			//Make sure all the required params have been passed in
+			validateParameters();
+			
+			// GET DETAILS referenceNumber, amountInPence and debitDate
+			// DebitDate - We assume here that the account has been created at least 12 days ago
+			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");		       
+			String debitDate = df.format(System.currentTimeMillis()); //13 days after request		
+			
+			// amountInPence - in DB its held without any decimal places
+			BigDecimal amount = paymentDTOEx.getAmount();
+			BigDecimal amountPence = amount.movePointRight(amount.scale());
+			int amountInPence = amountPence.intValue();
+			
+			// referenceNumber - this is stored in customer contact field
+			UserDTOEx userDTOEx = (UserDTOEx) paymentDTOEx.getBaseUser();		
+			UserWS userWS = new UserWS(userDTOEx);
+			ContactWS contactWS = userWS.getContact();
+			String fieldNames[] = contactWS.getFieldNames();
+			String fieldValues[] = contactWS.getFieldValues();
+			String referenceNumber = null;
+			for (int i=0; i<fieldNames.length; i++){
+				LOG.debug("fieldNames["+i+"]:"+fieldNames[i]);
+				LOG.debug("fieldValues["+i+"]:"+fieldValues[i]);	
+				if ("ccf.idd_reference_no".equals(fieldNames[i])){
+					referenceNumber = fieldValues[i];
+					break;
+				}
+			}		
+			
+			//make iDirectDebit call
+			LOG.info("process - calling update method with referenceNo:"+referenceNumber+" amountInPence:"+amountInPence+" debitDate:"+debitDate);
+			//Handle response and update db
+	        PaymentAuthorizationDTO paymentAuthDTOResponse = update(referenceNumber, amountInPence, debitDate);
+			
+	        //Set the PaymentAuthorizationDTO
+			paymentDTOEx.setAuthorization(paymentAuthDTOResponse);
+	        
+			//Set the PaymentAuthorizationDTO payment result
+			if (!("200".equals(paymentAuthDTOResponse.getCode1()))){						
+				paymentDTOEx.setPaymentResult(new PaymentResultDAS().find(Constants.RESULT_OK));
+				LOG.info("process setting success payment result:"+Constants.RESULT_OK);			
+			}
+			else{ //fail
+				paymentDTOEx.setPaymentResult(new PaymentResultDAS().find(Constants.RESULT_FAIL));
+				LOG.info("process setting success payment result:"+Constants.RESULT_FAIL);			
+			}	
+			
+			//Create the paymentAuthorization record
+			PaymentAuthorizationBL bl = new PaymentAuthorizationBL();
+			bl.create(paymentAuthDTOResponse, paymentDTOEx.getId());
+			
+		}
+		catch(Exception e){
+			LOG.error("process Exception thrown:"+e.getMessage()+" throwing PluggableTaskException");
+			throw new PluggableTaskException(e);
+		}
+		
+		//Return false as we dont wish to failover to another payment gateway
+		return false;
+	}
+	
+	/*
+	 * Ensure that these parameters are retrieved 
+	 */	
+	private void validateParameters() throws PluggableTaskException {
+		ensureGetParameter(PARAM_IDD_USERNAME);
+		ensureGetParameter(PARAM_IDD_PASSWORD);
+	}	
 }
