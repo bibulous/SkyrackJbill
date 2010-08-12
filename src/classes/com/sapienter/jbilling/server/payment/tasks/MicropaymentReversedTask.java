@@ -128,10 +128,10 @@ public class MicropaymentReversedTask extends AbstractSimpleScheduledTask {
 
 	private void updatePaymentAuthoriaztion(PaymentAuthorizationDTO response) {
 		// Update the payment_authorization record
-		LOG.debug("Starting chargedPayment for paDto = " + response.toString());
+		LOG.debug("Starting updatePaymentAuthoriaztion for paDto = " + response.toString());
 		//Save updated PaymentAuthorizationDTO
 		paBl.save(response);
-		
+		LOG.debug("Ended updatePaymentAuthoriaztion for paDto = " + response.toString());
 	}
 
 	private void checkReversed(Integer entityId) {
@@ -155,21 +155,23 @@ public class MicropaymentReversedTask extends AbstractSimpleScheduledTask {
             //Check the status with the API.
             PaymentAuthorizationDTO response = sessionGet(paDto);
             if (response.getApprovalCode().equalsIgnoreCase(RESPONSE_CODE_REVERSED)) {
-            	reversePayment();
+            	reversePayment(response);
             }
     	}
 		
 	}
 
 
-	private void reversePayment() {
+	private void reversePayment(PaymentAuthorizationDTO response) {
 		//Now reverse the payment.
-		LOG.debug("Starting reversePayment for paDto = " + paDto.toString());
+		LOG.debug("Starting reversePayment for paDto = " + response.toString());
 		//First save updated PaymentAuthorizationDTO
-		paBl.save(paDto);
+		//paBl.save(response);
+		PaymentAuthorizationBL paymentAuthorizationBL = new PaymentAuthorizationBL(response);
+		paymentAuthorizationBL.save(response);
 		//Next reverse payment.  Set balance to amount, amount to zero, reset invoice
 		
-		PaymentDTO paymentDto = paDto.getPayment();
+		PaymentDTO paymentDto = response.getPayment();
 		BigDecimal reverseAmount = paymentDto.getAmount();
 		BigDecimal reverseBalance = paymentDto.getBalance();
 		//Not needed really BigDecimal newBalance = reverseBalance + reverseAmount;
@@ -183,7 +185,8 @@ public class MicropaymentReversedTask extends AbstractSimpleScheduledTask {
 		Set<PaymentInvoiceMapDTO> invoicesMap = paymentDto.getInvoicesMap();
 		Iterator iter = invoicesMap.iterator();
 		while (iter.hasNext()) {
-			InvoiceDTO invoice = (InvoiceDTO)(iter.next());
+			PaymentInvoiceMapDTO paymentInvoiceMapDto = (PaymentInvoiceMapDTO)(iter.next());
+			InvoiceDTO invoice = paymentInvoiceMapDto.getInvoiceEntity();
 			BigDecimal invoiceBalance = invoice.getBalance();
 			BigDecimal carriedBalance = invoice.getCarriedBalance();
 		
@@ -198,7 +201,7 @@ public class MicropaymentReversedTask extends AbstractSimpleScheduledTask {
 			InvoiceBL invoiceBl = new InvoiceBL();
 			invoiceBl.save(invoice);
 		}
-		LOG.debug("Ended reversePayment for paDto = " + paDto.toString());
+		LOG.debug("Ended reversePayment for paDto = " + response.toString());
 		//TODO If there's anything else to do do it here.  Ideally let next billing process
 		//pick up invoice and deal with as per usual.
 	}
