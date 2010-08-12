@@ -54,13 +54,17 @@ public class PaymentAuthorizationDAS extends AbstractDAS<PaymentAuthorizationDTO
 	 * Allowing date and code to be passed in makes it more generic and useful.
 	 */
 	public Collection<PaymentAuthorizationDTO> 
-		findByDateAndCode(String approvalCode, Date createDatetime, Integer entityId) {
+		findByDateAndCode(String approvalCode, Date createDatetime, String dateTimeComparator, Integer entityId) {
 		/*TODO should add some form of restriction maybe for entities and/or users?
 		 * 
 		 */
 		Criteria criteria = getSession().createCriteria(PaymentAuthorizationDTO.class);
 		criteria.add(Restrictions.eq("approvalCode", approvalCode));
-		criteria.add(Restrictions.ge("createDate", createDatetime));
+		if (dateTimeComparator.equalsIgnoreCase(">=")) {
+			criteria.add(Restrictions.ge("createDate", createDatetime));
+		} else if (dateTimeComparator.equalsIgnoreCase("<=")) {
+			criteria.add(Restrictions.le("createDate", createDatetime));
+		}
 		
 		return criteria.list();
 	}

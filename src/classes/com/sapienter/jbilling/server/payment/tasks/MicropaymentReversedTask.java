@@ -100,18 +100,49 @@ public class MicropaymentReversedTask extends AbstractSimpleScheduledTask {
         if (Util.getSysPropBooleanTrue(PROPERTY_RUN_REVERSED)) {
             LOG.info("Starting micropayments reversed at " + new Date());
             checkReversed(getEntityId());
+            confirmCharged(getEntityId());
             LOG.info("Ended micropayments reversed at " + new Date());
         }
     }
 
-    private void checkReversed(Integer entityId) {
+    private void confirmCharged(Integer entityId) {
+		// Update valid charged payment_authorizations that shouldn't be reversed.
+    	this.paBl = new PaymentAuthorizationBL();
+    	this.createDatetime = new Date(System.currentTimeMillis()-millisBack);
+    	String dateTimeComparator = "<=";
+    	Collection paDtos = paBl.findByDateAndCode(RESPONSE_CODE_APPROVED, createDatetime, dateTimeComparator, entityId);
+    	  
+    	Iterator iter = paDtos.iterator();
+    	while (iter.hasNext()) {
+    		this.paDto = (PaymentAuthorizationDTO)(iter.next());
+            LOG.debug("confirmCharged paDto being checked = " +
+    				paDto.getId());
+            //Check the status with the API.
+            PaymentAuthorizationDTO response = sessionGet(paDto);
+            if (response.getApprovalCode().equalsIgnoreCase(RESPONSE_CODE_CHARGED)) {
+            	updatePaymentAuthoriaztion(response);
+            }
+    	}
+		
+	}
+
+	private void updatePaymentAuthoriaztion(PaymentAuthorizationDTO response) {
+		// Update the payment_authorization record
+		LOG.debug("Starting chargedPayment for paDto = " + response.toString());
+		//Save updated PaymentAuthorizationDTO
+		paBl.save(response);
+		
+	}
+
+	private void checkReversed(Integer entityId) {
 		// TODO Should really extract a separate Micropayments class and use an instance of it.
     	// Particularly for constants and method calls
 		//Get Records to check for this entity.
     	this.paBl = new PaymentAuthorizationBL();
-    	this.createDatetime = new Date(System.currentTimeMillis()-millisBack);    	
+    	this.createDatetime = new Date(System.currentTimeMillis()-millisBack);
+    	String dateTimeComparator = ">=";
     	//Collection paDtos = paBl.findByDateAndCode(approvalCode, createDatetime, entityId);
-    	List paDtos = paBl.findByDateAndCode(RESPONSE_CODE_APPROVED, createDatetime, entityId);
+    	List paDtos = paBl.findByDateAndCode(RESPONSE_CODE_APPROVED, createDatetime, dateTimeComparator, entityId);
   
     	//Iterator iter = paDtos.iterator();
     	//while (iter.hasNext()) {

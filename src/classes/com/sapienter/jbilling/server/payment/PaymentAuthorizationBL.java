@@ -151,11 +151,11 @@ public class PaymentAuthorizationBL {
     }
     
     public List<PaymentAuthorizationDTO> 
-    	findByDateAndCode(String approvalCode, Date createDatetime, Integer entityId) {
+    	findByDateAndCode(String approvalCode, Date createDatetime, String dateTimeComparator, Integer entityId) {
         // This will return a list of PaymentAuthorizationDTOs. 
         List<PaymentAuthorizationDTO> paDtosList = null;
         Collection paymentAuthorizations = 
-        	paymentAuthorizationDas.findByDateAndCode(approvalCode, createDatetime, entityId);
+        	paymentAuthorizationDas.findByDateAndCode(approvalCode, createDatetime, dateTimeComparator, entityId);
 
         if (paymentAuthorizations != null) {
         	paDtosList = new ArrayList<PaymentAuthorizationDTO>(paymentAuthorizations); 
