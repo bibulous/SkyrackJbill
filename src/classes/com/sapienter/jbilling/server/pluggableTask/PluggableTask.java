@@ -58,6 +58,10 @@ public abstract class PluggableTask {
         return entityId;
     }
 
+    protected void setEntityId(Integer entityId) {
+        this.entityId = entityId;
+    }
+
     protected Integer getTaskId() {
         return task.getId();
     }
@@ -178,7 +182,6 @@ public abstract class PluggableTask {
         String prefix;
         for (String key : parameters.keySet()) {
             String value = (String) parameters.get(key);
-            LOG.debug("processing parameter " + key + " value " + value);
             if (key.equals("file")) {
                 String[] files = com.sapienter.jbilling.server.util.Util
                         .csvSplitLine(value, ' ');
@@ -188,7 +191,6 @@ public abstract class PluggableTask {
                         // prepend the default directory if file path is relative
                         prefix = defaultDir + File.separator;
                     }
-                    LOG.debug("adding parameter " + file);
                     appendResource(str, "file:" + prefix + file, "PKG");
                 }
             } else if (key.equals("dir")) {
@@ -200,20 +202,19 @@ public abstract class PluggableTask {
                         // prepend the default directory if directory path is relative
                         prefix = defaultDir + File.separator;
                     }
-                    LOG.debug("adding parameter " + dir);
                     appendResource(str, "file:" + prefix + dir, "PKG");
                 }
             } else if (key.equals("url")) {
                 String[] urls = com.sapienter.jbilling.server.util.Util
                         .csvSplitLine(value, ' ');
                 for (String url : urls) {
-                    LOG.debug("adding parameter " + url);
                     appendResource(str, url, "PKG");
                 }
             } else {
                 //for other types of resources
                 LOG.warn("Resource for parameter " + key + "->" + value + " not supported");
             }
+            LOG.debug("adding parameter " + key + " value " + value);
         }
         if (parameters.isEmpty()) {
             appendResource(str, "file:" + defaultDir, "PKG");
